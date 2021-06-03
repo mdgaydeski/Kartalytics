@@ -21,8 +21,12 @@
     "@types/react-dom": "^17.0.6",
     "@types/react-router": "^5.1.14",
     "ajv": "^6.9.1",
+    "autoprefixer": "^10.2.6",
     "cross-env": "^5.2.0",
     "nan": "^2.14.1",
+    "postcss": "^8.3.0",
+    "postcss-cli": "^8.3.1",
+    "tailwindcss": "^2.1.4",
     "typescript": "^3.9.9"
   },
   "eslintConfig": {
@@ -33,7 +37,8 @@
     "build": "react-scripts build",
     "test": "cross-env CI=true react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "lint": "eslint ./src/"
+    "lint": "eslint ./src/",
+    "tailwind-compile": "npx postcss src/styles/tailwind.css -o src/styles/app.css"
   },
   "browserslist": {
     "production": [

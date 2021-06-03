@@ -4,7 +4,7 @@ const App = () => {
     return (
         <>
             <h1>Kartalytics</h1>
-            <p>Hello</p>
+            <p className='font-bold text-center text-red-500'>Hello</p>
         </>
     );
 }
