@@ -232,5 +232,5 @@ _Pvt_Extensions
 .fake/
 
 # TypeScript generated files
-src/**/*.js
-src/**/*.js.map
+**/*.js
+**/*.js.map
