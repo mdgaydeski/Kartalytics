@@ -1,127 +1,35 @@
-import * as React from 'react';
+import React, { lazy, Suspense } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Container from './components/Container';
+import * as ROUTES from './constants/routes';
+
+const Home = lazy(() => import('./pages/Home'));
+const PlayerList = lazy(() => import('./pages/PlayerList'));
+const Player = lazy(() => import('./pages/Player'));
+const TournamentList = lazy(() => import('./pages/TournamentList'));
+const Tournament = lazy(() => import('./pages/Tournament'));
+const TrackList = lazy(() => import('./pages/TrackList'));
+const Track = lazy(() => import('./pages/Track'));
 
 const App = () => {
     return (
-        <>
-            <Container>
-                <h1>Kartalytics</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <h2>Header 2</h2>
-                <p>Something else goes here</p>
-                <h3>Another header</h3>
-                <p>
-                    Here is a very<br />
-                    l<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    o<br />
-                    n<br />
-                    g<br />
-                    section
-                </p>
-
-            </Container>
-        </>
+        <Router>
+            <main>
+                <Suspense fallback={<p>Loading...</p>}>
+                    <Container>
+                        <Switch>
+                            <Route path={ROUTES.HOME} exact component={Home} />
+                            <Route path={ROUTES.PLAYER_ID} component={Player} />
+                            <Route path={ROUTES.PLAYER_LIST} component={PlayerList} />
+                            <Route path={ROUTES.TOURNAMENT_ID} component={Tournament} />
+                            <Route path={ROUTES.TOURNAMENT_LIST} component={TournamentList} />
+                            <Route path={ROUTES.TRACK_ID} component={Track} />
+                            <Route path={ROUTES.TRACK_LIST} component={TrackList} />
+                        </Switch>
+                    </Container>
+                </Suspense>
+            </main>
+        </Router>
     );
 }
 
