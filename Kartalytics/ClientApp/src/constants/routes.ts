@@ -1,4 +1,4 @@
-﻿export const PLAYER = '/players';
+export const PLAYER = '/players';
 export const PLAYER_ID = '/players/:id';
 export const PLAYER_LIST = '/players';
 export const TOURNAMENT = '/tournaments';
