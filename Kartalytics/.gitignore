@@ -234,3 +234,5 @@ _Pvt_Extensions
 # TypeScript generated files
 **/*.js
 **/*.js.map
+
+**/src/tempdata
