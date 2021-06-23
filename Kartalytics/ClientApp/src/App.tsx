@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Container from './components/Container';
+import Container from './components/Layout/Container';
+import Header from './components/Layout/Header';
 import * as ROUTES from './constants/routes';
 
 const Home = lazy(() => import('./pages/Home'));
@@ -14,6 +15,7 @@ const Track = lazy(() => import('./pages/Track'));
 const App = () => {
     return (
         <Router>
+            <Header />
             <main>
                 <Suspense fallback={<p>Loading...</p>}>
                     <Container>
