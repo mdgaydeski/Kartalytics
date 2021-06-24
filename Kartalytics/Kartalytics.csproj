@@ -22,6 +22,8 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\components\Container.tsx" />
+    <None Remove="ClientApp\src\components\Data\TrackStatsRow.tsx" />
+    <None Remove="ClientApp\src\components\Data\TrackStatsTable.tsx" />
     <None Remove="ClientApp\src\components\Layout\Header.tsx" />
     <None Remove="ClientApp\src\components\SearchBar.tsx" />
     <None Remove="ClientApp\src\constants\routes.ts" />
@@ -42,6 +44,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\components\Data\TrackStatsRow.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\Data\TrackStatsTable.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Layout\Container.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Layout\Header.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\SearchBar.tsx" />
