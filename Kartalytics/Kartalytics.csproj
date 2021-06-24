@@ -23,6 +23,7 @@
   <ItemGroup>
     <None Remove="ClientApp\src\components\Container.tsx" />
     <None Remove="ClientApp\src\components\Layout\Header.tsx" />
+    <None Remove="ClientApp\src\components\SearchBar.tsx" />
     <None Remove="ClientApp\src\constants\routes.ts" />
     <None Remove="ClientApp\src\pages\Home.tsx" />
     <None Remove="ClientApp\src\pages\Player.tsx" />
@@ -43,6 +44,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\components\Layout\Container.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Layout\Header.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\SearchBar.tsx" />
     <TypeScriptCompile Include="ClientApp\src\constants\routes.ts" />
     <TypeScriptCompile Include="ClientApp\src\pages\Home.tsx" />
     <TypeScriptCompile Include="ClientApp\src\pages\Player.tsx" />
