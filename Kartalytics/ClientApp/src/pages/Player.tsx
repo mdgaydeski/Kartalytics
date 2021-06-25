@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { HOME } from '../constants/routes';
+import Overview from '../components/Player/Overview';
 
 const Player = () => {
     return (
         <>
             <h1>Player</h1>
-            <Link to={HOME}>Back to Home</Link>
+            <Overview />
         </>
     );
 }
