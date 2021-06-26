@@ -22,12 +22,16 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\components\Container.tsx" />
+    <None Remove="ClientApp\src\components\Data\MatchRow.tsx" />
+    <None Remove="ClientApp\src\components\Data\MatchTable.tsx" />
     <None Remove="ClientApp\src\components\Data\TrackStatsRow.tsx" />
     <None Remove="ClientApp\src\components\Data\TrackStatsTable.tsx" />
     <None Remove="ClientApp\src\components\Layout\Header.tsx" />
     <None Remove="ClientApp\src\components\Player\Overview.tsx" />
+    <None Remove="ClientApp\src\components\Player\Results.tsx" />
     <None Remove="ClientApp\src\components\SearchBar.tsx" />
     <None Remove="ClientApp\src\constants\routes.ts" />
+    <None Remove="ClientApp\src\constants\types.ts" />
     <None Remove="ClientApp\src\pages\Home.tsx" />
     <None Remove="ClientApp\src\pages\Player.tsx" />
     <None Remove="ClientApp\src\pages\PlayerList.tsx" />
@@ -35,6 +39,7 @@
     <None Remove="ClientApp\src\pages\TournamentList.tsx" />
     <None Remove="ClientApp\src\pages\Track.tsx" />
     <None Remove="ClientApp\src\pages\TrackList.tsx" />
+    <None Remove="ClientApp\src\utils.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,13 +49,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\components\Data\MatchTable.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\Data\MatchRow.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Data\TrackStatsRow.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Data\TrackStatsTable.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Layout\Container.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Layout\Header.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Player\Overview.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\Player\Results.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\SearchBar.tsx" />
     <TypeScriptCompile Include="ClientApp\src\constants\routes.ts" />
+    <TypeScriptCompile Include="ClientApp\src\constants\types.ts" />
     <TypeScriptCompile Include="ClientApp\src\pages\Home.tsx" />
     <TypeScriptCompile Include="ClientApp\src\pages\Player.tsx" />
     <TypeScriptCompile Include="ClientApp\src\pages\PlayerList.tsx" />
@@ -58,6 +67,7 @@
     <TypeScriptCompile Include="ClientApp\src\pages\TournamentList.tsx" />
     <TypeScriptCompile Include="ClientApp\src\pages\Track.tsx" />
     <TypeScriptCompile Include="ClientApp\src\pages\TrackList.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\utils.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
