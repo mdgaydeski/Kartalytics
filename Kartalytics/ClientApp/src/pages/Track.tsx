@@ -5,7 +5,7 @@ const Track = () => {
     return (
         <>
             <h1>Track Name</h1>
-            <TrackStatsTable />
+            <TrackStatsTable playerStats={false} />
         </>
     );
 }

@@ -1,12 +1,19 @@
 ﻿import * as React from 'react';
 import { Link } from 'react-router-dom';
 
-// column order: player name / total / 1st / 2nd / 3rd / 4th / avg. points / avg. finish
-const TrackStatsRow = () => {
+type Props = {
+    playerStats: boolean;
+}
+
+// column order: [player|track] name / total / 1st / 2nd / 3rd / 4th / avg. points / avg. finish
+const TrackStatsRow: React.FC<Props> = ({ playerStats }) => {
     return (
         <tr className='hover:bg-indigo-900'>
             <td>
-                <Link to={`/player/1`}>{'Player'}</Link>
+                {playerStats
+                    ? <Link to={`/track/1`}>{'Luigi Raceway'}</Link>
+                    : <Link to={`/player/1`}>{'Jimbo'}</Link>
+                }
             </td>
             <td>6</td>
             <td>1</td>

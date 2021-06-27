@@ -1,12 +1,16 @@
 ﻿import * as React from 'react';
 import TrackStatsRow from './TrackStatsRow';
 
-const TrackStatsTable = () => {
+type Props = {
+    playerStats: boolean;
+}
+
+const TrackStatsTable: React.FC<Props> = ({ playerStats }) => {
     return (
         <table className='table-fixed text-center w-full'>
             <thead>
                 <tr>
-                    <th className='w-3/12'>Player</th>
+                    <th className='w-3/12'>{ playerStats ? 'Track' : 'Player' }</th>
                     <th className='w-1/12'>Total</th>
                     <th className='w-1/12'>1st</th>
                     <th className='w-1/12'>2nd</th>
@@ -17,11 +21,11 @@ const TrackStatsTable = () => {
                 </tr>
             </thead>
             <tbody>
-                <TrackStatsRow />
-                <TrackStatsRow />
-                <TrackStatsRow />
-                <TrackStatsRow />
-                <TrackStatsRow />
+                <TrackStatsRow playerStats={playerStats} />
+                <TrackStatsRow playerStats={playerStats} />
+                <TrackStatsRow playerStats={playerStats} />
+                <TrackStatsRow playerStats={playerStats} />
+                <TrackStatsRow playerStats={playerStats} />
             </tbody>
         </table>
     );
