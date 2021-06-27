@@ -27,6 +27,7 @@
     <None Remove="ClientApp\src\components\Data\TrackStatsRow.tsx" />
     <None Remove="ClientApp\src\components\Data\TrackStatsTable.tsx" />
     <None Remove="ClientApp\src\components\Layout\Header.tsx" />
+    <None Remove="ClientApp\src\components\Layout\SubNavButton.tsx" />
     <None Remove="ClientApp\src\components\Player\Overview.tsx" />
     <None Remove="ClientApp\src\components\Player\Results.tsx" />
     <None Remove="ClientApp\src\components\Player\TrackStats.tsx" />
@@ -56,6 +57,7 @@
     <TypeScriptCompile Include="ClientApp\src\components\Data\TrackStatsTable.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Layout\Container.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Layout\Header.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\Layout\SubNavButton.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Player\Overview.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Player\Results.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Player\TrackStats.tsx" />

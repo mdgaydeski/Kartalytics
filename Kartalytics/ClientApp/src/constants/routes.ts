@@ -9,3 +9,8 @@ export const TRACK_ID = '/tracks/:id';
 export const TRACK_LIST = '/tracks';
 
 export const HOME = '/';
+
+// player subroutes
+export const PLAYER_OVERVIEW = '/overview';
+export const PLAYER_RESULTS = '/results';
+export const PLAYER_TRACK_STATS = '/track';
