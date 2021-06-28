@@ -14,3 +14,8 @@ export const HOME = '/';
 export const PLAYER_OVERVIEW = '/overview';
 export const PLAYER_RESULTS = '/results';
 export const PLAYER_TRACK_STATS = '/track';
+
+// tournament subroutes
+export const TOURNAMENT_RESULTS = '/results';
+export const TOURNAMENT_BRACKET = '/bracket';
+export const TOURNAMENT_DETAILS = '/details';

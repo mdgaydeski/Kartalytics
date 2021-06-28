@@ -32,6 +32,9 @@
     <None Remove="ClientApp\src\components\Player\Results.tsx" />
     <None Remove="ClientApp\src\components\Player\TrackStats.tsx" />
     <None Remove="ClientApp\src\components\SearchBar.tsx" />
+    <None Remove="ClientApp\src\components\Tournament\Bracket.tsx" />
+    <None Remove="ClientApp\src\components\Tournament\Details.tsx" />
+    <None Remove="ClientApp\src\components\Tournament\Results.tsx" />
     <None Remove="ClientApp\src\constants\routes.ts" />
     <None Remove="ClientApp\src\constants\types.ts" />
     <None Remove="ClientApp\src\pages\Home.tsx" />
@@ -46,7 +49,6 @@
 
   <ItemGroup>
     <Folder Include="ClientApp\src\components\Track\" />
-    <Folder Include="ClientApp\src\components\Tournament\" />
     <Folder Include="Controllers\" />
   </ItemGroup>
 
@@ -62,6 +64,9 @@
     <TypeScriptCompile Include="ClientApp\src\components\Player\Results.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Player\TrackStats.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\SearchBar.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\Tournament\Bracket.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\Tournament\Details.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\Tournament\Results.tsx" />
     <TypeScriptCompile Include="ClientApp\src\constants\routes.ts" />
     <TypeScriptCompile Include="ClientApp\src\constants\types.ts" />
     <TypeScriptCompile Include="ClientApp\src\pages\Home.tsx" />
