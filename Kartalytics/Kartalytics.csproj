@@ -22,8 +22,12 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\components\Container.tsx" />
+    <None Remove="ClientApp\src\components\Data\BracketRoundResults.tsx" />
     <None Remove="ClientApp\src\components\Data\MatchRow.tsx" />
     <None Remove="ClientApp\src\components\Data\MatchTable.tsx" />
+    <None Remove="ClientApp\src\components\Data\PoolRoundResults.tsx" />
+    <None Remove="ClientApp\src\components\Data\RoundRow.tsx" />
+    <None Remove="ClientApp\src\components\Data\RoundTable.tsx" />
     <None Remove="ClientApp\src\components\Data\TrackStatsRow.tsx" />
     <None Remove="ClientApp\src\components\Data\TrackStatsTable.tsx" />
     <None Remove="ClientApp\src\components\Layout\Header.tsx" />
@@ -53,8 +57,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\components\Data\BracketRoundResults.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Data\MatchTable.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Data\MatchRow.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\Data\PoolRoundResults.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\Data\RoundRow.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\Data\RoundTable.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Data\TrackStatsRow.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Data\TrackStatsTable.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Layout\Container.tsx" />
