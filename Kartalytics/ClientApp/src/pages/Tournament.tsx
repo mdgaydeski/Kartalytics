@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Switch, Route, Redirect, useRouteMatch } from 'react-router-dom';
+import LoadingPlaceholder from '../components/Layout/LoadingPlaceholder';
 import SubNavButton from '../components/Layout/SubNavButton';
 import Results from '../components/Tournament/Results';
 import Bracket from '../components/Tournament/Bracket';
@@ -26,7 +27,7 @@ const Player = () => {
                 </SubNavButton>
             </div>
 
-            <Suspense fallback={<p>Loading...</p>}>
+            <Suspense fallback={<LoadingPlaceholder />}>
                 <Switch>
                     <Redirect exact from={path} to={`${path}${TOURNAMENT_RESULTS}`} />
                     <Route path={`${path}${TOURNAMENT_RESULTS}`} component={Results} />

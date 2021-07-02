@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Container from './components/Layout/Container';
 import Header from './components/Layout/Header';
+import LoadingPlaceHolder from './components/Layout/LoadingPlaceholder';
 import * as ROUTES from './constants/routes';
 
 const Home = lazy(() => import('./pages/Home'));
@@ -17,7 +18,7 @@ const App = () => {
         <Router>
             <Header />
             <main>
-                <Suspense fallback={<p>Loading...</p>}>
+                <Suspense fallback={<LoadingPlaceHolder />}>
                     <Container>
                         <Switch>
                             <Route path={ROUTES.HOME} exact component={Home} />

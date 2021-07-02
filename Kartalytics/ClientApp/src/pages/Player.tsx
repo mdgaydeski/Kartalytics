@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Switch, Route, Redirect, useRouteMatch } from 'react-router-dom';
+import LoadingPlaceholder from '../components/Layout/LoadingPlaceholder';
 import SubNavButton from '../components/Layout/SubNavButton';
 import Overview from '../components/Player/Overview';
 import Results from '../components/Player/Results';
@@ -26,7 +27,7 @@ const Player = () => {
                 </SubNavButton>
             </div>
 
-            <Suspense fallback={<p>Loading...</p>}>
+            <Suspense fallback={<LoadingPlaceholder />}>
                 <Switch>
                     <Redirect exact from={path} to={`${path}${PLAYER_OVERVIEW}`} />
                     <Route path={`${path}${PLAYER_OVERVIEW}`} component={Overview} />
