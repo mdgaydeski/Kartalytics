@@ -1,5 +1,5 @@
 ﻿import * as React from 'react';
-import { Link } from 'react-router-dom';
+import PlayerLink from '../Layout/PlayerLink';
 import { Player } from '../../constants/types';
 import { getPlaceTotals, getPoints } from '../../utils';
 
@@ -14,7 +14,7 @@ const MatchRow: React.FC<Props> = ({ player }) => {
     return (
         <tr className='hover:bg-indigo-900' key={player.name}>
             <td className='text-left'>
-                <Link to={`/player/${player.id}`}>{player.name}</Link>
+                <PlayerLink id={player.id} name={player.name} />
             </td>
             <td className='text-red-300'>{points}</td>
             {player.results.map((result: number, i: number) => <td key={i}>{result}</td>)}

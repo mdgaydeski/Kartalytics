@@ -1,6 +1,5 @@
 ﻿import * as React from 'react';
-import { Link } from 'react-router-dom';
-import { PLAYER } from '../../constants/routes';
+import PlayerLink from '../Layout/PlayerLink';
 
 const Results = () => {
     const playerList = [
@@ -34,9 +33,7 @@ const Results = () => {
                 {playerList.map(player => (
                     <p key={player.id}>
                         {player.place}.&nbsp;
-                        <Link to={`${PLAYER}/${player.id}`}>
-                            {player.name}
-                        </Link>
+                        <PlayerLink id={player.id} name={player.name} />
                     </p>
                 ))}
             </div>

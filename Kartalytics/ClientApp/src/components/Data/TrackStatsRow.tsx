@@ -1,5 +1,6 @@
 ﻿import * as React from 'react';
 import { Link } from 'react-router-dom';
+import PlayerLink from '../Layout/PlayerLink';
 
 type Props = {
     playerStats: boolean;
@@ -12,7 +13,7 @@ const TrackStatsRow: React.FC<Props> = ({ playerStats }) => {
             <td>
                 {playerStats
                     ? <Link to={`/track/1`}>{'Luigi Raceway'}</Link>
-                    : <Link to={`/player/1`}>{'Jimbo'}</Link>
+                    : <PlayerLink id={1} name={'Jimbo'} />
                 }
             </td>
             <td>6</td>
