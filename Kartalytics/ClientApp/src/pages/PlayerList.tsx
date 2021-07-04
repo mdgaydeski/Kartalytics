@@ -1,12 +1,37 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
-import { HOME } from '../constants/routes';
+import PlayerLink from '../components/Layout/PlayerLink';
+import { Player } from '../constants/types';
+import { players } from '../tempdata/players';
+
+const { useState, useEffect } = React;
 
 const PlayerList = () => {
+    const [playerList, setPlayerList] = useState<Player[]>([]);
+
+    useEffect(() => {
+        // fetch player list
+        setPlayerList(players);
+    }, [setPlayerList])
+
     return (
         <>
             <h1>Player List</h1>
-            <Link to={HOME}>Back to Home</Link>
+            <table className='table text-center w-full'>
+                <thead>
+                    <tr>
+                        <th>Player</th>
+                        <th>Country</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {playerList.map(player => (
+                        <tr key={player.id}>
+                            <td><PlayerLink id={player.id} name={player.name} /></td>
+                            <td>{player.country}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </>
     );
 }

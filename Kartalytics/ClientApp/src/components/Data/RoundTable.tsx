@@ -22,7 +22,7 @@ const RoundTable: React.FC<Props> = ({ advance, results }) => {
             <tbody>
                 {results.sort((a, b) => b.points - a.points).map((player, j) => (
                     <RoundRow
-                        player={{ id: player.id, name: player.name, results: [] }}
+                        player={{ id: player.id, name: player.name, country: '', results: [] }}
                         points={player.points}
                         advance={j < advance}
                         key={j}
