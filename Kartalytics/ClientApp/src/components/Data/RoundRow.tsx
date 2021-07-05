@@ -1,6 +1,6 @@
 ﻿import * as React from 'react';
 import { CheckIcon, XIcon } from '@heroicons/react/solid';
-import PlayerLink from '../Layout/PlayerLink';
+import AssetLink from '../Layout/AssetLink';
 import { Player } from '../../constants/types'; 
 
 type Props = {
@@ -19,7 +19,7 @@ const RoundRow: React.FC<Props> = ({ player, points, advance }) => {
                     ? <CheckIcon className={`${baseClasses} text-green-500`} />
                     : <XIcon className={`${baseClasses} text-red-500`} />
                 }
-                <PlayerLink id={player.id} name={player.name} />
+                <AssetLink type='player' id={player.id} name={player.name} />
             </td>
             <td>{points}</td>
         </tr>

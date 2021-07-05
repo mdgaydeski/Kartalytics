@@ -1,5 +1,5 @@
 ﻿import * as React from 'react';
-import PlayerLink from '../Layout/PlayerLink';
+import AssetLink from '../Layout/AssetLink';
 
 const Results = () => {
     const playerList = [
@@ -33,7 +33,7 @@ const Results = () => {
                 {playerList.map(player => (
                     <p key={player.id}>
                         {player.place}.&nbsp;
-                        <PlayerLink id={player.id} name={player.name} />
+                        <AssetLink type='player' id={player.id} name={player.name} />
                     </p>
                 ))}
             </div>

@@ -1,6 +1,5 @@
 ﻿import * as React from 'react';
-import { Link } from 'react-router-dom';
-import PlayerLink from '../Layout/PlayerLink';
+import AssetLink from '../Layout/AssetLink';
 
 type Props = {
     playerStats: boolean;
@@ -12,8 +11,8 @@ const TrackStatsRow: React.FC<Props> = ({ playerStats }) => {
         <tr className='hover:bg-indigo-900'>
             <td>
                 {playerStats
-                    ? <Link to={`/track/1`}>{'Luigi Raceway'}</Link>
-                    : <PlayerLink id={1} name={'Jimbo'} />
+                    ? <AssetLink type='track' id={1} name={'Luigi Raceway'} />
+                    : <AssetLink type='player' id={1} name={'Jimbo'} />
                 }
             </td>
             <td>6</td>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PlayerLink from '../components/Layout/PlayerLink';
+import AssetLink from '../components/Layout/AssetLink';
 import { Player } from '../constants/types';
 import { players } from '../tempdata/players';
 
@@ -26,7 +26,7 @@ const PlayerList = () => {
                 <tbody>
                     {playerList.map(player => (
                         <tr key={player.id}>
-                            <td><PlayerLink id={player.id} name={player.name} /></td>
+                            <td><AssetLink type='player' id={player.id} name={player.name} /></td>
                             <td>{player.country}</td>
                         </tr>
                     ))}
