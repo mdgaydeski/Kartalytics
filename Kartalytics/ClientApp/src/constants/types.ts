@@ -11,6 +11,15 @@ export type Match = {
     players: Player[];
 }
 
+export type Tournament = {
+    id: number;
+    name: string;
+    group: string;
+    location: string;
+    startDate: string;
+    endDate: string;
+}
+
 export type Track = {
     id: number;
     name: string;
