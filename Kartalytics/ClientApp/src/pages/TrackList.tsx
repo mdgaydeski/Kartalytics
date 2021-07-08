@@ -1,12 +1,31 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
-import { HOME } from '../constants/routes';
+import TrackImageLink from '../components/Track/TrackImageLink';
+import { Cup } from '../constants/types';
+import { cupGroups } from '../tempdata/tracks';
+
+const { useState, useEffect } = React;
 
 const TrackList = () => {
+    const [cupList, setCupList] = useState<Cup[]>([]);
+
+    useEffect(() => {
+        // fetch track list
+        setCupList(cupGroups);
+    }, [setCupList]);
+
     return (
         <>
-            <h1>Track List</h1>
-            <Link to={HOME}>Back to Home</Link>
+            <h1>Select Track</h1>
+            {cupList.map(cup => (
+                <section key={cup.name}>
+                    <h2>{cup.name}</h2>
+                    <div className='grid grid-cols-4'>
+                        {cup.tracks.map(track => (
+                            <TrackImageLink track={track} key={track.id} />
+                        ))}
+                    </div>
+                </section>
+            ))}
         </>
     );
 }

@@ -33,7 +33,9 @@ const Results = () => {
                 {playerList.map(player => (
                     <p key={player.id}>
                         {player.place}.&nbsp;
-                        <AssetLink type='player' id={player.id} name={player.name} />
+                        <AssetLink type='player' id={player.id}>
+                            {player.name}
+                        </AssetLink>
                     </p>
                 ))}
             </div>

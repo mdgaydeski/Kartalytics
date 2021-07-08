@@ -26,7 +26,11 @@ const PlayerList = () => {
                 <tbody>
                     {playerList.map(player => (
                         <tr key={player.id}>
-                            <td><AssetLink type='player' id={player.id} name={player.name} /></td>
+                            <td>
+                                <AssetLink type='player' id={player.id}>
+                                    {player.name}
+                                </AssetLink>
+                            </td>
                             <td>{player.country}</td>
                         </tr>
                     ))}

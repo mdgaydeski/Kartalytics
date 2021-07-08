@@ -19,7 +19,9 @@ const RoundRow: React.FC<Props> = ({ player, points, advance }) => {
                     ? <CheckIcon className={`${baseClasses} text-green-500`} />
                     : <XIcon className={`${baseClasses} text-red-500`} />
                 }
-                <AssetLink type='player' id={player.id} name={player.name} />
+                <AssetLink type='player' id={player.id}>
+                    {player.name}
+                </AssetLink>
             </td>
             <td>{points}</td>
         </tr>

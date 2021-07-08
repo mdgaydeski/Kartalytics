@@ -14,7 +14,9 @@ const MatchRow: React.FC<Props> = ({ player }) => {
     return (
         <tr className='hover:bg-indigo-900' key={player.name}>
             <td className='text-left'>
-                <AssetLink type='player' id={player.id} name={player.name} />
+                <AssetLink type='player' id={player.id}>
+                    {player.name}
+                </AssetLink>
             </td>
             <td className='text-red-300'>{points}</td>
             {player.results.map((result: number, i: number) => <td key={i}>{result}</td>)}

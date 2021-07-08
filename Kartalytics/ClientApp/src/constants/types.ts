@@ -10,3 +10,15 @@ export type Match = {
     trackOrder: number[];
     players: Player[];
 }
+
+export type Track = {
+    id: number;
+    name: string;
+    altNames: string[];
+    cup: string;
+}
+
+export type Cup = {
+    name: string;
+    tracks: Track[];
+}

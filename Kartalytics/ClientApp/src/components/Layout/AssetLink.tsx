@@ -5,10 +5,10 @@ import { PLAYER, TOURNAMENT, TRACK } from '../../constants/routes';
 type Props = {
     type: string;
     id: number;
-    name: string;
+    children: any;
 }
 
-const AssetLink: React.FC<Props> = ({ type, id, name }) => {
+const AssetLink: React.FC<Props> = ({ type, id, children }) => {
     let route = '';
     switch (type) {
         case 'player':
@@ -22,7 +22,7 @@ const AssetLink: React.FC<Props> = ({ type, id, name }) => {
             break;
     }
 
-    return <Link to={`${route}/${id}`}>{name}</Link>
+    return <Link to={`${route}/${id}`}>{children}</Link>
 }
 
 export default AssetLink;

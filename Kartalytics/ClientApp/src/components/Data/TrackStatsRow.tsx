@@ -11,8 +11,8 @@ const TrackStatsRow: React.FC<Props> = ({ playerStats }) => {
         <tr className='hover:bg-indigo-900'>
             <td>
                 {playerStats
-                    ? <AssetLink type='track' id={1} name={'Luigi Raceway'} />
-                    : <AssetLink type='player' id={1} name={'Jimbo'} />
+                    ? <AssetLink type='track' id={1}>Luigi Raceway</AssetLink>
+                    : <AssetLink type='player' id={1}>Jimbo</AssetLink>
                 }
             </td>
             <td>6</td>
