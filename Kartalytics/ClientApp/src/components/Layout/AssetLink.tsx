@@ -20,6 +20,7 @@ const AssetLink: React.FC<Props> = ({ type, id, children }) => {
         case 'track':
             route = TRACK;
             break;
+        default:
     }
 
     return <Link to={`${route}/${id}`}>{children}</Link>
