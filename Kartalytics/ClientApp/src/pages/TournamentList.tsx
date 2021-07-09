@@ -21,10 +21,10 @@ const TournamentList = () => {
     return (
         <>
             <h1>Tournament List</h1>
-            <div className='flex'>
+            <div className='flex items-center mb-4'>
                 <label htmlFor='tournament'>Select a Tournament: </label>
                 <select
-                    className='flex-grow mx-2 rounded text-black'
+                    className='flex-grow mx-2 p-1 rounded text-black'
                     name='tournament'
                     id='tournament'
                     onChange={e => setSelectedValue(Number(e.target.value))}
@@ -36,7 +36,7 @@ const TournamentList = () => {
                     ))}
                 </select>
                 <AssetLink type='tournament' id={selectedValue}>
-                    <button className='bg-blue-800 px-2 rounded text-white'>
+                    <button className='bg-blue-900 px-4 py-1 rounded text-white hover:bg-blue-7000'>
                         Select
                     </button>
                 </AssetLink>
