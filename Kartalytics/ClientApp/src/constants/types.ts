@@ -12,12 +12,27 @@ export type Match = {
 }
 
 export type Tournament = {
-    id: number;
+    _id: number;
     name: string;
+    altNames: string[];
     group: string;
     location: string;
-    startDate: string;
-    endDate: string;
+    start_date: string;
+    end_date: string;
+    finalResults: {
+        playerId: number;
+        place: number;
+    }[];
+    rounds: {
+        orderNumber: number;
+        name: string;
+        totalAdvance: number;
+        roundTotals: {
+            playerId: number;
+            points: number;
+        }[] | null;
+        matches: number[];
+    }[]
 }
 
 export type Track = {
