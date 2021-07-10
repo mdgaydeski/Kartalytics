@@ -11,6 +11,11 @@ export type Match = {
     players: Player[];
 }
 
+export type TournamentResult = {
+    playerId: number;
+    place: number;
+}
+
 export type Tournament = {
     _id: number;
     name: string;
@@ -19,10 +24,7 @@ export type Tournament = {
     location: string;
     start_date: string;
     end_date: string;
-    finalResults: {
-        playerId: number;
-        place: number;
-    }[];
+    finalResults: TournamentResult[];
     rounds: {
         orderNumber: number;
         name: string;
