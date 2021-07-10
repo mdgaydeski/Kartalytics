@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { format } from 'date-fns';
 import AssetLink from '../components/Layout/AssetLink';
 import { Tournament } from '../constants/types';
 import { tournaments } from '../tempdata/tournaments';
+import { formatDate } from '../utils';
 
 const { useState, useEffect } = React;
 
@@ -43,7 +43,7 @@ const TournamentList = () => {
             </div>
             <ul>
                 <li>Location: {location}</li>
-                <li>Dates: {`${format(new Date(startDate || 0), 'dd MMM yyyy')} - ${format(new Date(endDate || 0), 'dd MMM yyyy')}`}</li>
+                <li>Dates: {formatDate(startDate)} - {formatDate(endDate)}</li>
             </ul>
         </>
     );
