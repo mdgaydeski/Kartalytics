@@ -4,13 +4,14 @@ import RoundRow from './RoundRow';
 type Props = {
     advance: number;
     results: {
-        id: number,
-        name: string,
+        playerId: number,
         points: number
     }[];
 }
 
 const RoundTable: React.FC<Props> = ({ advance, results }) => {
+
+
     return (
         <table className='table text-center w-full'>
             <thead>
@@ -20,12 +21,12 @@ const RoundTable: React.FC<Props> = ({ advance, results }) => {
                 </tr>
             </thead>
             <tbody>
-                {results.sort((a, b) => b.points - a.points).map((player, j) => (
+                {results.sort((a, b) => b.points - a.points).map((result, i) => (
                     <RoundRow
-                        player={{ id: player.id, name: player.name, country: '', results: [] }}
-                        points={player.points}
-                        advance={j < advance}
-                        key={j}
+                        playerId={result.playerId}
+                        points={result.points}
+                        advance={i < advance}
+                        key={i}
                     />
                 ))}
             </tbody>

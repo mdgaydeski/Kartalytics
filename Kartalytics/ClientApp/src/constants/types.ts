@@ -5,24 +5,37 @@
     results: number[];
 }
 
+export type MatchResult = {
+    playerId: number;
+    points: number;
+    placeTotals: number[];
+    trackResults: {
+        trackId: number,
+        result: number
+    }[];
+}
+
 export type Match = {
     id: number;
     name: string;
     trackOrder: number[];
-    results: {
-        playerId: number;
-        points: number;
-        placeTotals: number[];
-        trackResults: {
-            trackId: number,
-            result: number
-        }[];
-    }[];
+    results: MatchResult[];
 }
 
 export type TournamentResult = {
     playerId: number;
     place: number;
+}
+
+export type TournamentRound = {
+    orderNumber: number;
+    name: string;
+    totalAdvance: number;
+    roundTotals: {
+        playerId: number;
+        points: number;
+    }[] | null;
+    matches: number[];
 }
 
 export type Tournament = {
@@ -34,16 +47,7 @@ export type Tournament = {
     start_date: string;
     end_date: string;
     finalResults: TournamentResult[];
-    rounds: {
-        orderNumber: number;
-        name: string;
-        totalAdvance: number;
-        roundTotals: {
-            playerId: number;
-            points: number;
-        }[] | null;
-        matches: number[];
-    }[];
+    rounds: TournamentRound[];
 }
 
 export type Track = {

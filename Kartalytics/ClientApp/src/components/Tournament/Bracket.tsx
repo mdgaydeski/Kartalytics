@@ -1,14 +1,17 @@
 ﻿import * as React from 'react';
-import BracketRoundResults from '../Data/BracketRoundResults';
-import PoolRoundResults from '../Data/PoolRoundResults';
+import RoundResults from '../Data/RoundResults';
+import { TournamentRound } from '../../constants/types';
 
-const Bracket = () => {
+type Props = {
+    rounds: TournamentRound[];
+}
+
+const Bracket: React.FC<Props> = ({ rounds }) => {
     return (
         <>
             <h2>Bracket</h2>
             <div className='flex flex-wrap justify-around w-full'>
-                <PoolRoundResults />
-                <BracketRoundResults />
+                {rounds.map(round => <RoundResults round={round} key={round.orderNumber} />)}
             </div>
         </>
     );
