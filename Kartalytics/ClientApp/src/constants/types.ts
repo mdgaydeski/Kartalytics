@@ -6,9 +6,18 @@
 }
 
 export type Match = {
+    id: number;
     name: string;
     trackOrder: number[];
-    players: Player[];
+    results: {
+        playerId: number;
+        points: number;
+        placeTotals: number[];
+        trackResults: {
+            trackId: number,
+            result: number
+        }[];
+    }[];
 }
 
 export type TournamentResult = {
@@ -34,7 +43,7 @@ export type Tournament = {
             points: number;
         }[] | null;
         matches: number[];
-    }[]
+    }[];
 }
 
 export type Track = {

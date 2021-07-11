@@ -1,26 +1,15 @@
 import * as React from 'react';
 import AssetLink from '../components/Layout/AssetLink';
-import { Player, Tournament } from '../constants/types';
-import { players } from '../tempdata/players';
-import { tournaments } from '../tempdata/tournaments';
+import { Tournament } from '../constants/types';
+import AppContext from '../context/AppContext';
 import { formatDate } from '../utils';
 
-const { useState, useEffect } = React;
+const { useState, useEffect, useContext } = React;
 
 const TournamentList = () => {
-    const [playerList, setPlayerList] = useState<Player[]>([]);
-    const [tournamentList, setTournamentList] = useState<Tournament[]>([]);
-    const [selectedValue, setSelectedValue] = useState<number>(0);
+    const { playerList, tournamentList } = useContext(AppContext);
+    const [selectedValue, setSelectedValue] = useState<number>(1);
     const [selectedTournament, setSelectedTournament] = useState<Tournament | null>(null);
-
-    useEffect(() => {
-        setPlayerList(players);
-    }, [setPlayerList])
-
-    useEffect(() => {
-        setTournamentList(tournaments);
-        setSelectedValue(1);
-    }, [setTournamentList, setSelectedValue]);
 
     useEffect(() => {
         const tournament = tournamentList && tournamentList.filter(t => t._id === selectedValue)[0];

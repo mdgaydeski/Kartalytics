@@ -44,6 +44,7 @@
     <None Remove="ClientApp\src\components\Track\TrackImageLink.tsx" />
     <None Remove="ClientApp\src\constants\routes.ts" />
     <None Remove="ClientApp\src\constants\types.ts" />
+    <None Remove="ClientApp\src\context\AppContext.ts" />
     <None Remove="ClientApp\src\custom.d.ts" />
     <None Remove="ClientApp\src\pages\Home.tsx" />
     <None Remove="ClientApp\src\pages\Player.tsx" />
@@ -83,6 +84,7 @@
     <TypeScriptCompile Include="ClientApp\src\components\Track\TrackImageLink.tsx" />
     <TypeScriptCompile Include="ClientApp\src\constants\routes.ts" />
     <TypeScriptCompile Include="ClientApp\src\constants\types.ts" />
+    <TypeScriptCompile Include="ClientApp\src\context\AppContext.ts" />
     <TypeScriptCompile Include="ClientApp\src\custom.d.ts" />
     <TypeScriptCompile Include="ClientApp\src\pages\Home.tsx" />
     <TypeScriptCompile Include="ClientApp\src\pages\Player.tsx" />

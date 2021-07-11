@@ -1,23 +1,12 @@
 ﻿import * as React from 'react';
 import AssetLink from '../Layout/AssetLink';
-import { Player, TournamentResult } from '../../constants/types';
-import { players } from '../../tempdata/players';
-import { tournaments } from '../../tempdata/tournaments';
+import AppContext from '../../context/AppContext';
 
-const { useState, useEffect } = React;
+const { useContext } = React;
 
 const Results = () => {
-    const [playerList, setPlayerList] = useState<Player[]>([]);
-    const [finalResults, setFinalResults] = useState<TournamentResult[]>([]);
-
-    useEffect(() => {
-        setPlayerList(players);
-    }, [setPlayerList]);
-
-    useEffect(() => {
-        const results = tournaments[0].finalResults;
-        setFinalResults(results);
-    }, [setFinalResults]);
+    const { playerList, tournamentList } = useContext(AppContext);
+    const finalResults = tournamentList[0].finalResults;
 
     return (
         <>

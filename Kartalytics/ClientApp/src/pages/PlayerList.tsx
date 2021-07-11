@@ -1,17 +1,11 @@
 import * as React from 'react';
 import AssetLink from '../components/Layout/AssetLink';
-import { Player } from '../constants/types';
-import { players } from '../tempdata/players';
+import AppContext from '../context/AppContext';
 
-const { useState, useEffect } = React;
+const { useContext } = React;
 
 const PlayerList = () => {
-    const [playerList, setPlayerList] = useState<Player[]>([]);
-
-    useEffect(() => {
-        // fetch player list
-        setPlayerList(players);
-    }, [setPlayerList])
+    const { playerList } = useContext(AppContext);
 
     return (
         <>
