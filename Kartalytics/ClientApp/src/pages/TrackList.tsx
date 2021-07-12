@@ -1,17 +1,11 @@
 import * as React from 'react';
 import TrackImageLink from '../components/Track/TrackImageLink';
-import { Cup } from '../constants/types';
-import { cupGroups } from '../tempdata/tracks';
+import AppContext from '../context/AppContext';
 
-const { useState, useEffect } = React;
+const { useContext } = React;
 
 const TrackList = () => {
-    const [cupList, setCupList] = useState<Cup[]>([]);
-
-    useEffect(() => {
-        // fetch track list
-        setCupList(cupGroups);
-    }, [setCupList]);
+    const { cupList } = useContext(AppContext);
 
     return (
         <>
@@ -20,8 +14,8 @@ const TrackList = () => {
                 <section key={cup.name}>
                     <h2>{cup.name}</h2>
                     <div className='grid grid-cols-4'>
-                        {cup.tracks.map(track => (
-                            <TrackImageLink track={track} key={track.id} />
+                        {cup.tracks.map(trackId => (
+                            <TrackImageLink trackId={trackId} key={trackId} />
                         ))}
                     </div>
                 </section>

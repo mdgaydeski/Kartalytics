@@ -1,19 +1,21 @@
 ﻿import * as React from 'react';
 import AssetLink from '../Layout/AssetLink';
 import trackSelectImage from '../../assets/trackselect.png';
-import { Track } from '../../constants/types';
+import AppContext from '../../context/AppContext';
 
+const { useContext } = React;
 
 type Props = {
-    track: Track
+    trackId: number
 }
 
-const TrackImageLink: React.FC<Props> = ({ track }) => {
-    const col = (track.id - 1) % 4;
-    const row = Math.floor((track.id - 1) / 4)
+const TrackImageLink: React.FC<Props> = ({ trackId }) => {
+    const track = useContext(AppContext).trackList.filter(t => t.id === trackId)[0];
+    const col = (trackId - 1) % 4;
+    const row = Math.floor((trackId - 1) / 4)
 
     return (
-        <AssetLink type='track' id={track.id}>
+        <AssetLink type='track' id={trackId}>
             <div className='transform transition-transform duration-300 hover:scale-105'
                 style={{
                     backgroundImage: `url(${trackSelectImage})`,

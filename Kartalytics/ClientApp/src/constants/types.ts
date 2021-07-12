@@ -10,6 +10,13 @@ export type Player = {
     tournamentResults: PlayerResult[];
 }
 
+export type Result = {
+    playerId: number;
+    trackId: number;
+    result: number;
+    year: number;
+}
+
 export type MatchResult = {
     playerId: number;
     points: number;
@@ -61,10 +68,11 @@ export type Track = {
     id: number;
     name: string;
     altNames: string[];
-    cup: string;
+    cupId: number;
 }
 
 export type Cup = {
+    id: number;
     name: string;
-    tracks: Track[];
+    tracks: number[];
 }

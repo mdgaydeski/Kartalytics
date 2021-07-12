@@ -1,11 +1,15 @@
 ﻿import * as React from 'react';
 import TrackStatsTable from '../Data/TrackStatsTable';
 
-const TrackStats = () => {
+type Props = {
+    playerId: number;
+}
+
+const TrackStats: React.FC<Props> = ({ playerId }) => {
     return (
         <>
             <h2>Track Stats</h2>
-            <TrackStatsTable playerStats={true} />
+            <TrackStatsTable playerId={playerId} trackId={0} />
         </>
     );
 }

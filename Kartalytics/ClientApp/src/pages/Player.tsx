@@ -48,7 +48,7 @@ const Player = () => {
                         <Results player={player} />
                     </Route>
                     <Route path={`${path}${PLAYER_TRACK_STATS}`}>
-                        <TrackStats />
+                        <TrackStats playerId={player.id} />
                     </Route>
                 </Switch>
             </Suspense>
