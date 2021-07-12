@@ -16,10 +16,10 @@ const RoundResults: React.FC<Props> = ({ round }) => {
         <div className='w-80'>
             <h3>{round.name}</h3>
             {
-                round.roundTotals
+                round.isPoolRound
                     ? <>
                         <h4>Totals</h4>
-                        <RoundTable advance={round.totalAdvance} results={round.roundTotals} />
+                        <RoundTable advance={round.totalAdvance} results={round.roundSummary} />
                     </>
                     : <>
                         {round.matches.map((matchId) => {
@@ -27,7 +27,7 @@ const RoundResults: React.FC<Props> = ({ round }) => {
                             const results = match.results.map(m => ({
                                 playerId: m.playerId,
                                 points: m.points
-                            }))
+                            }));
                             return (
                                 <div key={matchId}>
                                     <h4>{match.name}</h4>

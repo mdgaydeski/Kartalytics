@@ -1,8 +1,13 @@
-﻿export type Player = {
+﻿export type PlayerResult = {
+    tournamentId: number;
+    place: number;
+}
+
+export type Player = {
     id: number;
     name: string;
     country: string;
-    results: number[];
+    tournamentResults: PlayerResult[];
 }
 
 export type MatchResult = {
@@ -31,10 +36,12 @@ export type TournamentRound = {
     orderNumber: number;
     name: string;
     totalAdvance: number;
-    roundTotals: {
+    isPoolRound: boolean;
+    roundSummary: {
         playerId: number;
         points: number;
-    }[] | null;
+        matches: number[];
+    }[];
     matches: number[];
 }
 

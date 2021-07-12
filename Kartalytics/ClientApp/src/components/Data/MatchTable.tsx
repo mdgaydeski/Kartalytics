@@ -1,15 +1,15 @@
 ﻿import * as React from 'react';
 import MatchRow from './MatchRow';
-import { } from '../../constants/types';
 import AppContext from '../../context/AppContext';
 
 const { useContext } = React;
 
 type Props = {
     matchId: number;
+    playerId: number
 }
 
-const MatchTable: React.FC<Props> = ({ matchId }) => {
+const MatchTable: React.FC<Props> = ({ matchId, playerId }) => {
     const { matchList, trackList } = useContext(AppContext);
     const match = matchList.filter(m => m.id === matchId)[0];
 
@@ -37,7 +37,9 @@ const MatchTable: React.FC<Props> = ({ matchId }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {match.results.map(result => <MatchRow result={result} key={result.playerId} />)}
+                    {match.results.map(result => (
+                        <MatchRow result={result} highlight={result.playerId === playerId} key={result.playerId} />
+                    ))}
                 </tbody>
             </table>
         </>

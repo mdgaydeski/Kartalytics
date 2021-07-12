@@ -16,7 +16,7 @@ const Details: React.FC<Props> = ({ rounds }) => {
                 <Fragment key= {round.orderNumber}>
                     <h3>{round.name}</h3>
                     { round.matches.map(matchId => (
-                        <MatchTable matchId={matchId} key={matchId} />
+                        <MatchTable matchId={matchId} playerId={0} key={matchId} />
                     ))}
                 </Fragment>
             ))}

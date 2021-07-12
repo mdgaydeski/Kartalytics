@@ -7,13 +7,14 @@ const { useContext } = React;
 
 type Props = {
     result: MatchResult;
+    highlight: boolean;
 }
 
-const MatchRow: React.FC<Props> = ({ result }) => {
+const MatchRow: React.FC<Props> = ({ result, highlight }) => {
     const player = useContext(AppContext).playerList.filter(p => p.id === result.playerId)[0];
 
     return (
-        <tr className='hover:bg-indigo-900' key={player.name}>
+        <tr className={`${highlight && 'bg-green-900'} hover:bg-indigo-900`} key={player.name}>
             <td className='text-left'>
                 <AssetLink type='player' id={player.id}>
                     {player.name}
