@@ -7,12 +7,12 @@ const { useContext } = React;
 
 type Props = {
     results: Result[];
-    playerId: number;
-    trackId: number;
+    id: number;
+    type: string;
 }
 
-const TrackStatsRow: React.FC<Props> = ({ results, playerId, trackId }) => {
-    const { playerList, trackList } = useContext(AppContext);
+const TrackStatsRow: React.FC<Props> = ({ results, id, type }) => {
+    const { cupList, playerList, trackList } = useContext(AppContext);
     // total finish / 1st / 2nd / 3rd / 4th
     // avg. finish = total finish / results.length
     // avg. points = 4 - avg. finish
@@ -24,19 +24,31 @@ const TrackStatsRow: React.FC<Props> = ({ results, playerId, trackId }) => {
     const avgFinish = (resultsByPlace[0] / results.length);
     const avgPoints = 4 - avgFinish;
 
-    // column order: [player|track] name / total / 1st / 2nd / 3rd / 4th / avg. points / avg. finish
+    const getRowHeader = () => {
+        switch (type) {
+            case 'player':
+                return (
+                    <AssetLink type='player' id={id}>
+                        {playerList.filter(p => p.id === id)[0].name}
+                    </AssetLink>
+                );
+            case 'track':
+                return (
+                    <AssetLink type='track' id={id}>
+                        {trackList.filter(t => t.id === id)[0].name}
+                    </AssetLink>
+                );
+            case 'cup':
+                return cupList.filter(c => c.id === id)[0].name
+            default:
+                return 'Total';
+        }
+    }
+
+    // column order: header / total / 1st / 2nd / 3rd / 4th / avg. points / avg. finish
     return (
         <tr className='hover:bg-indigo-900'>
-            <td>
-                {playerId
-                    ? <AssetLink type='player' id={playerId}>
-                        {playerList.filter(p => p.id === playerId)[0].name}
-                    </AssetLink>
-                    : <AssetLink type='track' id={trackId}>
-                        {trackList.filter(t => t.id === trackId)[0].name}
-                    </AssetLink>
-                }
-            </td>
+            <th scope='row'>{getRowHeader()}</th>
             <td>{results.length}</td>
             <td>{resultsByPlace[1]}</td>
             <td>{resultsByPlace[2]}</td>

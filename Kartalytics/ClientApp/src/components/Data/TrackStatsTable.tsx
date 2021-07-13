@@ -11,38 +11,60 @@ type Props = {
 }
 
 const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
-    const results = useContext(AppContext).resultList
-        .filter(r => playerId ? r.playerId === playerId : r.trackId === trackId)
-        .reduce((acc, r) => {
-            const key = playerId ? r.trackId : r.playerId;
+    const { cupList, resultList } = useContext(AppContext);
+    const results = resultList.filter(r => playerId ? r.playerId === playerId : r.trackId === trackId);
+
+    const resultsByTrack = results.reduce((acc, r) => {
+        const key = playerId ? r.trackId : r.playerId;
+        if (!acc[key]) {
+            acc[key] = [];
+        }
+        acc[key].push(r);
+        return acc;
+    }, [] as Result[][]);
+
+    const resultsByCup = playerId
+        ? results.reduce((acc, r) => {
+            const key = cupList.filter(c => c.tracks.some(t => t === r.trackId))[0].id;
             if (!acc[key]) {
                 acc[key] = [];
             }
             acc[key].push(r);
             return acc;
-        }, [] as Result[][]);
-
-    // TODO: include cup/overall totals for player summary
+        }, [] as Result[][])
+        : []
 
     return (
         <table className='table-fixed text-center w-full'>
             <thead>
                 <tr>
-                    <th className='w-3/12'>{ playerId ? 'Track' : 'Player' }</th>
-                    <th className='w-1/12'>Total</th>
-                    <th className='w-1/12'>1st</th>
-                    <th className='w-1/12'>2nd</th>
-                    <th className='w-1/12'>3rd</th>
-                    <th className='w-1/12'>4th</th>
-                    <th className='w-2/12'>Avg. pts</th>
-                    <th className='w-2/12'>Avg. finish</th>
+                    <th scope='col' className='w-3/12'>{ playerId ? 'Track' : 'Player' }</th>
+                    <th scope='col' className='w-1/12'>Total</th>
+                    <th scope='col' className='w-1/12'>1st</th>
+                    <th scope='col' className='w-1/12'>2nd</th>
+                    <th scope='col' className='w-1/12'>3rd</th>
+                    <th scope='col' className='w-1/12'>4th</th>
+                    <th scope='col' className='w-2/12'>Avg. pts</th>
+                    <th scope='col' className='w-2/12'>Avg. finish</th>
                 </tr>
             </thead>
             <tbody>
-                {results.map((r, i) => (
-                    <TrackStatsRow results={r} playerId={playerId ? 0 : i} trackId={playerId ? i : 0} key={i} />
+                {resultsByTrack.map((r, i) => (
+                    <TrackStatsRow results={r} id={i} type={playerId ? 'track' : 'player'} key={i} />
                 ))}
             </tbody>
+            { resultsByCup && <tbody className='border-t border-gray-400'>
+                    {resultsByCup.map((r, i) => (
+                        <TrackStatsRow results={r} id={i} type='cup' key={i} />
+                    ))}
+                </tbody>
+            }
+            { playerId
+                ? <tbody className='border-t border-gray-400'>
+                    <TrackStatsRow results={results} id={0} type='total' />
+                </tbody>
+                : null
+            }
         </table>
     );
 }
