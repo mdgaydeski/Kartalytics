@@ -9,9 +9,10 @@ type Props = {
     results: Result[];
     id: number;
     type: string;
+    showAverageFinish: boolean;
 }
 
-const TrackStatsRow: React.FC<Props> = ({ results, id, type }) => {
+const TrackStatsRow: React.FC<Props> = ({ results, id, type, showAverageFinish }) => {
     const { cupList, playerList, trackList } = useContext(AppContext);
     // total finish / 1st / 2nd / 3rd / 4th
     // avg. finish = total finish / results.length
@@ -45,7 +46,7 @@ const TrackStatsRow: React.FC<Props> = ({ results, id, type }) => {
         }
     }
 
-    // column order: header / total / 1st / 2nd / 3rd / 4th / avg. points / avg. finish
+    // column order: header / total / 1st / 2nd / 3rd / 4th / avg. [points|finish]
     return (
         <tr className='hover:bg-indigo-900'>
             <th scope='row'>{getRowHeader()}</th>
@@ -54,8 +55,7 @@ const TrackStatsRow: React.FC<Props> = ({ results, id, type }) => {
             <td>{resultsByPlace[2]}</td>
             <td>{resultsByPlace[3]}</td>
             <td>{resultsByPlace[4]}</td>
-            <td>{avgPoints.toFixed(3)}</td>
-            <td>{avgFinish.toFixed(3)}</td>
+            <td>{(showAverageFinish ? avgFinish : avgPoints).toFixed(3)}</td>
         </tr>
     );
 }
