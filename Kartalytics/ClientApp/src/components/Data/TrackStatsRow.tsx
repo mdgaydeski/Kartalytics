@@ -48,7 +48,7 @@ const TrackStatsRow: React.FC<Props> = ({ results, id, type, showAverageFinish }
 
     // column order: header / total / 1st / 2nd / 3rd / 4th / avg. [points|finish]
     return (
-        <tr className='hover:bg-indigo-900'>
+        <tr className='hover:bg-indigo-900 hover:bg-opacity-80'>
             <th scope='row'>{getRowHeader()}</th>
             <td>{results.length}</td>
             <td>{resultsByPlace[1]}</td>

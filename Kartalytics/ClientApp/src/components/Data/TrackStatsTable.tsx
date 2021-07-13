@@ -1,5 +1,7 @@
 ﻿import * as React from 'react';
 import TrackStatsRow from './TrackStatsRow';
+import TableBorder from '../Layout/TableBorder';
+import TableOptions from '../Layout/TableOptions';
 import { Result } from '../../constants/types';
 import AppContext from '../../context/AppContext';
 
@@ -36,8 +38,8 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
         : []
 
     return (
-        <div className='border border-indigo-900 rounded-lg'>
-            <div className='bg-indigo-900 flex items-center justify-end px-6 py-2 space-x-4 rounded-t'>
+        <TableBorder>
+            <TableOptions>
                 <p>Show average as:</p>
                 <div className='space-x-1'>
                     <input
@@ -61,8 +63,8 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
                     />
                     <label htmlFor='points'>Points</label>
                 </div>
-            </div>
-            <table className='table-fixed text-center w-full'>
+            </TableOptions>
+            <table className='divide-y-4 divide-transparent my-1 table-fixed text-center w-full'>
                 <thead>
                     <tr>
                         <th scope='col' className='w-4/12'>{ playerId ? 'Track' : 'Player' }</th>
@@ -85,7 +87,7 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
                         />
                     ))}
                 </tbody>
-                { resultsByCup && <tbody className='border-t border-gray-400'>
+                { resultsByCup && <tbody>
                         {resultsByCup.map((r, i) => (
                             <TrackStatsRow
                                 results={r}
@@ -98,7 +100,7 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
                     </tbody>
                 }
                 { playerId
-                    ? <tbody className='border-t border-gray-400'>
+                    ? <tbody>
                         <TrackStatsRow
                             results={results}
                             id={0}
@@ -109,7 +111,7 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
                     : null
                 }
             </table>
-        </div>
+        </TableBorder>
     );
 }
 

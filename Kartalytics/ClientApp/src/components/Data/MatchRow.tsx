@@ -14,12 +14,12 @@ const MatchRow: React.FC<Props> = ({ result, highlight }) => {
     const player = useContext(AppContext).playerList.filter(p => p.id === result.playerId)[0];
 
     return (
-        <tr className={`${highlight && 'bg-green-900'} hover:bg-indigo-900`} key={player.name}>
-            <td className='text-left'>
+        <tr className={`${highlight ? 'bg-green-900 ' : ''}hover:bg-indigo-900 hover:bg-opacity-80`} key={player.name}>
+            <th scope='row'>
                 <AssetLink type='player' id={player.id}>
                     {player.name}
                 </AssetLink>
-            </td>
+            </th>
             <td className='text-red-300'>{result.points}</td>
             {result.trackResults.map((track, i) => <td key={i}>{track.result}</td>)}
             {result.placeTotals.map((place, i) => <td key={i}>{place}</td>)}
