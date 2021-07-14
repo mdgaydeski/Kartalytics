@@ -1,6 +1,8 @@
 ﻿import * as React from 'react';
 import MatchRow from './MatchRow';
+import AssetLink from '../Layout/AssetLink';
 import TableBorder from '../Layout/TableBorder';
+import Tooltip from '../Layout/Tooltip';
 import AppContext from '../../context/AppContext';
 
 const { useContext } = React;
@@ -15,11 +17,18 @@ const MatchTable: React.FC<Props> = ({ matchId, playerId }) => {
     const match = matchList.filter(m => m.id === matchId)[0];
 
     const getTrackHeaders = (trackArray: number[]) => {
-        return trackArray.map((trackId, i) => (
-            <th scope='col' key={i}>
-                {trackList.filter(t => t.id === trackId)[0].altNames[0]}
-            </th>
-        ));
+        return trackArray.map((trackId, i) => {
+            const track = trackList.filter(t => t.id === trackId)[0];
+            return (
+                <th scope='col' key={i}>
+                    <Tooltip text={track.name}>
+                        <AssetLink type='track' id={track.id}>
+                            {track.altNames[0]}
+                        </AssetLink>
+                    </Tooltip>
+                </th>
+            );
+        });
     }
 
     return (
