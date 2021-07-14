@@ -7,21 +7,26 @@ const { useContext } = React;
 
 type Props = {
     result: MatchResult;
-    highlight: boolean;
+    highlightPlace: number;
+    highlightPlayer: boolean;
 }
 
-const MatchRow: React.FC<Props> = ({ result, highlight }) => {
+const MatchRow: React.FC<Props> = ({ result, highlightPlace, highlightPlayer }) => {
     const player = useContext(AppContext).playerList.filter(p => p.id === result.playerId)[0];
 
     return (
-        <tr className={`${highlight ? 'bg-green-900 ' : ''}hover:bg-indigo-900 hover:bg-opacity-80`} key={player.name}>
+        <tr className={`${highlightPlayer ? 'bg-green-900 ' : ''}hover:bg-indigo-900 hover:bg-opacity-80`} key={player.name}>
             <th scope='row'>
                 <AssetLink type='player' id={player.id}>
                     {player.name}
                 </AssetLink>
             </th>
             <td className='text-red-300'>{result.points}</td>
-            {result.trackResults.map((track, i) => <td key={i}>{track.result}</td>)}
+            {result.trackResults.map((track, i) => (
+                <td className={highlightPlace && highlightPlace !== track.result ? 'text-gray-600' : undefined} key={i}>
+                    {track.result}
+                </td>
+            ))}
             {result.placeTotals.map((place, i) => <td key={i}>{place}</td>)}
         </tr>
     );
