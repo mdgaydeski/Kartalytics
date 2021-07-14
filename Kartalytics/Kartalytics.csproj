@@ -81,7 +81,7 @@
     <TypeScriptCompile Include="ClientApp\src\components\Player\Overview.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Player\Results.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Player\TrackStats.tsx" />
-    <TypeScriptCompile Include="ClientApp\src\components\SearchBar.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\Layout\SearchBar.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Tournament\Bracket.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Tournament\Details.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Tournament\Results.tsx" />

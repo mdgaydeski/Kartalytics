@@ -6,9 +6,10 @@ type Props = {
     type: string;
     id: number;
     children: any;
+    className?: string | undefined;
 }
 
-const AssetLink: React.FC<Props> = ({ type, id, children }) => {
+const AssetLink: React.FC<Props> = ({ type, id, children, className }) => {
     let route = '';
     switch (type) {
         case 'player':
@@ -23,7 +24,7 @@ const AssetLink: React.FC<Props> = ({ type, id, children }) => {
         default:
     }
 
-    return <Link to={`${route}/${id}`}>{children}</Link>
+    return <Link to={`${route}/${id}`} className={className}>{children}</Link>
 }
 
 export default AssetLink;

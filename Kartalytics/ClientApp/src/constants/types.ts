@@ -76,3 +76,10 @@ export type Cup = {
     name: string;
     tracks: number[];
 }
+
+export type SearchItem = {
+    type: string;
+    id: number;
+    name: string;
+    altNames: string[];
+}

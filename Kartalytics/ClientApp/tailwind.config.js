@@ -12,6 +12,20 @@ module.exports = {
         fontFamily: {
             display: ['SnyderSpeedbrush', ...defaultTheme.fontFamily.sans],
             sans: ['Noto Sans', ...defaultTheme.fontFamily.sans]
+        },
+        extend: {
+            spacing: {
+                '1/24': '4.166667%',
+                '1.25pct': '1.25%'
+            },
+            width: {
+                '27.5pct': '27.5%'
+            }
+        }
+    },
+    variants: {
+        extend: {
+            borderRadius: ['first', 'last']
         }
     }
 }

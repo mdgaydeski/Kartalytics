@@ -2,7 +2,7 @@
 import { NavLink } from 'react-router-dom';
 import { MenuIcon } from '@heroicons/react/outline';
 import * as ROUTES from '../../constants/routes';
-import SearchBar from '../SearchBar';
+import SearchBar from './SearchBar';
 
 const { useState } = React;
 
@@ -28,7 +28,7 @@ const Header = () => {
                     <NavLink to={ROUTES.TRACK_LIST} className={linkClasses}>Tracks</NavLink>
 
                     <div className='text-center w-full md:w-2/5'>
-                        <SearchBar className='w-11/12 my-1 '>
+                        <SearchBar className='my-1 w-11/12'>
                         </SearchBar>
                     </div>
                 </div>
