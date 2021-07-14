@@ -15,6 +15,7 @@ type Props = {
 const MatchTable: React.FC<Props> = ({ matchId, playerId }) => {
     const { matchList, trackList } = useContext(AppContext);
     const match = matchList.filter(m => m.id === matchId)[0];
+    match.results.sort((a, b) => b.points - a.points);
 
     const getTrackHeaders = (trackArray: number[]) => {
         return trackArray.map((trackId, i) => {
