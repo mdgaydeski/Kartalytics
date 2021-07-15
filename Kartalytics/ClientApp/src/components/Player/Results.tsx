@@ -1,9 +1,12 @@
 ﻿import * as React from 'react';
+import { HashLink } from 'react-router-hash-link';
 import MatchTable from '../Data/MatchTable';
+import BackToTopLink from '../Layout/BackToTopLink';
+import TableOfContents from '../Layout/TableOfContents';
 import { Player } from '../../constants/types';
 import AppContext from '../../context/AppContext';
 
-const { Fragment, useContext } = React;
+const { useContext } = React;
 
 type Props = {
     player: Player;
@@ -15,11 +18,15 @@ const Results: React.FC<Props> = ({ player }) => {
     return (
         <>
             <h2>Results</h2>
+            <TableOfContents sections={player.tournamentResults.map(result => {
+                const tournament = tournamentList.filter(t => t._id === result.tournamentId)[0];
+                return { id: tournament._id, name: tournament.name }
+            })} />
             {player.tournamentResults.map(result => {
                 const tournament = tournamentList.filter(t => t._id === result.tournamentId)[0];
                 return (
-                    <Fragment key={result.tournamentId}>
-                        <h3>{tournament.name}</h3>
+                    <section key={result.tournamentId}>
+                        <h3 id={`section-${result.tournamentId}`}>{tournament.name}</h3>
                         <p>
                             Final result:&nbsp;
                             {tournament.finalResults.filter(t => t.playerId === player.id)[0].place}
@@ -30,7 +37,8 @@ const Results: React.FC<Props> = ({ player }) => {
                                 s.matches.map(m => <MatchTable matchId={m} playerId={player.id} key={m} />)
                             ))
                         ))}
-                    </Fragment>
+                        <BackToTopLink />
+                    </section>
                 );
             })}
         </>
