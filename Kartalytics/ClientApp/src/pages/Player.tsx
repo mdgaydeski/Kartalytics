@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Switch, Route, Redirect, useRouteMatch, useParams } from 'react-router-dom';
 import LoadingPlaceholder from '../components/Layout/LoadingPlaceholder';
 import SubNavButton from '../components/Layout/SubNavButton';
+import SubNavGroup from '../components/Layout/SubNavGroup';
 import Overview from '../components/Player/Overview';
 import Results from '../components/Player/Results';
 import TrackStats from '../components/Player/TrackStats';
@@ -26,7 +27,7 @@ const Player = () => {
     return (
         player && <>
             <h1>{player.name}</h1>
-            <div className='flex mx-auto w-3/4'>
+            <SubNavGroup>
                 <SubNavButton path={`${url}${PLAYER_OVERVIEW}`}>
                     Overview
                 </SubNavButton>
@@ -36,7 +37,7 @@ const Player = () => {
                 <SubNavButton path={`${url}${PLAYER_TRACK_STATS}`}>
                     By track
                 </SubNavButton>
-            </div>
+            </SubNavGroup>
 
             <Suspense fallback={<LoadingPlaceholder />}>
                 <Switch>

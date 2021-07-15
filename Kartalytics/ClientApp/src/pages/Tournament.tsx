@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Switch, Route, Redirect, useRouteMatch, useParams } from 'react-router-dom';
 import LoadingPlaceholder from '../components/Layout/LoadingPlaceholder';
 import SubNavButton from '../components/Layout/SubNavButton';
+import SubNavGroup from '../components/Layout/SubNavGroup';
 import Results from '../components/Tournament/Results';
 import Bracket from '../components/Tournament/Bracket';
 import Details from '../components/Tournament/Details';
@@ -26,7 +27,7 @@ const Tournament = () => {
     return (
         tournament && <>
             <h1>{tournament.name}</h1>
-            <div className='flex mx-auto w-3/4'>
+            <SubNavGroup>
                 <SubNavButton path={`${url}${TOURNAMENT_RESULTS}`}>
                     Results
                 </SubNavButton>
@@ -36,7 +37,7 @@ const Tournament = () => {
                 <SubNavButton path={`${url}${TOURNAMENT_DETAILS}`}>
                     Details
                 </SubNavButton>
-            </div>
+            </SubNavGroup>
 
             <Suspense fallback={<LoadingPlaceholder />}>
                 <Switch>
