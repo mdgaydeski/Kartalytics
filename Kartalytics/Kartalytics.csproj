@@ -39,8 +39,11 @@
     <None Remove="ClientApp\src\components\Layout\TableOfContents.tsx" />
     <None Remove="ClientApp\src\components\Layout\TableOptions.tsx" />
     <None Remove="ClientApp\src\components\Layout\Tooltip.tsx" />
+    <None Remove="ClientApp\src\components\Player\MatchOverview.tsx" />
     <None Remove="ClientApp\src\components\Player\Overview.tsx" />
+    <None Remove="ClientApp\src\components\Player\RaceOverview.tsx" />
     <None Remove="ClientApp\src\components\Player\Results.tsx" />
+    <None Remove="ClientApp\src\components\Player\TournamentOverview.tsx" />
     <None Remove="ClientApp\src\components\Player\TrackStats.tsx" />
     <None Remove="ClientApp\src\components\SearchBar.tsx" />
     <None Remove="ClientApp\src\components\Tournament\Bracket.tsx" />
@@ -84,8 +87,11 @@
     <TypeScriptCompile Include="ClientApp\src\components\Layout\TableOfContents.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Layout\TableOptions.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Layout\Tooltip.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\Player\MatchOverview.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Player\Overview.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\Player\RaceOverview.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Player\Results.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\Player\TournamentOverview.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Player\TrackStats.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Layout\SearchBar.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Tournament\Bracket.tsx" />
