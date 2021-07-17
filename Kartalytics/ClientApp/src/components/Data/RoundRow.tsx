@@ -13,7 +13,7 @@ type Props = {
 
 const RoundRow: React.FC<Props> = ({ playerId, points, advance }) => {
     const baseClasses = 'align-text-top h-5 w-5 inline ml-2';
-    const player = useContext(AppContext).playerList.filter(p => p.id === playerId)[0];
+    const player = useContext(AppContext).players.filter(p => p.id === playerId)[0];
 
     return (
         <tr key={player.id}>

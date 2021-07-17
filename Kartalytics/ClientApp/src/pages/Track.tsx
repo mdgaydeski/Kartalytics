@@ -7,7 +7,7 @@ const { useContext } = React;
 
 const Track = () => {
     const { id } = useParams<{ id: string }>();
-    const track = useContext(AppContext).trackList.filter(t => t.id === Number(id))[0]
+    const track = useContext(AppContext).tracks.filter(t => t.id === Number(id))[0]
 
     return (
         <>

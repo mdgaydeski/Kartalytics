@@ -1,23 +1,4 @@
-﻿export type PlayerResult = {
-    tournamentId: number;
-    place: number;
-}
-
-export type Player = {
-    id: number;
-    name: string;
-    country: string;
-    tournamentResults: PlayerResult[];
-}
-
-export type Result = {
-    playerId: number;
-    trackId: number;
-    result: number;
-    year: number;
-}
-
-export type MatchResult = {
+﻿export type MatchResult = {
     playerId: number;
     points: number;
     placeTotals: number[];
@@ -34,42 +15,45 @@ export type Match = {
     results: MatchResult[];
 }
 
+export type SearchItem = {
+    type: string;
+    id: number;
+    name: string;
+    altNames: string[];
+}
+
+// database subdocument types
+
+export type PlayerResult = {
+    tournamentId: number;
+    year: number;
+    place: number;
+    matches: number[];
+}
+
+export type RoundResult = {
+    playerId: number;
+    seed?: number | undefined;
+    totalPoints: number;
+    place: number;
+}
+
 export type TournamentResult = {
     playerId: number;
     place: number;
 }
 
 export type TournamentRound = {
-    orderNumber: number;
+    roundNumber: number;
+    roundLevel: string;
     name: string;
-    totalAdvance: number;
-    isPoolRound: boolean;
-    roundSummary: {
-        playerId: number;
-        points: number;
-        matches: number[];
-    }[];
+    isPoolRound?: boolean | undefined;
+    totalAdvance?: number | undefined;
     matches: number[];
+    results: RoundResult[];
 }
 
-export type Tournament = {
-    _id: number;
-    name: string;
-    altNames: string[];
-    group: string;
-    location: string;
-    start_date: string;
-    end_date: string;
-    finalResults: TournamentResult[];
-    rounds: TournamentRound[];
-}
-
-export type Track = {
-    id: number;
-    name: string;
-    altNames: string[];
-    cupId: number;
-}
+// database document types
 
 export type Cup = {
     id: number;
@@ -77,8 +61,33 @@ export type Cup = {
     tracks: number[];
 }
 
-export type SearchItem = {
-    type: string;
+export type Player = {
+    id: number;
+    name: string;
+    country: string;
+    tournamentResults: PlayerResult[];
+}
+
+export type RaceResult = {
+    playerId: number;
+    trackId: number;
+    year: number;
+    place: number;
+}
+
+export type Tournament = {
+    id: number;
+    name: string;
+    altNames: string[];
+    group: string;
+    location: string;
+    startDate: string;
+    endDate: string;
+    results: TournamentResult[];
+    rounds: TournamentRound[];
+}
+
+export type Track = {
     id: number;
     name: string;
     altNames: string[];

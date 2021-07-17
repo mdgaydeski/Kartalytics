@@ -17,12 +17,12 @@ const Player = () => {
     const { id } = useParams<{ id: string }>();
 
     const [player, setPlayer] = useState<Player | null>(null);
-    const { playerList } = useContext(AppContext);
+    const { players } = useContext(AppContext);
 
     useEffect(() => {
-        const currentTournament = playerList.filter(p => p.id === Number(id))[0];
+        const currentTournament = players.filter(p => p.id === Number(id))[0];
         setPlayer(currentTournament);
-    }, [id, setPlayer, playerList]);
+    }, [id, setPlayer, players]);
 
     return (
         player && <>

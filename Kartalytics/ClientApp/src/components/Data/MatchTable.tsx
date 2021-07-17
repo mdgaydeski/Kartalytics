@@ -15,13 +15,13 @@ type Props = {
 
 const MatchTable: React.FC<Props> = ({ matchId, playerId }) => {
     const [highlightPlace, setHighlightPlace] = useState<number>(0);
-    const { matchList, trackList } = useContext(AppContext);
-    const match = matchList.filter(m => m.id === matchId)[0];
+    const { matches, tracks } = useContext(AppContext);
+    const match = matches.filter(m => m.id === matchId)[0];
     match.results.sort((a, b) => b.points - a.points);
 
     const getTrackHeaders = (trackArray: number[]) => {
         return trackArray.map((trackId, i) => {
-            const track = trackList.filter(t => t.id === trackId)[0];
+            const track = tracks.filter(t => t.id === trackId)[0];
             return (
                 <th scope='col' key={i}>
                     <Tooltip text={track.name}>

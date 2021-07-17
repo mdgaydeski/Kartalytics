@@ -10,7 +10,7 @@ type Props = {
 }
 
 const TournamentOverview: React.FC<Props> = ({ results }) => {
-    const { tournamentList } = useContext(AppContext);
+    const { tournaments } = useContext(AppContext);
     const averageFinish = results.reduce((acc, r) => acc += r.place, 0) / results.length;
 
     return (
@@ -22,13 +22,13 @@ const TournamentOverview: React.FC<Props> = ({ results }) => {
                 <li>Results:
                     <ul className='list-disc pl-10'>
                         {results.map(r => {
-                            const tournament = tournamentList.filter(t => t._id === r.tournamentId)[0];
+                            const tournament = tournaments.filter(t => t.id === r.tournamentId)[0];
                             return (
                                 <li key={r.tournamentId}>
                                     <AssetLink type='tournament' id={r.tournamentId}>
                                         {tournament.name}
                                     </AssetLink>
-                                    : {r.place}/{tournament.finalResults.length}
+                                    : {r.place}/{tournament.results.length}
                                 </li>
                             );
                         })}

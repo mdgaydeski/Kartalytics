@@ -2,7 +2,7 @@
 import TrackStatsRow from './TrackStatsRow';
 import TableBorder from '../Layout/TableBorder';
 import TableOptions from '../Layout/TableOptions';
-import { Result } from '../../constants/types';
+import { RaceResult } from '../../constants/types';
 import AppContext from '../../context/AppContext';
 
 const { useState, useContext } = React;
@@ -14,8 +14,8 @@ type Props = {
 
 const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
     const [showAverageFinish, setShowAverageFinish] = useState<boolean>(true);
-    const { cupList, resultList } = useContext(AppContext);
-    const results = resultList.filter(r => playerId ? r.playerId === playerId : r.trackId === trackId);
+    const { cups, raceResults } = useContext(AppContext);
+    const results = raceResults.filter(r => playerId ? r.playerId === playerId : r.trackId === trackId);
 
     const resultsByTrack = results.reduce((acc, r) => {
         const key = playerId ? r.trackId : r.playerId;
@@ -24,17 +24,17 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
         }
         acc[key].push(r);
         return acc;
-    }, [] as Result[][]);
+    }, [] as RaceResult[][]);
 
     const resultsByCup = playerId
         ? results.reduce((acc, r) => {
-            const key = cupList.filter(c => c.tracks.some(t => t === r.trackId))[0].id;
+            const key = cups.filter(c => c.tracks.some(t => t === r.trackId))[0].id;
             if (!acc[key]) {
                 acc[key] = [];
             }
             acc[key].push(r);
             return acc;
-        }, [] as Result[][])
+        }, [] as RaceResult[][])
         : []
 
     return (

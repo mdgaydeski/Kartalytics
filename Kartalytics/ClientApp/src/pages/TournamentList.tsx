@@ -7,14 +7,14 @@ import { formatDate } from '../utils';
 const { useState, useEffect, useContext } = React;
 
 const TournamentList = () => {
-    const { playerList, tournamentList } = useContext(AppContext);
+    const { players, tournaments } = useContext(AppContext);
     const [selectedValue, setSelectedValue] = useState<number>(1);
     const [selectedTournament, setSelectedTournament] = useState<Tournament | null>(null);
 
     useEffect(() => {
-        const tournament = tournamentList && tournamentList.filter(t => t._id === selectedValue)[0];
+        const tournament = tournaments && tournaments.filter(t => t.id === selectedValue)[0];
         setSelectedTournament(tournament);
-    }, [selectedValue, setSelectedTournament, tournamentList]);
+    }, [selectedValue, setSelectedTournament, tournaments]);
 
     return (
         <>
@@ -27,9 +27,9 @@ const TournamentList = () => {
                     id='tournament'
                     onChange={e => setSelectedValue(Number(e.target.value))}
                 >
-                    {tournamentList.map(tournament => (
-                        <option value={tournament._id} key={tournament._id}>
-                            {tournament.name}
+                    {tournaments.map(t => (
+                        <option value={t.id} key={t.id}>
+                            {t.name}
                         </option>
                     ))}
                 </select>
@@ -42,14 +42,14 @@ const TournamentList = () => {
             {
                 selectedTournament && <ul>
                     <li>Location: {selectedTournament.location}</li>
-                    <li>Dates: {formatDate(selectedTournament.start_date)} - {formatDate(selectedTournament.end_date)}</li>
+                    <li>Dates: {formatDate(selectedTournament.startDate)} - {formatDate(selectedTournament.endDate)}</li>
                     <li>Top finishers:
                         <ol>
-                            {selectedTournament.finalResults.slice(0, 4).map(result => (
+                            {selectedTournament.results.slice(0, 4).map(result => (
                                 <li className='ml-10' key={result.playerId}>
                                     {result.place}.&nbsp;
                                     <AssetLink type='player' id={result.playerId}>
-                                        {playerList.filter(p => p.id === result.playerId)[0].name}
+                                        {players.filter(p => p.id === result.playerId)[0].name}
                                     </AssetLink>
                                 </li>
                             ))}

@@ -10,7 +10,7 @@ type Props = {
 }
 
 const TrackImageLink: React.FC<Props> = ({ trackId }) => {
-    const track = useContext(AppContext).trackList.filter(t => t.id === trackId)[0];
+    const track = useContext(AppContext).tracks.filter(t => t.id === trackId)[0];
     const col = (trackId - 1) % 4;
     const row = Math.floor((trackId - 1) / 4)
 

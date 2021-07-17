@@ -12,7 +12,7 @@ type Props = {
 }
 
 const MatchRow: React.FC<Props> = ({ result, highlightPlace, highlightPlayer }) => {
-    const player = useContext(AppContext).playerList.filter(p => p.id === result.playerId)[0];
+    const player = useContext(AppContext).players.filter(p => p.id === result.playerId)[0];
 
     return (
         <tr className={`${highlightPlayer ? 'bg-green-900 ' : ''}hover:bg-indigo-900 hover:bg-opacity-80`} key={player.name}>

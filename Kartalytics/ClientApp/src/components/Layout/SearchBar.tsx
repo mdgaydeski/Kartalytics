@@ -14,29 +14,29 @@ const SearchBar: React.FC<Props> = ({ className }) => {
     const [searchText, setSearchText] = useState<string>('');
     const [searchItems, setSearchItems] = useState<SearchItem[]>([]);
     const [searchResults, setSearchResults] = useState<SearchItem[]>([]);
-    const { playerList, tournamentList, trackList } = useContext(AppContext);
+    const { players, tournaments, tracks } = useContext(AppContext);
     const { pathname } = useLocation();
     const ref = createRef<HTMLDivElement>();
 
     useEffect(() => {
-        const items = playerList.map(p => ({
+        const items = players.map(p => ({
             type: 'Player',
             id: p.id,
             name: p.name,
             altNames: [] as string[]
-        })).concat(tournamentList.map(t => ({
+        })).concat(tournaments.map(t => ({
             type: 'Tournament',
-            id: t._id,
+            id: t.id,
             name: t.name,
             altNames: t.altNames
-        }))).concat(trackList.map(t => ({
+        }))).concat(tracks.map(t => ({
             type: 'Track',
             id: t.id,
             name: t.name,
             altNames: t.altNames
         })))
         setSearchItems(items);
-    }, [playerList, tournamentList, trackList, setSearchItems]);
+    }, [players, tournaments, tracks, setSearchItems]);
 
     const showResults = () => {
         if (ref.current) {

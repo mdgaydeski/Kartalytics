@@ -11,7 +11,7 @@ const Bracket: React.FC<Props> = ({ rounds }) => {
         <>
             <h2>Bracket</h2>
             <div className='flex flex-wrap justify-around w-full'>
-                {rounds.map(round => <RoundResults round={round} key={round.orderNumber} />)}
+                {rounds.map(round => <RoundResults round={round} key={round.roundNumber} />)}
             </div>
         </>
     );

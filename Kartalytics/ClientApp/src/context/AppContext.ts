@@ -1,22 +1,22 @@
 ﻿import { createContext } from 'react';
-import { Cup, Match, Player, Result, Tournament, Track } from '../constants/types';
+import { Cup, Match, Player, RaceResult, Tournament, Track } from '../constants/types';
 
 type ContextType = {
-    cupList: Cup[]
-    matchList: Match[];
-    playerList: Player[];
-    resultList: Result[];
-    tournamentList: Tournament[];
-    trackList: Track[];
+    cups: Cup[]
+    matches: Match[];
+    players: Player[];
+    raceResults: RaceResult[];
+    tournaments: Tournament[];
+    tracks: Track[];
 }
 
 const AppContext = createContext<ContextType>({
-    cupList: [],
-    matchList: [],
-    playerList: [],
-    resultList: [],
-    tournamentList: [],
-    trackList: []
+    cups: [],
+    matches: [],
+    players: [],
+    raceResults: [],
+    tournaments: [],
+    tracks: []
 });
 
 export default AppContext;

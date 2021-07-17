@@ -5,16 +5,16 @@ import AppContext from '../context/AppContext';
 const { useContext } = React;
 
 const TrackList = () => {
-    const { cupList } = useContext(AppContext);
+    const { cups } = useContext(AppContext);
 
     return (
         <>
             <h1>Select Track</h1>
-            {cupList.map(cup => (
-                <section key={cup.name}>
-                    <h2>{cup.name}</h2>
+            {cups.map(c => (
+                <section key={c.name}>
+                    <h2>{c.name}</h2>
                     <div className='grid grid-cols-4'>
-                        {cup.tracks.map(trackId => (
+                        {c.tracks.map(trackId => (
                             <TrackImageLink trackId={trackId} key={trackId} />
                         ))}
                     </div>

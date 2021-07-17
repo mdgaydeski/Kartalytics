@@ -5,7 +5,7 @@ import AppContext from '../context/AppContext';
 const { useContext } = React;
 
 const PlayerList = () => {
-    const { playerList } = useContext(AppContext);
+    const { players } = useContext(AppContext);
 
     return (
         <>
@@ -13,19 +13,19 @@ const PlayerList = () => {
             <table className='table text-center w-full'>
                 <thead>
                     <tr>
-                        <th>Player</th>
-                        <th>Country</th>
+                        <th scope='col'>Player</th>
+                        <th scope='col'>Country</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {playerList.map(player => (
-                        <tr key={player.id}>
+                    {players.map(p => (
+                        <tr key={p.id}>
                             <td>
-                                <AssetLink type='player' id={player.id}>
-                                    {player.name}
+                                <AssetLink type='player' id={p.id}>
+                                    {p.name}
                                 </AssetLink>
                             </td>
-                            <td>{player.country}</td>
+                            <td>{p.country}</td>
                         </tr>
                     ))}
                 </tbody>

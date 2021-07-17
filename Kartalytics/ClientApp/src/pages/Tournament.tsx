@@ -17,12 +17,12 @@ const Tournament = () => {
     const { id } = useParams<{ id: string }>();
 
     const [tournament, setTournament] = useState<Tournament | null>(null);
-    const { tournamentList } = useContext(AppContext);
+    const { tournaments } = useContext(AppContext);
 
     useEffect(() => {
-        const currentTournament = tournamentList.filter(t => t._id === Number(id))[0];
+        const currentTournament = tournaments.filter(t => t.id === Number(id))[0];
         setTournament(currentTournament);
-    }, [id, setTournament, tournamentList]);
+    }, [id, setTournament, tournaments]);
 
     return (
         tournament && <>
@@ -43,7 +43,7 @@ const Tournament = () => {
                 <Switch>
                     <Redirect exact from={path} to={`${path}${TOURNAMENT_RESULTS}`} />
                     <Route path={`${path}${TOURNAMENT_RESULTS}`}>
-                        <Results results={tournament.finalResults} />
+                        <Results results={tournament.results} />
                     </Route>
                     <Route path={`${path}${TOURNAMENT_BRACKET}`}>
                         <Bracket rounds={tournament.rounds} />

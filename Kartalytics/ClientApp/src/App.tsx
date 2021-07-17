@@ -6,11 +6,12 @@ import LoadingPlaceHolder from './components/Layout/LoadingPlaceholder';
 import * as ROUTES from './constants/routes';
 import AppContext from './context/AppContext';
 
+import { cups } from './tempdata/cups';
 import { matches } from './tempdata/matches';
 import { players } from './tempdata/players';
-import { results } from './tempdata/results';
+import { raceResults } from './tempdata/raceresults';
 import { tournaments } from './tempdata/tournaments';
-import { cups, tracks } from './tempdata/tracks';
+import { tracks } from './tempdata/tracks';
 
 const Home = lazy(() => import('./pages/Home'));
 const PlayerList = lazy(() => import('./pages/PlayerList'));
@@ -21,12 +22,12 @@ const TrackList = lazy(() => import('./pages/TrackList'));
 const Track = lazy(() => import('./pages/Track'));
 
 const data = {
-    cupList: cups,
-    matchList: matches,
-    playerList: players,
-    resultList: results,
-    tournamentList: tournaments,
-    trackList: tracks
+    cups,
+    matches,
+    players,
+    raceResults,
+    tournaments,
+    tracks
 };
 
 const App = () => {

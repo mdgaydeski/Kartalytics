@@ -10,7 +10,7 @@ type Props = {
 }
 
 const Results: React.FC<Props> = ({ results }) => {
-    const { playerList } = useContext(AppContext);
+    const { players } = useContext(AppContext);
 
     return (
         <>
@@ -20,7 +20,7 @@ const Results: React.FC<Props> = ({ results }) => {
                     <p key={result.playerId}>
                         {result.place}.&nbsp;
                         <AssetLink type='player' id={result.playerId}>
-                            {playerList.filter(p => p.id === result.playerId)[0].name}
+                            {players.filter(p => p.id === result.playerId)[0].name}
                         </AssetLink>
                     </p>
                 ))}
