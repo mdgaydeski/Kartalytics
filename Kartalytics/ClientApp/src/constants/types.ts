@@ -49,7 +49,6 @@ export type Match = {
     name: string;
     cupOrder?: number[] | undefined;
     trackOrder?: number[] | undefined;
-    players: number[];
     results: number[];
 }
 

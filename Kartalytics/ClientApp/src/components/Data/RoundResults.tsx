@@ -10,7 +10,7 @@ type Props = {
 }
 
 const RoundResults: React.FC<Props> = ({ round }) => {
-    const { matches } = useContext(AppContext);
+    const { matches, matchResults } = useContext(AppContext);
     const advance = round.totalAdvance ? round.totalAdvance : 0;
 
     return (
@@ -24,7 +24,14 @@ const RoundResults: React.FC<Props> = ({ round }) => {
                 : <>
                     {round.matches.map(matchId => {
                         const match = matches.filter(m => m.id === matchId)[0];
-                        const results = round.results.filter(r => match.players.indexOf(r.playerId) > -1);
+                        const results = match.results.map(m => {
+                            const matchResult = matchResults.filter(r => r.id === m)[0];
+                            return {
+                                playerId: matchResult.playerId,
+                                totalPoints: matchResult.points,
+                                place: matchResult.place
+                            }
+                        });
                         return (
                             <div key={matchId}>
                                 <h4>{match.name}</h4>
