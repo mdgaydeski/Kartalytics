@@ -1,9 +1,10 @@
 ﻿import { createContext } from 'react';
-import { Cup, Match, Player, RaceResult, Tournament, Track } from '../constants/types';
+import { Cup, Match, MatchResult, Player, RaceResult, Tournament, Track } from '../constants/types';
 
 type ContextType = {
     cups: Cup[]
     matches: Match[];
+    matchResults: MatchResult[];
     players: Player[];
     raceResults: RaceResult[];
     tournaments: Tournament[];
@@ -13,6 +14,7 @@ type ContextType = {
 const AppContext = createContext<ContextType>({
     cups: [],
     matches: [],
+    matchResults: [],
     players: [],
     raceResults: [],
     tournaments: [],

@@ -24,6 +24,7 @@
     <None Remove="ClientApp\src\components\Container.tsx" />
     <None Remove="ClientApp\src\components\Data\MatchRow.tsx" />
     <None Remove="ClientApp\src\components\Data\MatchTable.tsx" />
+    <None Remove="ClientApp\src\components\Data\MatchTableHeader.tsx" />
     <None Remove="ClientApp\src\components\Data\RoundResults.tsx" />
     <None Remove="ClientApp\src\components\Data\RoundRow.tsx" />
     <None Remove="ClientApp\src\components\Data\RoundTable.tsx" />
@@ -39,6 +40,7 @@
     <None Remove="ClientApp\src\components\Layout\TableOfContents.tsx" />
     <None Remove="ClientApp\src\components\Layout\TableOptions.tsx" />
     <None Remove="ClientApp\src\components\Layout\Tooltip.tsx" />
+    <None Remove="ClientApp\src\components\Layout\TrackHeader.tsx" />
     <None Remove="ClientApp\src\components\Player\MatchOverview.tsx" />
     <None Remove="ClientApp\src\components\Player\Overview.tsx" />
     <None Remove="ClientApp\src\components\Player\RaceOverview.tsx" />
@@ -71,6 +73,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\components\Data\MatchTable.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Data\MatchRow.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\Data\MatchTableHeader.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Data\RoundResults.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Data\RoundRow.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Data\RoundTable.tsx" />
@@ -87,6 +90,7 @@
     <TypeScriptCompile Include="ClientApp\src\components\Layout\TableOfContents.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Layout\TableOptions.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Layout\Tooltip.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\Layout\TrackHeader.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Player\MatchOverview.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Player\Overview.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Player\RaceOverview.tsx" />

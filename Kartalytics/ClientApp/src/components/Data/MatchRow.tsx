@@ -22,9 +22,9 @@ const MatchRow: React.FC<Props> = ({ result, highlightPlace, highlightPlayer }) 
                 </AssetLink>
             </th>
             <td className='text-red-300'>{result.points}</td>
-            {result.trackResults.map((track, i) => (
-                <td className={highlightPlace && highlightPlace !== track.result ? 'text-gray-600' : undefined} key={i}>
-                    {track.result}
+            {result.raceResults.map((r, i) => (
+                <td className={highlightPlace && highlightPlace !== r.place ? 'text-gray-600' : undefined} key={i}>
+                    {r.place}
                 </td>
             ))}
             {result.placeTotals.map((place, i) => <td key={i}>{place}</td>)}

@@ -8,6 +8,7 @@ import AppContext from './context/AppContext';
 
 import { cups } from './tempdata/cups';
 import { matches } from './tempdata/matches';
+import { matchResults } from './tempdata/matchresults';
 import { players } from './tempdata/players';
 import { raceResults } from './tempdata/raceresults';
 import { tournaments } from './tempdata/tournaments';
@@ -24,6 +25,7 @@ const Track = lazy(() => import('./pages/Track'));
 const data = {
     cups,
     matches,
+    matchResults,
     players,
     raceResults,
     tournaments,

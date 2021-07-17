@@ -1,9 +1,8 @@
 ﻿import * as React from 'react';
 import MatchRow from './MatchRow';
-import AssetLink from '../Layout/AssetLink';
+import MatchTableHeader from './MatchTableHeader';
 import TableBorder from '../Layout/TableBorder';
 import TableOptions from '../Layout/TableOptions';
-import Tooltip from '../Layout/Tooltip';
 import AppContext from '../../context/AppContext';
 
 const { useState, useContext } = React;
@@ -15,24 +14,13 @@ type Props = {
 
 const MatchTable: React.FC<Props> = ({ matchId, playerId }) => {
     const [highlightPlace, setHighlightPlace] = useState<number>(0);
-    const { matches, tracks } = useContext(AppContext);
+    const { matches, matchResults } = useContext(AppContext);
     const match = matches.filter(m => m.id === matchId)[0];
-    match.results.sort((a, b) => b.points - a.points);
+    const results = match.results.map(m => matchResults.filter(r => r.id === m)[0]);
+    results.sort((a, b) => a.place - b.place);
 
-    const getTrackHeaders = (trackArray: number[]) => {
-        return trackArray.map((trackId, i) => {
-            const track = tracks.filter(t => t.id === trackId)[0];
-            return (
-                <th scope='col' key={i}>
-                    <Tooltip text={track.name}>
-                        <AssetLink type='track' id={track.id}>
-                            {track.altNames[0]}
-                        </AssetLink>
-                    </Tooltip>
-                </th>
-            );
-        });
-    }
+    const numberOfTracks = match.cupOrder ? match.cupOrder.length * 4
+        : match.trackOrder ? match.trackOrder.length : 0;
 
     return (
         <>
@@ -99,21 +87,11 @@ const MatchTable: React.FC<Props> = ({ matchId, playerId }) => {
                 <table className='my-1 table-fixed text-center w-full'>
                     <colgroup>
                         <col className='w-4/5' />
-                        <col span={match.trackOrder.length + match.results.length + 1} className='w-1/5' />
+                        <col span={numberOfTracks + match.results.length + 1} className='w-1/5' />
                     </colgroup>
-                    <thead>
-                        <tr>
-                            <th scope='col'>Name</th>
-                            <th scope='col'>Pts</th>
-                            {getTrackHeaders(match.trackOrder)}
-                            <th scope='col'>#1</th>
-                            <th scope='col'>#2</th>
-                            <th scope='col'>#3</th>
-                            <th scope='col'>#4</th>
-                        </tr>
-                    </thead>
+                    <MatchTableHeader cupOrder={match.cupOrder} trackOrder={match.trackOrder} />
                     <tbody>
-                        {match.results.map(result => (
+                        {results.map(result => (
                             <MatchRow
                                 result={result}
                                 highlightPlace={highlightPlace}
@@ -126,7 +104,6 @@ const MatchTable: React.FC<Props> = ({ matchId, playerId }) => {
             </TableBorder>
         </>
     );
-
 }
 
 export default MatchTable;

@@ -1,21 +1,4 @@
-﻿export type MatchResult = {
-    playerId: number;
-    points: number;
-    placeTotals: number[];
-    trackResults: {
-        trackId: number,
-        result: number
-    }[];
-}
-
-export type Match = {
-    id: number;
-    name: string;
-    trackOrder: number[];
-    results: MatchResult[];
-}
-
-export type SearchItem = {
+﻿export type SearchItem = {
     type: string;
     id: number;
     name: string;
@@ -59,6 +42,28 @@ export type Cup = {
     id: number;
     name: string;
     tracks: number[];
+}
+
+export type Match = {
+    id: number;
+    name: string;
+    cupOrder?: number[] | undefined;
+    trackOrder?: number[] | undefined;
+    players: number[];
+    results: number[];
+}
+
+export type MatchResult = {
+    id: number;
+    playerId: number;
+    tournamentId: number;
+    points: number;
+    place: number;
+    placeTotals: number[];
+    raceResults: {
+        trackId: number,
+        place: number
+    }[];
 }
 
 export type Player = {
