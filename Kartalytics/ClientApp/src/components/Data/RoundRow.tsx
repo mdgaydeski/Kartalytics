@@ -7,7 +7,7 @@ const { useContext } = React;
 
 type Props = {
     playerId: number;
-    points: number;
+    points: number[];
     advance: boolean;
 }
 
@@ -23,7 +23,13 @@ const RoundRow: React.FC<Props> = ({ playerId, points, advance }) => {
                 </AssetLink>
             </td>
             <td>
-                {points}
+                {points.length === 1
+                    ? points[0]
+                    : <>
+                        {points.reduce((acc, p) => acc + p, 0)}
+                        &nbsp;({points.map((p, i) => i === 0 ? p : `, ${p}`)})
+                    </>
+                }
                 {advance
                     ? <CheckIcon className={`${baseClasses} text-green-500`} />
                     : <XIcon className={`${baseClasses} text-red-500`} />

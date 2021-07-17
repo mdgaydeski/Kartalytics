@@ -1,6 +1,6 @@
 ﻿import * as React from 'react';
 import RoundRow from './RoundRow';
-import { MatchResult, RoundResult } from '../../constants/types';
+import { RoundResult } from '../../constants/types';
 
 type Props = {
     advance: number;
@@ -20,7 +20,7 @@ const RoundTable: React.FC<Props> = ({ advance, results }) => {
                 {results.sort((a, b) => a.place - b.place).map((r, i) => (
                     <RoundRow
                         playerId={r.playerId}
-                        points={r.totalPoints}
+                        points={r.points}
                         advance={i < advance}
                         key={i}
                     />

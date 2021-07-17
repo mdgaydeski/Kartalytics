@@ -17,7 +17,7 @@ export type PlayerResult = {
 export type RoundResult = {
     playerId: number;
     seed?: number | undefined;
-    totalPoints: number;
+    points: number[];
     place: number;
 }
 

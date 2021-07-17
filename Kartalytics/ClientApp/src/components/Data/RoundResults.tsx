@@ -28,7 +28,7 @@ const RoundResults: React.FC<Props> = ({ round }) => {
                             const matchResult = matchResults.filter(r => r.id === m)[0];
                             return {
                                 playerId: matchResult.playerId,
-                                totalPoints: matchResult.points,
+                                points: [matchResult.points],
                                 place: matchResult.place
                             }
                         });
