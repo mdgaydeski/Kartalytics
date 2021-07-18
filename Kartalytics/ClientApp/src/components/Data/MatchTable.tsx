@@ -1,6 +1,7 @@
 ﻿import * as React from 'react';
 import MatchRow from './MatchRow';
 import MatchTableHeader from './MatchTableHeader';
+import HighlightPlace from '../Filters/HighlightPlace';
 import TableBorder from '../Layout/TableBorder';
 import TableOptions from '../Layout/TableOptions';
 import AppContext from '../../context/AppContext';
@@ -13,7 +14,7 @@ type Props = {
 }
 
 const MatchTable: React.FC<Props> = ({ matchId, playerId }) => {
-    const [highlightPlace, setHighlightPlace] = useState<number>(0);
+    const [highlightedPlace, setHighlightedPlace] = useState<number>(0);
     const { matches, matchResults } = useContext(AppContext);
     const match = matches.filter(m => m.id === matchId)[0];
     const results = match.results.map(m => matchResults.filter(r => r.id === m)[0]);
@@ -27,62 +28,12 @@ const MatchTable: React.FC<Props> = ({ matchId, playerId }) => {
             <h4>{match.name}</h4>
             <TableBorder>
                 <TableOptions>
-                    <p>Highlight position:</p>
-                    <div className='space-x-1'>
-                        <input
-                            type='radio'
-                            id={`highlight-none-${matchId}`}
-                            name={`highlight-${matchId}`}
-                            value='0'
-                            checked={highlightPlace === 0}
-                            onChange={() => setHighlightPlace(0)}
-                        />
-                        <label htmlFor='highlight-none'>None</label>
-                    </div>
-                    <div className='space-x-1'>
-                        <input
-                            type='radio'
-                            id={`highlight-1-${matchId}`}
-                            name={`highlight-${matchId}`}
-                            value='1'
-                            checked={highlightPlace === 1}
-                            onChange={() => setHighlightPlace(1)}
-                        />
-                        <label htmlFor='highlight-1'>1</label>
-                    </div>
-                    <div className='space-x-1'>
-                        <input
-                            type='radio'
-                            id={`highlight-2-${matchId}`}
-                            name={`highlight-${matchId}`}
-                            value='2'
-                            checked={highlightPlace === 2}
-                            onChange={() => setHighlightPlace(2)}
-                        />
-                        <label htmlFor='highlight-2'>2</label>
-                    </div>
-                    <div className='space-x-1'>
-                        <input
-                            type='radio'
-                            id={`highlight-3-${matchId}`}
-                            name={`highlight-${matchId}`}
-                            value='3'
-                            checked={highlightPlace === 3}
-                            onChange={() => setHighlightPlace(3)}
-                        />
-                        <label htmlFor='highlight-3'>3</label>
-                    </div>
-                    <div className='space-x-1'>
-                        <input
-                            type='radio'
-                            id={`highlight-4-${matchId}`}
-                            name={`highlight-${matchId}`}
-                            value='4'
-                            checked={highlightPlace === 4}
-                            onChange={() => setHighlightPlace(4)}
-                        />
-                        <label htmlFor='highlight-4'>4</label>
-                    </div>
+                    <HighlightPlace
+                        highlightedPlace={highlightedPlace}
+                        matchId={matchId}
+                        places={results.length}
+                        setHighlightedPlace={setHighlightedPlace}
+                    />
                 </TableOptions>
                 <table className='my-1 table-fixed text-center w-full'>
                     <colgroup>
@@ -94,8 +45,8 @@ const MatchTable: React.FC<Props> = ({ matchId, playerId }) => {
                         {results.map(result => (
                             <MatchRow
                                 result={result}
-                                highlightPlace={highlightPlace}
-                                highlightPlayer={result.playerId === playerId}
+                                highlightedPlace={highlightedPlace}
+                                highlightedPlayer={result.playerId === playerId}
                                 key={result.playerId}
                             />
                         ))}

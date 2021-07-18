@@ -7,15 +7,15 @@ const { useContext } = React;
 
 type Props = {
     result: MatchResult;
-    highlightPlace: number;
-    highlightPlayer: boolean;
+    highlightedPlace: number;
+    highlightedPlayer: boolean;
 }
 
-const MatchRow: React.FC<Props> = ({ result, highlightPlace, highlightPlayer }) => {
+const MatchRow: React.FC<Props> = ({ result, highlightedPlace, highlightedPlayer }) => {
     const player = useContext(AppContext).players.filter(p => p.id === result.playerId)[0];
 
     return (
-        <tr className={`${highlightPlayer ? 'bg-green-900 ' : ''}hover:bg-indigo-900 hover:bg-opacity-80`} key={player.name}>
+        <tr className={`${highlightedPlayer ? 'bg-green-900 ' : ''}hover:bg-indigo-900 hover:bg-opacity-80`} key={player.name}>
             <th scope='row'>
                 <AssetLink type='player' id={player.id}>
                     {player.name}
@@ -23,7 +23,7 @@ const MatchRow: React.FC<Props> = ({ result, highlightPlace, highlightPlayer }) 
             </th>
             <td className='text-red-300'>{result.points}</td>
             {result.raceResults.map((r, i) => (
-                <td className={highlightPlace && highlightPlace !== r.place ? 'text-gray-600' : undefined} key={i}>
+                <td className={highlightedPlace && highlightedPlace !== r.place ? 'text-gray-600' : undefined} key={i}>
                     {r.place}
                 </td>
             ))}
