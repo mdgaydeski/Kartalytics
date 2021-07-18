@@ -1,5 +1,6 @@
 ﻿import * as React from 'react';
 import TrackStatsRow from './TrackStatsRow';
+import AverageDisplay from '../Filters/AverageDisplay';
 import TableBorder from '../Layout/TableBorder';
 import TableOptions from '../Layout/TableOptions';
 import { RaceResult } from '../../constants/types';
@@ -40,29 +41,10 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
     return (
         <TableBorder>
             <TableOptions>
-                <p>Show average as:</p>
-                <div className='space-x-1'>
-                    <input
-                        type='radio'
-                        id='finish'
-                        name='average'
-                        value='finish'
-                        checked={showAverageFinish}
-                        onChange={() => setShowAverageFinish(true)}
-                    />
-                    <label htmlFor='finish'>Finish</label>
-                </div>
-                <div className='space-x-1'>
-                    <input
-                        type='radio'
-                        id='points'
-                        name='average'
-                        value='points'
-                        checked={!showAverageFinish}
-                        onChange={() => setShowAverageFinish(false)}
-                    />
-                    <label htmlFor='points'>Points</label>
-                </div>
+                <AverageDisplay
+                    showAverageFinish={showAverageFinish}
+                    setShowAverageFinish={setShowAverageFinish}
+                />
             </TableOptions>
             <table className='divide-y-4 divide-transparent my-1 table-fixed text-center w-full'>
                 <thead>
