@@ -28,6 +28,8 @@
     <None Remove="ClientApp\src\components\Data\RoundResults.tsx" />
     <None Remove="ClientApp\src\components\Data\RoundRow.tsx" />
     <None Remove="ClientApp\src\components\Data\RoundTable.tsx" />
+    <None Remove="ClientApp\src\components\Data\TournamentResultsRow.tsx" />
+    <None Remove="ClientApp\src\components\Data\TournamentResultsTable.tsx" />
     <None Remove="ClientApp\src\components\Data\TrackStatsRow.tsx" />
     <None Remove="ClientApp\src\components\Data\TrackStatsTable.tsx" />
     <None Remove="ClientApp\src\components\Filters\AverageDisplay.tsx" />
@@ -79,6 +81,8 @@
     <TypeScriptCompile Include="ClientApp\src\components\Data\RoundResults.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Data\RoundRow.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Data\RoundTable.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\Data\TournamentResultsRow.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\Data\TournamentResultsTable.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Data\TrackStatsRow.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Data\TrackStatsTable.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Filters\AverageDisplay.tsx" />

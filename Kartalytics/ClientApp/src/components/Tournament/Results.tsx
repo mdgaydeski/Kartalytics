@@ -1,30 +1,17 @@
 ﻿import * as React from 'react';
-import AssetLink from '../Layout/AssetLink';
-import { TournamentResult } from '../../constants/types';
-import AppContext from '../../context/AppContext';
-
-const { useContext } = React;
+import TournamentResultsTable from '../Data/TournamentResultsTable';
+import { TournamentResult, TournamentRound } from '../../constants/types';
 
 type Props = {
     results: TournamentResult[];
+    rounds: TournamentRound[];
 }
 
-const Results: React.FC<Props> = ({ results }) => {
-    const { players } = useContext(AppContext);
-
+const Results: React.FC<Props> = ({ results, rounds }) => {
     return (
         <>
             <h2>Results</h2>
-            <div>
-                {results.map(result => (
-                    <p key={result.playerId}>
-                        {result.place}.&nbsp;
-                        <AssetLink type='player' id={result.playerId}>
-                            {players.filter(p => p.id === result.playerId)[0].name}
-                        </AssetLink>
-                    </p>
-                ))}
-            </div>
+            <TournamentResultsTable results={results} rounds={rounds} />
         </>
     );
 }

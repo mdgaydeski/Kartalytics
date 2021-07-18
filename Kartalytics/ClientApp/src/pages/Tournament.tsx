@@ -43,7 +43,7 @@ const Tournament = () => {
                 <Switch>
                     <Redirect exact from={path} to={`${path}${TOURNAMENT_RESULTS}`} />
                     <Route path={`${path}${TOURNAMENT_RESULTS}`}>
-                        <Results results={tournament.results} />
+                        <Results results={tournament.results} rounds={tournament.rounds} />
                     </Route>
                     <Route path={`${path}${TOURNAMENT_BRACKET}`}>
                         <Bracket rounds={tournament.rounds} />
