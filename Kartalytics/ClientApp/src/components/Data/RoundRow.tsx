@@ -2,6 +2,7 @@
 import { CheckIcon, XIcon } from '@heroicons/react/solid';
 import AssetLink from '../Layout/AssetLink';
 import AppContext from '../../context/AppContext';
+import { sum } from '../../utils';
 
 const { useContext } = React;
 
@@ -26,7 +27,7 @@ const RoundRow: React.FC<Props> = ({ playerId, points, advance }) => {
                 {points.length === 1
                     ? points[0]
                     : <>
-                        {points.reduce((acc, p) => acc + p, 0)}
+                        {sum(points)}
                         &nbsp;({points.map((p, i) => i === 0 ? p : `, ${p}`)})
                     </>
                 }
