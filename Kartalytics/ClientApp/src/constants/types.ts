@@ -1,11 +1,4 @@
-﻿export type SearchItem = {
-    type: string;
-    id: number;
-    name: string;
-    altNames: string[];
-}
-
-// database subdocument types
+﻿// database subdocument types
 
 export type PlayerResult = {
     tournamentId: number;
@@ -95,4 +88,19 @@ export type Track = {
     id: number;
     name: string;
     altNames: string[];
+}
+
+// helper types
+
+export type SearchItem = {
+    type: string;
+    id: number;
+    name: string;
+    altNames: string[];
+}
+
+export type TrackStatsRowType = {
+    assetId: number;
+    assetType: string;
+    placeTotals: number[];
 }

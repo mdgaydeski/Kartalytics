@@ -12,7 +12,7 @@ const Track = () => {
     return (
         <>
             <h1>{track.name}</h1>
-            <TrackStatsTable playerId={0} trackId={track.id} />
+            <TrackStatsTable trackId={track.id} />
         </>
     );
 }

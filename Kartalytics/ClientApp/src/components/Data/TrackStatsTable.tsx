@@ -1,42 +1,21 @@
 ﻿import * as React from 'react';
-import TrackStatsRow from './TrackStatsRow';
+import TrackStatsSegment from './TrackStatsSegment';
 import AverageDisplay from '../Filters/AverageDisplay';
 import TableBorder from '../Layout/TableBorder';
 import TableOptions from '../Layout/TableOptions';
-import { RaceResult } from '../../constants/types';
 import AppContext from '../../context/AppContext';
 
 const { useState, useContext } = React;
 
 type Props = {
-    playerId: number;
-    trackId: number;
+    playerId?: number;
+    trackId?: number;
 }
 
 const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
     const [showAverageFinish, setShowAverageFinish] = useState<boolean>(true);
-    const { cups, raceResults } = useContext(AppContext);
+    const { raceResults } = useContext(AppContext);
     const results = raceResults.filter(r => playerId ? r.playerId === playerId : r.trackId === trackId);
-
-    const resultsByTrack = results.reduce((acc, r) => {
-        const key = playerId ? r.trackId : r.playerId;
-        if (!acc[key]) {
-            acc[key] = [];
-        }
-        acc[key].push(r);
-        return acc;
-    }, [] as RaceResult[][]);
-
-    const resultsByCup = playerId
-        ? results.reduce((acc, r) => {
-            const key = cups.filter(c => c.tracks.some(t => t === r.trackId))[0].id;
-            if (!acc[key]) {
-                acc[key] = [];
-            }
-            acc[key].push(r);
-            return acc;
-        }, [] as RaceResult[][])
-        : []
 
     return (
         <TableBorder>
@@ -58,40 +37,24 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
                         <th scope='col' className='w-3/12'>Avg. {showAverageFinish ? 'Finish' : 'Points'}</th>
                     </tr>
                 </thead>
-                <tbody>
-                    {resultsByTrack.map((r, i) => (
-                        <TrackStatsRow
-                            results={r}
-                            id={i}
-                            type={playerId ? 'track' : 'player'}
-                            showAverageFinish={showAverageFinish}
-                            key={i}
-                        />
-                    ))}
-                </tbody>
-                { resultsByCup && <tbody>
-                        {resultsByCup.map((r, i) => (
-                            <TrackStatsRow
-                                results={r}
-                                id={i}
-                                type='cup'
-                                showAverageFinish={showAverageFinish}
-                                key={i}
-                            />
-                        ))}
-                    </tbody>
-                }
-                { playerId
-                    ? <tbody>
-                        <TrackStatsRow
-                            results={results}
-                            id={0}
-                            type='total'
-                            showAverageFinish={showAverageFinish}
-                        />
-                    </tbody>
-                    : null
-                }
+                <TrackStatsSegment
+                    assetType={playerId ? 'track' : 'player'}
+                    results={results}
+                    showAverageFinish={showAverageFinish}
+                />
+                {playerId && <>
+                    <TrackStatsSegment
+                        assetType='cup'
+                        results={results}
+                        showAverageFinish={showAverageFinish}
+                    />
+                    <TrackStatsSegment
+                        assetType='total'
+                        results={results}
+                        showAverageFinish={showAverageFinish}
+                    />
+                </>}
+                
             </table>
         </TableBorder>
     );

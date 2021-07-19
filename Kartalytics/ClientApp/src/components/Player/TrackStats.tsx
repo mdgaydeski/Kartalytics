@@ -9,7 +9,7 @@ const TrackStats: React.FC<Props> = ({ playerId }) => {
     return (
         <>
             <h2>Track Stats</h2>
-            <TrackStatsTable playerId={playerId} trackId={0} />
+            <TrackStatsTable playerId={playerId} />
         </>
     );
 }

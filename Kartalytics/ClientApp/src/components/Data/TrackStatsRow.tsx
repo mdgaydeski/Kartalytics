@@ -1,46 +1,42 @@
 ﻿import * as React from 'react';
 import AssetLink from '../Layout/AssetLink';
-import { RaceResult } from '../../constants/types';
+import { TrackStatsRowType } from '../../constants/types';
 import AppContext from '../../context/AppContext';
+import { sum } from '../../utils';
 
 const { useContext } = React;
 
 type Props = {
-    results: RaceResult[];
-    id: number;
-    type: string;
+    rowData: TrackStatsRowType;
     showAverageFinish: boolean;
 }
 
-const TrackStatsRow: React.FC<Props> = ({ results, id, type, showAverageFinish }) => {
+const TrackStatsRow: React.FC<Props> = ({ rowData, showAverageFinish }) => {
     const { cups, players, tracks } = useContext(AppContext);
-    // total finish / 1st / 2nd / 3rd / 4th
+    const { assetId, assetType, placeTotals } = rowData;
+
     // avg. finish = total finish / results.length
     // avg. points = 4 - avg. finish
-    const resultsByPlace = results.reduce((acc, r) => {
-        acc[0]+= r.place;
-        acc[r.place]++;
-        return acc;
-    }, [0, 0, 0, 0, 0] as number[]);
-    const avgFinish = (resultsByPlace[0] / results.length);
+    const totalRaces = sum(placeTotals);
+    const avgFinish = placeTotals.reduce((acc, p, i) => acc + (p * (i + 1))) / totalRaces;
     const avgPoints = 4 - avgFinish;
 
     const getRowHeader = () => {
-        switch (type) {
+        switch (assetType) {
             case 'player':
                 return (
-                    <AssetLink type='player' id={id}>
-                        {players.filter(p => p.id === id)[0].name}
+                    <AssetLink type='player' id={assetId}>
+                        {players.filter(p => p.id === assetId)[0].name}
                     </AssetLink>
                 );
             case 'track':
                 return (
-                    <AssetLink type='track' id={id}>
-                        {tracks.filter(t => t.id === id)[0].name}
+                    <AssetLink type='track' id={assetId}>
+                        {tracks.filter(t => t.id === assetId)[0].name}
                     </AssetLink>
                 );
             case 'cup':
-                return cups.filter(c => c.id === id)[0].name
+                return cups.filter(c => c.id === assetId)[0].name
             default:
                 return 'Total';
         }
@@ -50,11 +46,8 @@ const TrackStatsRow: React.FC<Props> = ({ results, id, type, showAverageFinish }
     return (
         <tr className='hover:bg-indigo-900 hover:bg-opacity-80'>
             <th scope='row'>{getRowHeader()}</th>
-            <td>{results.length}</td>
-            <td>{resultsByPlace[1]}</td>
-            <td>{resultsByPlace[2]}</td>
-            <td>{resultsByPlace[3]}</td>
-            <td>{resultsByPlace[4]}</td>
+            <td>{totalRaces}</td>
+            {placeTotals.map((p, i) => <td key={i}>{p}</td>)}
             <td>{(showAverageFinish ? avgFinish : avgPoints).toFixed(3)}</td>
         </tr>
     );
