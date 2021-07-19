@@ -2,16 +2,18 @@
 import TrackStatsRow from './TrackStatsRow';
 import { RaceResult, TrackStatsRowType } from '../../constants/types';
 import AppContext from '../../context/AppContext';
+import { sum } from '../../utils';
 
 const { useContext } = React;
 
 type Props = {
     assetType: string;
+    minimumResults?: number;
     results: RaceResult[];
     showAverageFinish: boolean;
 }
 
-const TrackStatsSegment: React.FC<Props> = ({ assetType, results, showAverageFinish }) => {
+const TrackStatsSegment: React.FC<Props> = ({ assetType, minimumResults = 1, results, showAverageFinish }) => {
     const { cups } = useContext(AppContext);
     const resultsGroups = results.reduce((acc, r) => {
         let assetId = 0;
@@ -37,7 +39,7 @@ const TrackStatsSegment: React.FC<Props> = ({ assetType, results, showAverageFin
         }
         acc.filter(a => a.assetId === assetId)[0].placeTotals[r.place - 1]++;
         return acc;
-    }, [] as TrackStatsRowType[]);
+    }, [] as TrackStatsRowType[]).filter(row => minimumResults > 1 ? sum(row.placeTotals) >= minimumResults : true);
 
     return (
         <tbody>

@@ -35,6 +35,7 @@
     <None Remove="ClientApp\src\components\Data\TrackStatsTable.tsx" />
     <None Remove="ClientApp\src\components\Filters\AverageDisplay.tsx" />
     <None Remove="ClientApp\src\components\Filters\HighlightPlace.tsx" />
+    <None Remove="ClientApp\src\components\Filters\MinimumResults.tsx" />
     <None Remove="ClientApp\src\components\Layout\AssetLink.tsx" />
     <None Remove="ClientApp\src\components\Layout\BackToTopLink.tsx" />
     <None Remove="ClientApp\src\components\Layout\Header.tsx" />
@@ -89,6 +90,7 @@
     <TypeScriptCompile Include="ClientApp\src\components\Data\TrackStatsTable.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Filters\AverageDisplay.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Filters\HighlightPlace.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\Filters\MinimumResults.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Layout\BackToTopLink.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Layout\Container.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Layout\Header.tsx" />

@@ -1,6 +1,7 @@
 ﻿import * as React from 'react';
 import TrackStatsSegment from './TrackStatsSegment';
 import AverageDisplay from '../Filters/AverageDisplay';
+import MinimumResults from '../Filters/MinimumResults';
 import TableBorder from '../Layout/TableBorder';
 import TableOptions from '../Layout/TableOptions';
 import AppContext from '../../context/AppContext';
@@ -13,6 +14,7 @@ type Props = {
 }
 
 const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
+    const [minimumResults, setMinimumResults] = useState<number>(1);
     const [showAverageFinish, setShowAverageFinish] = useState<boolean>(true);
     const { raceResults } = useContext(AppContext);
     const results = raceResults.filter(r => playerId ? r.playerId === playerId : r.trackId === trackId);
@@ -20,6 +22,10 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
     return (
         <TableBorder>
             <TableOptions>
+                {trackId && <MinimumResults
+                    minimumResults={minimumResults}
+                    setMinimumResults={setMinimumResults}
+                />}
                 <AverageDisplay
                     showAverageFinish={showAverageFinish}
                     setShowAverageFinish={setShowAverageFinish}
@@ -39,6 +45,7 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
                 </thead>
                 <TrackStatsSegment
                     assetType={playerId ? 'track' : 'player'}
+                    minimumResults={minimumResults}
                     results={results}
                     showAverageFinish={showAverageFinish}
                 />
