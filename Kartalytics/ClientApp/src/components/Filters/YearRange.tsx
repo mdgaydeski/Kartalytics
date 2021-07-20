@@ -1,4 +1,5 @@
 ﻿import * as React from 'react';
+import TableFilter from '../Layout/TableFilter';
 
 type Props = {
     startYear: number;
@@ -22,13 +23,13 @@ const YearRange: React.FC<Props> = ({ startYear, endYear, setStartYear, setEndYe
     }
 
     return (
-        <>
+        <TableFilter>
             <p>Filter Years:</p>
             <label htmlFor='startYear'>From:</label>
             <input
                 type='number'
                 id='startYear'
-                className='px-1 rounded text-black w-20'
+                className='px-1 rounded text-black w-16'
                 name='startYear'
                 min={MIN_YEAR_VALUE}
                 max={MAX_YEAR_VALUE}
@@ -39,14 +40,14 @@ const YearRange: React.FC<Props> = ({ startYear, endYear, setStartYear, setEndYe
             <input
                 type='number'
                 id='endYear'
-                className='px-1 rounded text-black w-20'
+                className='px-1 rounded text-black w-16'
                 name='endYear'
                 min={MIN_YEAR_VALUE}
                 max={MAX_YEAR_VALUE}
                 value={endYear}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(Number(e.target.value), false)}
             />
-        </>
+        </TableFilter>
     );
 }
 

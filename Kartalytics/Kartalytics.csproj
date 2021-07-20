@@ -44,6 +44,7 @@
     <None Remove="ClientApp\src\components\Layout\SubNavButton.tsx" />
     <None Remove="ClientApp\src\components\Layout\SubNavGroup.tsx" />
     <None Remove="ClientApp\src\components\Layout\TableBorder.tsx" />
+    <None Remove="ClientApp\src\components\Layout\TableFilter.tsx" />
     <None Remove="ClientApp\src\components\Layout\TableOfContents.tsx" />
     <None Remove="ClientApp\src\components\Layout\TableOptions.tsx" />
     <None Remove="ClientApp\src\components\Layout\Tooltip.tsx" />
@@ -101,6 +102,7 @@
     <TypeScriptCompile Include="ClientApp\src\components\Layout\SubNavButton.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Layout\SubNavGroup.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Layout\TableBorder.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\Layout\TableFilter.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Layout\TableOfContents.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Layout\TableOptions.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Layout\Tooltip.tsx" />

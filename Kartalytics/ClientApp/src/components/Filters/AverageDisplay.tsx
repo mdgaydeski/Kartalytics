@@ -1,4 +1,5 @@
 ﻿import * as React from 'react';
+import TableFilter from '../Layout/TableFilter';
 
 type Props = {
     showAverageFinish: boolean;
@@ -12,7 +13,7 @@ const AverageDisplay: React.FC<Props> = ({ showAverageFinish, setShowAverageFini
     ];
 
     return (
-        <>
+        <TableFilter>
             <p>Show average as:</p>
             {options.map((o, i) => (
                 <div className='space-x-1' key={i}>
@@ -27,7 +28,7 @@ const AverageDisplay: React.FC<Props> = ({ showAverageFinish, setShowAverageFini
                     <label htmlFor={o.label.toLowerCase()}>{o.label}</label>
                 </div>
             ))}
-        </>
+        </TableFilter>
     );
 }
 

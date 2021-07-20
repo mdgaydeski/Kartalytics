@@ -1,4 +1,5 @@
 import * as React from 'react';
+import TableFilter from '../Layout/TableFilter';
 
 type Props = {
     highlightedPlace: number;
@@ -14,7 +15,7 @@ const HighlightPlace: React.FC<Props> = ({ highlightedPlace, matchId, places, se
     }
 
     return (
-        <>
+        <TableFilter>
             <p>Highlight position:</p>
             {elementIds.map((e, i) => (
                 <div className='space-x-1' key={i}>
@@ -29,7 +30,7 @@ const HighlightPlace: React.FC<Props> = ({ highlightedPlace, matchId, places, se
                     <label htmlFor={`${e}-${matchId}`}>{i === 0 ? 'None' : i}</label>
                 </div>
             ))}
-        </>
+        </TableFilter>
     );
 }
 

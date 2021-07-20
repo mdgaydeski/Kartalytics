@@ -1,4 +1,5 @@
 ﻿import * as React from 'react';
+import TableFilter from '../Layout/TableFilter';
 
 type Props = {
     minimumResults: number;
@@ -7,7 +8,7 @@ type Props = {
 
 const MinimumResults: React.FC<Props> = ({ minimumResults, setMinimumResults }) => {
     return (
-        <>
+        <TableFilter>
             <label htmlFor='minResults'>Minimum Races:</label>
             <input
                 type='number'
@@ -19,7 +20,7 @@ const MinimumResults: React.FC<Props> = ({ minimumResults, setMinimumResults }) 
                 value={minimumResults}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => setMinimumResults(Number(e.target.value))}
             />
-        </>
+        </TableFilter>
     );
 }
 
