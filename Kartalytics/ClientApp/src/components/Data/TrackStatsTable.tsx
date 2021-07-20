@@ -2,6 +2,7 @@
 import TrackStatsSegment from './TrackStatsSegment';
 import AverageDisplay from '../Filters/AverageDisplay';
 import MinimumResults from '../Filters/MinimumResults';
+import YearRange from '../Filters/YearRange';
 import TableBorder from '../Layout/TableBorder';
 import TableOptions from '../Layout/TableOptions';
 import AppContext from '../../context/AppContext';
@@ -14,14 +15,24 @@ type Props = {
 }
 
 const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
+    const [startYear, setStartYear] = useState<number>(2018);
+    const [endYear, setEndYear] = useState<number>(2020);
     const [minimumResults, setMinimumResults] = useState<number>(1);
     const [showAverageFinish, setShowAverageFinish] = useState<boolean>(true);
+
     const { raceResults } = useContext(AppContext);
-    const results = raceResults.filter(r => playerId ? r.playerId === playerId : r.trackId === trackId);
+    const results = raceResults.filter(r => playerId ? r.playerId === playerId : r.trackId === trackId)
+        .filter(r => r.year >= startYear && r.year <= endYear);
 
     return (
         <TableBorder>
             <TableOptions>
+                <YearRange
+                    startYear={startYear}
+                    endYear={endYear}
+                    setStartYear={setStartYear}
+                    setEndYear={setEndYear}
+                />
                 {trackId && <MinimumResults
                     minimumResults={minimumResults}
                     setMinimumResults={setMinimumResults}
