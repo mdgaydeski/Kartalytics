@@ -1,6 +1,6 @@
 ﻿import * as React from 'react';
 import TrackStatsRow from './TrackStatsRow';
-import { RaceResult, TrackStatsRowType } from '../../constants/types';
+import { FilterSet, RaceResult, TrackStatsRowType } from '../../constants/types';
 import AppContext from '../../context/AppContext';
 import { sum } from '../../utils';
 
@@ -8,13 +8,14 @@ const { useContext } = React;
 
 type Props = {
     assetType: string;
-    minimumResults?: number;
+    filters: FilterSet;
     results: RaceResult[];
-    showAverageFinish: boolean;
 }
 
-const TrackStatsSegment: React.FC<Props> = ({ assetType, minimumResults = 1, results, showAverageFinish }) => {
+const TrackStatsSegment: React.FC<Props> = ({ assetType, filters, results }) => {
     const { cups } = useContext(AppContext);
+    const { minimumResults, showAverageFinish } = filters;
+
     const resultsGroups = results.reduce((acc, r) => {
         let assetId = 0;
         switch (assetType) {

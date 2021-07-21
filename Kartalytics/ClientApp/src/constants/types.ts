@@ -92,6 +92,14 @@ export type Track = {
 
 // helper types
 
+export type FilterSet = {
+    readonly [key: string]: any;
+    startYear: number;
+    endYear: number;
+    minimumResults: number;
+    showAverageFinish: boolean;
+}
+
 export type SearchItem = {
     type: string;
     id: number;

@@ -4,21 +4,20 @@ import TableFilter from '../Layout/TableFilter';
 type Props = {
     startYear: number;
     endYear: number;
-    setStartYear: React.Dispatch<React.SetStateAction<number>>;
-    setEndYear: React.Dispatch<React.SetStateAction<number>>;
+    setProperty: (key: string, value: number) => void;
 }
 
-const YearRange: React.FC<Props> = ({ startYear, endYear, setStartYear, setEndYear }) => {
+const YearRange: React.FC<Props> = ({ startYear, endYear, setProperty }) => {
     const MIN_YEAR_VALUE = 2007;
     const MAX_YEAR_VALUE = new Date().getFullYear();
 
     const handleChange = (year: number, isStartYear: boolean) => {
         if (isStartYear) {
-            setStartYear(year);
-            year > endYear && setEndYear(year);
+            setProperty('startYear', year);
+            year > endYear && setProperty('endYear', year);
         } else {
-            setEndYear(year);
-            year < startYear && setStartYear(year);
+            setProperty('endYear', year);
+            year < startYear && setProperty('startYear', year);
         }
     }
 

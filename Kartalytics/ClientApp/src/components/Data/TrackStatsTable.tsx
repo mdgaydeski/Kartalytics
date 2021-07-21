@@ -5,6 +5,7 @@ import MinimumResults from '../Filters/MinimumResults';
 import YearRange from '../Filters/YearRange';
 import TableBorder from '../Layout/TableBorder';
 import TableOptions from '../Layout/TableOptions';
+import { FilterSet } from '../../constants/types';
 import AppContext from '../../context/AppContext';
 
 const { useState, useContext } = React;
@@ -15,10 +16,22 @@ type Props = {
 }
 
 const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
-    const [startYear, setStartYear] = useState<number>(2018);
-    const [endYear, setEndYear] = useState<number>(2020);
-    const [minimumResults, setMinimumResults] = useState<number>(1);
-    const [showAverageFinish, setShowAverageFinish] = useState<boolean>(true);
+    const [filters, setFilters] = useState<FilterSet>({
+        startYear: 2018,
+        endYear: 2020,
+        minimumResults: 1,
+        showAverageFinish: true
+    });
+
+    const { startYear, endYear, minimumResults, showAverageFinish } = filters;
+
+    const setProperty = (key: string, value: any) => {
+        const newFilters = { ...filters }
+        if (newFilters.hasOwnProperty(key)) {
+            newFilters[key] = value
+        }
+        setFilters(newFilters);
+    }
 
     const { raceResults } = useContext(AppContext);
     const results = raceResults.filter(r => playerId ? r.playerId === playerId : r.trackId === trackId)
@@ -30,16 +43,15 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
                 <YearRange
                     startYear={startYear}
                     endYear={endYear}
-                    setStartYear={setStartYear}
-                    setEndYear={setEndYear}
+                    setProperty={setProperty}
                 />
                 {trackId && <MinimumResults
                     minimumResults={minimumResults}
-                    setMinimumResults={setMinimumResults}
+                    setProperty={setProperty}
                 />}
                 <AverageDisplay
                     showAverageFinish={showAverageFinish}
-                    setShowAverageFinish={setShowAverageFinish}
+                    setProperty={setProperty}
                 />
             </TableOptions>
             <table className='divide-y-4 divide-transparent my-1 table-fixed text-center w-full'>
@@ -56,23 +68,21 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
                 </thead>
                 <TrackStatsSegment
                     assetType={playerId ? 'track' : 'player'}
-                    minimumResults={minimumResults}
+                    filters={filters}
                     results={results}
-                    showAverageFinish={showAverageFinish}
                 />
                 {playerId && <>
                     <TrackStatsSegment
                         assetType='cup'
+                        filters={filters}
                         results={results}
-                        showAverageFinish={showAverageFinish}
                     />
                     <TrackStatsSegment
                         assetType='total'
+                        filters={filters}
                         results={results}
-                        showAverageFinish={showAverageFinish}
                     />
                 </>}
-                
             </table>
         </TableBorder>
     );

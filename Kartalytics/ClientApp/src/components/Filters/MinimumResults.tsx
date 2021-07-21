@@ -3,10 +3,10 @@ import TableFilter from '../Layout/TableFilter';
 
 type Props = {
     minimumResults: number;
-    setMinimumResults: React.Dispatch<React.SetStateAction<number>>;
+    setProperty: (key: string, value: number) => void;
 }
 
-const MinimumResults: React.FC<Props> = ({ minimumResults, setMinimumResults }) => {
+const MinimumResults: React.FC<Props> = ({ minimumResults, setProperty }) => {
     return (
         <TableFilter>
             <label htmlFor='minResults'>Minimum Races:</label>
@@ -18,7 +18,7 @@ const MinimumResults: React.FC<Props> = ({ minimumResults, setMinimumResults }) 
                 min={1}
                 max={99}
                 value={minimumResults}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setMinimumResults(Number(e.target.value))}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setProperty('minimumResults', Number(e.target.value))}
             />
         </TableFilter>
     );
