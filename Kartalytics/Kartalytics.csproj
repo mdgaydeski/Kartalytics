@@ -41,6 +41,7 @@
     <None Remove="ClientApp\src\components\Layout\BackToTopLink.tsx" />
     <None Remove="ClientApp\src\components\Layout\Header.tsx" />
     <None Remove="ClientApp\src\components\Layout\LoadingPlaceholder.tsx" />
+    <None Remove="ClientApp\src\components\Layout\SortableHeader.tsx" />
     <None Remove="ClientApp\src\components\Layout\SubNavButton.tsx" />
     <None Remove="ClientApp\src\components\Layout\SubNavGroup.tsx" />
     <None Remove="ClientApp\src\components\Layout\TableBorder.tsx" />
@@ -99,6 +100,7 @@
     <TypeScriptCompile Include="ClientApp\src\components\Layout\Header.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Layout\LoadingPlaceholder.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Layout\AssetLink.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\Layout\SortableHeader.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Layout\SubNavButton.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Layout\SubNavGroup.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Layout\TableBorder.tsx" />

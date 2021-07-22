@@ -3,10 +3,12 @@ import TrackStatsSegment from './TrackStatsSegment';
 import AverageDisplay from '../Filters/AverageDisplay';
 import MinimumResults from '../Filters/MinimumResults';
 import YearRange from '../Filters/YearRange';
+import SortableHeader from '../Layout/SortableHeader';
 import TableBorder from '../Layout/TableBorder';
 import TableOptions from '../Layout/TableOptions';
-import { FilterSet } from '../../constants/types';
+import { FilterSet, TrackStatsColumnType } from '../../constants/types';
 import AppContext from '../../context/AppContext';
+import { compareAscending, compareDescending, compareTrackRowsByName } from '../../utils';
 
 const { useState, useContext } = React;
 
@@ -20,10 +22,49 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
         startYear: 2018,
         endYear: 2020,
         minimumResults: 1,
-        showAverageFinish: true
+        showAverageFinish: true,
+        sortedColumn: 0
     });
 
     const { startYear, endYear, minimumResults, showAverageFinish } = filters;
+
+    const columns: TrackStatsColumnType[] = [
+        {
+            label: playerId ? 'Track' : 'Player',
+            className: 'w-4/12',
+            sortFunction: compareTrackRowsByName
+        },
+        {
+            label: 'Total',
+            className: 'w-1/12',
+            sortFunction: (a, b) => compareDescending(a.totalRaces, b.totalRaces) || compareTrackRowsByName(a, b)
+        },
+        {
+            label: '1st',
+            className: 'w-1/12',
+            sortFunction: (a, b) => compareDescending(a.placeTotals[0], b.placeTotals[0]) || compareTrackRowsByName(a, b)
+        },
+        {
+            label: '2nd',
+            className: 'w-1/12',
+            sortFunction: (a, b) => compareDescending(a.placeTotals[1], b.placeTotals[1]) || compareTrackRowsByName(a, b)
+        },
+        {
+            label: '3rd',
+            className: 'w-1/12',
+            sortFunction: (a, b) => compareDescending(a.placeTotals[2], b.placeTotals[2]) || compareTrackRowsByName(a, b)
+        },
+        {
+            label: '4th',
+            className: 'w-1/12',
+            sortFunction: (a, b) => compareDescending(a.placeTotals[3], b.placeTotals[3]) || compareTrackRowsByName(a, b)
+        },
+        {
+            label: `Avg. ${showAverageFinish ? 'Finish' : 'Points'}`,
+            className: 'w-3/12',
+            sortFunction: (a, b) => compareAscending(a.averageFinish, b.averageFinish) || compareTrackRowsByName(a, b)
+        },
+    ];
 
     const setProperty = (key: string, value: any) => {
         const newFilters = { ...filters }
@@ -57,28 +98,32 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
             <table className='divide-y-4 divide-transparent my-1 table-fixed text-center w-full'>
                 <thead>
                     <tr>
-                        <th scope='col' className='w-4/12'>{ playerId ? 'Track' : 'Player' }</th>
-                        <th scope='col' className='w-1/12'>Total</th>
-                        <th scope='col' className='w-1/12'>1st</th>
-                        <th scope='col' className='w-1/12'>2nd</th>
-                        <th scope='col' className='w-1/12'>3rd</th>
-                        <th scope='col' className='w-1/12'>4th</th>
-                        <th scope='col' className='w-3/12'>Avg. {showAverageFinish ? 'Finish' : 'Points'}</th>
+                        {columns.map((column, i) => (
+                            <SortableHeader
+                                column={column}
+                                colNumber={i}
+                                setProperty={setProperty}
+                                key={i}
+                            />
+                        ))}
                     </tr>
                 </thead>
                 <TrackStatsSegment
                     assetType={playerId ? 'track' : 'player'}
+                    columns={columns}
                     filters={filters}
                     results={results}
                 />
                 {playerId && <>
                     <TrackStatsSegment
                         assetType='cup'
+                        columns={columns}
                         filters={filters}
                         results={results}
                     />
                     <TrackStatsSegment
                         assetType='total'
+                        columns={columns}
                         filters={filters}
                         results={results}
                     />

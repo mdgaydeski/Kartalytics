@@ -98,6 +98,7 @@ export type FilterSet = {
     endYear: number;
     minimumResults: number;
     showAverageFinish: boolean;
+    sortedColumn: number;
 }
 
 export type SearchItem = {
@@ -107,8 +108,17 @@ export type SearchItem = {
     altNames: string[];
 }
 
+export type TrackStatsColumnType = {
+    label: string;
+    className: string;
+    sortFunction: (a: TrackStatsRowType, b: TrackStatsRowType) => number;
+}
+
 export type TrackStatsRowType = {
     assetId: number;
+    assetName: string;
     assetType: string;
+    totalRaces: number;
     placeTotals: number[];
+    averageFinish: number;
 }

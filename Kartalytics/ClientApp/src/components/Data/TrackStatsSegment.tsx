@@ -1,50 +1,74 @@
 ﻿import * as React from 'react';
 import TrackStatsRow from './TrackStatsRow';
-import { FilterSet, RaceResult, TrackStatsRowType } from '../../constants/types';
+import { FilterSet, RaceResult, TrackStatsColumnType, TrackStatsRowType } from '../../constants/types';
 import AppContext from '../../context/AppContext';
-import { sum } from '../../utils';
+import { sum, sumOfResults } from '../../utils';
 
-const { useContext } = React;
+const { useContext, useEffect, useState } = React;
 
 type Props = {
     assetType: string;
+    columns: TrackStatsColumnType[];
     filters: FilterSet;
     results: RaceResult[];
 }
 
-const TrackStatsSegment: React.FC<Props> = ({ assetType, filters, results }) => {
-    const { cups } = useContext(AppContext);
-    const { minimumResults, showAverageFinish } = filters;
+const TrackStatsSegment: React.FC<Props> = ({ assetType, columns, filters, results }) => {
+    const [resultsGroups, setResultsGroups] = useState<TrackStatsRowType[]>([]);
+    const [filteredResults, setFilteredResults] = useState<TrackStatsRowType[]>([]);
+    const [sortedResults, setSortedResults] = useState<TrackStatsRowType[]>([]);
+    const { cups, players, tracks } = useContext(AppContext);
+    const { showAverageFinish, sortedColumn } = filters;
 
-    const resultsGroups = results.reduce((acc, r) => {
-        let assetId = 0;
-        switch (assetType) {
-            case 'player':
-                assetId = r.playerId;
-                break;
-            case 'track':
-                assetId = r.trackId;
-                break;
-            case 'cup':
-                assetId = cups.filter(c => c.tracks.some(t => t === r.trackId))[0].id;
-                break;
-            default:
-        }
+    useEffect(() => {     
+        const groups = results.reduce((acc, r) => {
+            let asset = undefined;
 
-        if (!acc.filter(a => a.assetId === assetId).length) {
-            acc.push({
-                assetId,
-                assetType,
-                placeTotals: [0, 0, 0, 0]
-            });
-        }
-        acc.filter(a => a.assetId === assetId)[0].placeTotals[r.place - 1]++;
-        return acc;
-    }, [] as TrackStatsRowType[]).filter(row => minimumResults > 1 ? sum(row.placeTotals) >= minimumResults : true);
+            if (assetType === 'cup') {
+                asset = cups.filter(c => c.tracks.some(t => t === r.trackId))[0];
+            } else if (assetType === 'player') {
+                asset = players.filter(p => p.id === r.playerId)[0];
+            } else if (assetType === 'track') {
+                asset = tracks.filter(t => t.id === r.trackId)[0];
+            }
+
+            const assetId = asset ? asset.id : 0;
+            const assetName = asset ? asset.name : 'Total';
+
+            if (!acc.filter(a => a.assetId === assetId).length) {
+                acc.push({
+                    assetId,
+                    assetName,
+                    assetType,
+                    totalRaces: 0,
+                    placeTotals: [0, 0, 0, 0],
+                    averageFinish: 0.0
+                });
+            }
+            const entry = acc.filter(a => a.assetId === assetId)[0];
+            entry.totalRaces++;
+            entry.placeTotals[r.place - 1]++;
+            return acc;
+        }, [] as TrackStatsRowType[]);
+
+        groups.forEach(g => g.averageFinish = sumOfResults(g.placeTotals) / g.totalRaces);
+        setResultsGroups(groups);
+    }, [assetType, cups, players, results, setResultsGroups, tracks]);
+
+    useEffect(() => {
+        const { minimumResults } = filters;
+        const results = resultsGroups.filter(row => minimumResults > 1 ? sum(row.placeTotals) >= minimumResults : true);
+        setFilteredResults(results);
+    }, [filters, resultsGroups, setFilteredResults])
+
+    useEffect(() => {
+        const groups = filteredResults.sort(columns[sortedColumn].sortFunction);
+        setSortedResults(groups);
+    }, [columns, filteredResults, setSortedResults, sortedColumn]);
 
     return (
         <tbody>
-            {resultsGroups.map(r => (
+            {sortedResults.map(r => (
                 <TrackStatsRow
                     rowData={r}
                     showAverageFinish={showAverageFinish}
