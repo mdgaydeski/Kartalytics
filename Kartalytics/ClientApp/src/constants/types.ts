@@ -111,10 +111,13 @@ export type SearchItem = {
 export type TrackStatsColumnType = {
     label: string;
     className: string;
-    sortFunction: (a: TrackStatsRowType, b: TrackStatsRowType) => number;
+    sortAscending: boolean;
+    property?: string;
+    index?: number;
 }
 
 export type TrackStatsRowType = {
+    readonly [key: string]: any;
     assetId: number;
     assetName: string;
     assetType: string;

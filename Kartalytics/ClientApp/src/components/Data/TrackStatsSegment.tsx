@@ -2,7 +2,7 @@
 import TrackStatsRow from './TrackStatsRow';
 import { FilterSet, RaceResult, TrackStatsColumnType, TrackStatsRowType } from '../../constants/types';
 import AppContext from '../../context/AppContext';
-import { sum, sumOfResults } from '../../utils';
+import { compare, sum, sumOfResults } from '../../utils';
 
 const { useContext, useEffect, useState } = React;
 
@@ -62,7 +62,8 @@ const TrackStatsSegment: React.FC<Props> = ({ assetType, columns, filters, resul
     }, [filters, resultsGroups, setFilteredResults])
 
     useEffect(() => {
-        const groups = filteredResults.sort(columns[sortedColumn].sortFunction);
+        const { sortAscending, property, index } = columns[sortedColumn];
+        const groups = [...filteredResults].sort((a, b) => compare(a, b, sortAscending, property, index));
         setSortedResults(groups);
     }, [columns, filteredResults, setSortedResults, sortedColumn]);
 

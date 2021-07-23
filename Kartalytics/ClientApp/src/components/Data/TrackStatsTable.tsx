@@ -8,7 +8,6 @@ import TableBorder from '../Layout/TableBorder';
 import TableOptions from '../Layout/TableOptions';
 import { FilterSet, TrackStatsColumnType } from '../../constants/types';
 import AppContext from '../../context/AppContext';
-import { compareAscending, compareDescending, compareTrackRowsByName } from '../../utils';
 
 const { useState, useContext } = React;
 
@@ -32,37 +31,47 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
         {
             label: playerId ? 'Track' : 'Player',
             className: 'w-4/12',
-            sortFunction: compareTrackRowsByName
+            sortAscending: true
         },
         {
             label: 'Total',
             className: 'w-1/12',
-            sortFunction: (a, b) => compareDescending(a.totalRaces, b.totalRaces) || compareTrackRowsByName(a, b)
+            sortAscending: false,
+            property: 'totalRaces'
         },
         {
             label: '1st',
             className: 'w-1/12',
-            sortFunction: (a, b) => compareDescending(a.placeTotals[0], b.placeTotals[0]) || compareTrackRowsByName(a, b)
+            sortAscending: false,
+            property: 'placeTotals',
+            index: 0
         },
         {
             label: '2nd',
             className: 'w-1/12',
-            sortFunction: (a, b) => compareDescending(a.placeTotals[1], b.placeTotals[1]) || compareTrackRowsByName(a, b)
+            sortAscending: false,
+            property: 'placeTotals',
+            index: 1
         },
         {
             label: '3rd',
             className: 'w-1/12',
-            sortFunction: (a, b) => compareDescending(a.placeTotals[2], b.placeTotals[2]) || compareTrackRowsByName(a, b)
+            sortAscending: false,
+            property: 'placeTotals',
+            index: 2
         },
         {
             label: '4th',
             className: 'w-1/12',
-            sortFunction: (a, b) => compareDescending(a.placeTotals[3], b.placeTotals[3]) || compareTrackRowsByName(a, b)
+            sortAscending: false,
+            property: 'placeTotals',
+            index: 3
         },
         {
             label: `Avg. ${showAverageFinish ? 'Finish' : 'Points'}`,
             className: 'w-3/12',
-            sortFunction: (a, b) => compareAscending(a.averageFinish, b.averageFinish) || compareTrackRowsByName(a, b)
+            sortAscending: true,
+            property: 'averageFinish'
         },
     ];
 
