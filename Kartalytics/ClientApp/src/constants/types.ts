@@ -99,6 +99,7 @@ export type FilterSet = {
     minimumResults: number;
     showAverageFinish: boolean;
     sortedColumn: number;
+    sortAscending: boolean;
 }
 
 export type SearchItem = {
@@ -111,9 +112,8 @@ export type SearchItem = {
 export type TrackStatsColumnType = {
     label: string;
     className: string;
-    sortAscending: boolean;
     invertSort?: boolean;
-    property?: string;
+    property: string;
     index?: number;
 }
 

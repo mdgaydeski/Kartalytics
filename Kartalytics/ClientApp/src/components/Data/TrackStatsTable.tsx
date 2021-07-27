@@ -22,7 +22,8 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
         endYear: 2020,
         minimumResults: 1,
         showAverageFinish: true,
-        sortedColumn: 0
+        sortedColumn: 0,
+        sortAscending: true
     });
 
     const { startYear, endYear, minimumResults, showAverageFinish } = filters;
@@ -31,46 +32,40 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
         {
             label: playerId ? 'Track' : 'Player',
             className: 'w-4/12',
-            sortAscending: true
+            property: playerId ? 'assetId' : 'assetName'
         },
         {
             label: 'Total',
             className: 'w-1/12',
-            sortAscending: false,
             property: 'totalRaces'
         },
         {
             label: '1st',
             className: 'w-1/12',
-            sortAscending: false,
             property: 'placeTotals',
             index: 0
         },
         {
             label: '2nd',
             className: 'w-1/12',
-            sortAscending: false,
             property: 'placeTotals',
             index: 1
         },
         {
             label: '3rd',
             className: 'w-1/12',
-            sortAscending: false,
             property: 'placeTotals',
             index: 2
         },
         {
             label: '4th',
             className: 'w-1/12',
-            sortAscending: false,
             property: 'placeTotals',
             index: 3
         },
         {
             label: `Avg. ${showAverageFinish ? 'Finish' : 'Points'}`,
             className: 'w-3/12',
-            sortAscending: true,
             invertSort: !showAverageFinish,
             property: 'averageFinish'
         },
@@ -81,6 +76,13 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
         if (newFilters.hasOwnProperty(key)) {
             newFilters[key] = value
         }
+        setFilters(newFilters);
+    }
+
+    const handleHeaderClick = (colNumber: number) => {
+        const newFilters = { ...filters }
+        newFilters.sortAscending = filters.sortedColumn === colNumber ? !filters.sortAscending : true;
+        newFilters.sortedColumn = colNumber;
         setFilters(newFilters);
     }
 
@@ -112,7 +114,8 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
                             <SortableHeader
                                 column={column}
                                 colNumber={i}
-                                setProperty={setProperty}
+                                handleClick={handleHeaderClick}
+                                sortAscending={filters.sortAscending}
                                 isSorted={i === filters.sortedColumn}
                                 key={i}
                             />

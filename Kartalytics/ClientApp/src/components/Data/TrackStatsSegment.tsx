@@ -62,10 +62,11 @@ const TrackStatsSegment: React.FC<Props> = ({ assetType, columns, filters, resul
     }, [filters, resultsGroups, setFilteredResults])
 
     useEffect(() => {
-        const { sortAscending, property, index } = columns[sortedColumn];
+        const { property, index } = columns[sortedColumn];
+        const { sortAscending } = filters;
         const groups = [...filteredResults].sort((a, b) => compare(a, b, sortAscending, property, index));
         setSortedResults(groups);
-    }, [columns, filteredResults, setSortedResults, sortedColumn]);
+    }, [columns, filters, filteredResults, setSortedResults, sortedColumn]);
 
     return (
         <tbody>
