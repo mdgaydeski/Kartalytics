@@ -112,6 +112,7 @@ export type TrackStatsColumnType = {
     label: string;
     className: string;
     sortAscending: boolean;
+    invertSort?: boolean;
     property?: string;
     index?: number;
 }

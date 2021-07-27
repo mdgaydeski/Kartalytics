@@ -71,6 +71,7 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
             label: `Avg. ${showAverageFinish ? 'Finish' : 'Points'}`,
             className: 'w-3/12',
             sortAscending: true,
+            invertSort: !showAverageFinish,
             property: 'averageFinish'
         },
     ];
@@ -112,6 +113,7 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
                                 column={column}
                                 colNumber={i}
                                 setProperty={setProperty}
+                                isSorted={i === filters.sortedColumn}
                                 key={i}
                             />
                         ))}
