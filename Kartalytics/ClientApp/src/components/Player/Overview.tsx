@@ -14,7 +14,7 @@ const Overview: React.FC<Props> = ({ player }) => {
             <h2>Overview</h2>
             <TournamentOverview results={player.tournamentResults} />
             <MatchOverview />
-            <RaceOverview />
+            <RaceOverview playerId={player.id} />
         </>
     );
 };
