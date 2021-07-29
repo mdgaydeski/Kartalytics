@@ -13,9 +13,9 @@ const Header = () => {
 
     return (
         <header>
-            <nav className={`bg-black bg-opacity-90 border-b border-gray-600 ${navCollapsed ? 'h-auto' : 'absolute h-screen'} inset-0 items-center w-full md:flex md:h-auto md:static`}>
+            <nav className={`bg-black bg-opacity-90 border-b border-gray-600 ${navCollapsed ? 'h-auto' : 'absolute h-screen'} inset-0 items-center w-full z-10 md:flex md:h-auto md:static`}>
                 <div className='flex md:w-1/4'>
-                    <NavLink to={ROUTES.HOME} className='font-display ml-3 text-3xl md:text-2xl'>Kartalytics</NavLink>
+                    <NavLink to={ROUTES.HOME} className='font-display ml-3 my-2 text-2xl tracking-wider'>Kartalytics</NavLink>
                     <MenuIcon
                         className='h-8 w-8 md:h-6 md:w-6 my-auto ml-auto mr-3 border border-gray-400 rounded-md cursor-pointer md:hidden'
                         onClick={() => setNavCollapsed(!navCollapsed)}
