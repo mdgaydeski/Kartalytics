@@ -13,7 +13,7 @@ const Overview: React.FC<Props> = ({ player }) => {
         <>
             <h2>Overview</h2>
             <TournamentOverview results={player.tournamentResults} />
-            <MatchOverview />
+            <MatchOverview playerId={player.id} />
             <RaceOverview playerId={player.id} />
         </>
     );
