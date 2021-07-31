@@ -6,6 +6,7 @@ const Home = () => {
     return (
         <>
             <h1>Home Page</h1>
+            <Link to={`${ROUTES.MATCH}/1`}>Match</Link><br />
             <Link to={`${ROUTES.PLAYER}/1`}>Player</Link><br />
             <Link to={ROUTES.PLAYER_LIST}>Player List</Link><br />
             <Link to={`${ROUTES.TOURNAMENT}/1`}>Tournament</Link><br />

@@ -15,6 +15,7 @@ import { tournaments } from './tempdata/tournaments';
 import { tracks } from './tempdata/tracks';
 
 const Home = lazy(() => import('./pages/Home'));
+const Match = lazy(() => import('./pages/Match'));
 const PlayerList = lazy(() => import('./pages/PlayerList'));
 const Player = lazy(() => import('./pages/Player'));
 const TournamentList = lazy(() => import('./pages/TournamentList'));
@@ -42,6 +43,7 @@ const App = () => {
                         <Container>
                             <Switch>
                                 <Route path={ROUTES.HOME} exact component={Home} />
+                                <Route path={ROUTES.MATCH_ID} component={Match} />
                                 <Route path={ROUTES.PLAYER_ID} component={Player} />
                                 <Route path={ROUTES.PLAYER_LIST} component={PlayerList} />
                                 <Route path={ROUTES.TOURNAMENT_ID} component={Tournament} />

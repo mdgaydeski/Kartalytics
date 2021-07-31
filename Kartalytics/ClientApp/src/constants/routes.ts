@@ -1,3 +1,5 @@
+export const MATCH = '/match';
+export const MATCH_ID = '/match/:id';
 export const PLAYER = '/players';
 export const PLAYER_ID = '/players/:id';
 export const PLAYER_LIST = '/players';
