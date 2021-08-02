@@ -1,5 +1,6 @@
 ﻿import * as React from 'react';
 import TrackHeader from '../Layout/TrackHeader';
+import { PLACE_LABELS } from '../../constants/constants';
 import AppContext from '../../context/AppContext';
 
 const { useContext } = React;
@@ -33,13 +34,10 @@ const MatchTableHeader: React.FC<Props> = ({ cupOrder, trackOrder }) => {
                         })}
                     </>
                     : <>
-                        {trackOrder && trackOrder.map((trackId, i) => <TrackHeader trackId={trackId} />)}
+                        {trackOrder && trackOrder.map((trackId) => <TrackHeader trackId={trackId} />)}
                     </>
                 }
-                <th scope='col'>#1</th>
-                <th scope='col'>#2</th>
-                <th scope='col'>#3</th>
-                <th scope='col'>#4</th>
+                {PLACE_LABELS.map((p, i) => <th scope='col' key={i}>{p}</th>)}
             </tr>
         </thead>
     );

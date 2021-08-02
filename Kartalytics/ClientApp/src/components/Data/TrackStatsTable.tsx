@@ -8,8 +8,9 @@ import TableBorder from '../Layout/TableBorder';
 import TableOptions from '../Layout/TableOptions';
 import { FilterSet, TrackStatsColumnType } from '../../constants/types';
 import AppContext from '../../context/AppContext';
+import { PLACE_LABELS } from '../../constants/constants';
 
-const { useState, useContext } = React;
+const { useState, useEffect, useContext } = React;
 
 type Props = {
     playerId?: number;
@@ -25,51 +26,38 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
         sortedColumn: 0,
         sortAscending: true
     });
+    const [columns, setColumns] = useState<TrackStatsColumnType[]>([]);
 
     const { startYear, endYear, minimumResults, showAverageFinish } = filters;
 
-    const columns: TrackStatsColumnType[] = [
-        {
+    useEffect(() => {
+        const columnList = [];
+        columnList.push({
             label: playerId ? 'Track' : 'Player',
             className: 'w-4/12',
             property: playerId ? 'assetId' : 'assetName'
-        },
-        {
+        });
+        columnList.push({
             label: 'Total',
             className: 'w-1/12',
             property: 'totalRaces'
-        },
-        {
-            label: '1st',
-            className: 'w-1/12',
-            property: 'placeTotals',
-            index: 0
-        },
-        {
-            label: '2nd',
-            className: 'w-1/12',
-            property: 'placeTotals',
-            index: 1
-        },
-        {
-            label: '3rd',
-            className: 'w-1/12',
-            property: 'placeTotals',
-            index: 2
-        },
-        {
-            label: '4th',
-            className: 'w-1/12',
-            property: 'placeTotals',
-            index: 3
-        },
-        {
+        });
+        PLACE_LABELS.forEach((p, i) => {
+            columnList.push({
+                label: p,
+                className: 'w-1/12',
+                property: 'placeTotals',
+                index: i
+            });
+        });
+        columnList.push({
             label: `Avg. ${showAverageFinish ? 'Finish' : 'Points'}`,
             className: 'w-3/12',
             invertSort: !showAverageFinish,
             property: 'averageFinish'
-        },
-    ];
+        });
+        setColumns(columnList);
+    }, [setColumns, playerId, showAverageFinish]);
 
     const setProperty = (key: string, value: any) => {
         const newFilters = { ...filters }
