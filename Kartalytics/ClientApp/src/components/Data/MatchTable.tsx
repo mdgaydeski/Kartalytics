@@ -10,10 +10,11 @@ const { useState, useContext } = React;
 
 type Props = {
     matchId: number;
-    playerId: number
+    playerId?: number;
+    hideMatchName?: boolean;
 }
 
-const MatchTable: React.FC<Props> = ({ matchId, playerId }) => {
+const MatchTable: React.FC<Props> = ({ matchId, playerId, hideMatchName }) => {
     const [highlightedPlace, setHighlightedPlace] = useState<number>(0);
     const { matches, matchResults } = useContext(AppContext);
     const match = matches.filter(m => m.id === matchId)[0];
@@ -25,7 +26,7 @@ const MatchTable: React.FC<Props> = ({ matchId, playerId }) => {
 
     return (
         <>
-            <h4>{match.name}</h4>
+            {!hideMatchName && <h4>{match.name}</h4>}
             <TableBorder>
                 <TableOptions>
                     <HighlightPlace

@@ -20,8 +20,8 @@ const Player = () => {
     const { players } = useContext(AppContext);
 
     useEffect(() => {
-        const currentTournament = players.filter(p => p.id === Number(id))[0];
-        setPlayer(currentTournament);
+        const currentPlayer= players.filter(p => p.id === Number(id))[0];
+        setPlayer(currentPlayer);
     }, [id, setPlayer, players]);
 
     return (

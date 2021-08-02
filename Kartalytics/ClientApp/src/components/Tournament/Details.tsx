@@ -17,7 +17,7 @@ const Details: React.FC<Props> = ({ rounds }) => {
                 <section key={round.roundNumber}>
                     <h3 id={`section-${round.roundNumber}`}>{round.name}</h3>
                     { round.matches.map(matchId => (
-                        <MatchTable matchId={matchId} playerId={0} key={matchId} />
+                        <MatchTable matchId={matchId} key={matchId} />
                     ))}
                     <BackToTopLink />
                 </section>
