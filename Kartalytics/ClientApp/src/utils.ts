@@ -29,6 +29,14 @@ export const formatDate = (date: string) => {
         : 'Date unknown'
 }
 
+export const getVideoUrl = (host: string, url: string) => {
+    if (host === 'YouTube') {
+        return `https://youtube.com/watch?v=${url}`;
+    } else if (host === 'Twitch') {
+        return `https://twitch.tv/videos/${url}`;
+    }
+}
+
 export const sum = (array: number[]) => array.reduce((acc, val) => acc + val, 0);
 
 export const sumOfResults = (array: number[]) => array.reduce((acc, val, i) => acc + (val * (i + 1)));

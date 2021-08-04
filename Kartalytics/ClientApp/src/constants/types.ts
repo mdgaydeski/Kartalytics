@@ -1,5 +1,10 @@
 ﻿// database subdocument types
 
+export type MatchVideo = {
+    host: string;
+    url: string;
+}
+
 export type PlayerResult = {
     tournamentId: number;
     year: number;
@@ -43,6 +48,7 @@ export type Match = {
     cupOrder?: number[] | undefined;
     trackOrder?: number[] | undefined;
     results: number[];
+    videos: MatchVideo[];
 }
 
 export type MatchResult = {

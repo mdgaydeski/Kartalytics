@@ -4,6 +4,7 @@ import MatchTableHeader from './MatchTableHeader';
 import HighlightPlace from '../Filters/HighlightPlace';
 import TableBorder from '../Layout/TableBorder';
 import TableOptions from '../Layout/TableOptions';
+import VideoList from '../Match/VideoList';
 import AppContext from '../../context/AppContext';
 
 const { useState, useContext } = React;
@@ -27,6 +28,7 @@ const MatchTable: React.FC<Props> = ({ matchId, playerId, hideMatchName }) => {
     return (
         <>
             {!hideMatchName && <h4>{match.name}</h4>}
+            {match.videos.length > 0 && <VideoList videoList={match.videos} />}
             <TableBorder>
                 <TableOptions>
                     <HighlightPlace
