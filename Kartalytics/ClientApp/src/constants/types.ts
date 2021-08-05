@@ -19,7 +19,7 @@ export type PlayerResult = {
 
 export type RoundResult = {
     playerId: number;
-    seed?: number | undefined;
+    seed?: number;
     points: number[];
     place: number;
 }
@@ -33,8 +33,8 @@ export type TournamentRound = {
     roundNumber: number;
     roundLevel: string;
     name: string;
-    isPoolRound?: boolean | undefined;
-    totalAdvance?: number | undefined;
+    isPoolRound?: boolean;
+    totalAdvance?: number;
     matches: number[];
     results: RoundResult[];
 }
@@ -50,8 +50,8 @@ export type Cup = {
 export type Match = {
     id: number;
     name: string;
-    cupOrder?: number[] | undefined;
-    trackOrder?: number[] | undefined;
+    cupOrder?: number[];
+    trackOrder?: number[];
     results: number[];
     videos: MatchVideo[];
 }
