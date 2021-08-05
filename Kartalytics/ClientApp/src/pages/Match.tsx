@@ -1,6 +1,7 @@
 ﻿import * as React from 'react';
 import { useParams } from 'react-router-dom';
 import MatchTable from '../components/Data/MatchTable';
+import MatchGraph from '../components/Match/MatchGraph';
 import { Match } from '../constants/types';
 import AppContext from '../context/AppContext';
 
@@ -21,6 +22,7 @@ const Match = () => {
         match && <>
             <h1>{match.name}</h1>
             <MatchTable matchId={match.id} hideMatchName />
+            <MatchGraph matchId={match.id} />
         </>
     );
 }

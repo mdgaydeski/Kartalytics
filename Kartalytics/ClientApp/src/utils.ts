@@ -1,5 +1,5 @@
 ﻿import { format } from 'date-fns';
-import { TrackStatsRowType } from './constants/types';
+import { MatchRaceResult, TrackStatsRowType } from './constants/types';
 
 export const compare = (a: TrackStatsRowType, b: TrackStatsRowType, sortAscending: boolean, property: string, index?: number) => {
     if (property === 'assetName') {
@@ -27,6 +27,13 @@ export const formatDate = (date: string) => {
     return date
         ? format(new Date(`${date} 00:00:00`), 'dd MMM yyyy')
         : 'Date unknown'
+}
+
+export const getProgressivePointTotals = (results: MatchRaceResult[]) => {
+    return results.reduce((acc, r, i) => {
+        acc.push(4 - r.place + acc[i]);
+        return acc;
+    }, [0])
 }
 
 export const getVideoUrl = (host: string, url: string) => {

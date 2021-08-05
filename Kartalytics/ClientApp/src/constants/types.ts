@@ -1,5 +1,10 @@
 ﻿// database subdocument types
 
+export type MatchRaceResult = {
+    trackId: number,
+    place: number
+}
+
 export type MatchVideo = {
     host: string;
     url: string;
@@ -58,10 +63,7 @@ export type MatchResult = {
     points: number;
     place: number;
     placeTotals: number[];
-    raceResults: {
-        trackId: number,
-        place: number
-    }[];
+    raceResults: MatchRaceResult[];
 }
 
 export type Player = {
