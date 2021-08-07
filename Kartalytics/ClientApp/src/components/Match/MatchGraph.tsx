@@ -1,5 +1,6 @@
 ﻿import * as React from 'react';
-import { LineChart, CartesianGrid, Legend, Line, Tooltip, XAxis, YAxis } from 'recharts';
+import { LineChart, CartesianGrid, Legend, Line, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { GRAPH_LINE_PROPERTIES } from '../../constants/constants';
 import AppContext from '../../context/AppContext';
 import { getProgressivePointTotals } from '../../utils';
 
@@ -16,7 +17,7 @@ type ResultSet = {
 const MatchGraph: React.FC<Props> = ({ matchId }) => {
     const [results, setResults] = useState<ResultSet[]>([]);
     const [playerList, setPlayerList] = useState<string[]>([]);
-    const { cups, matches, matchResults, players, tracks } = useContext(AppContext); 
+    const { cups, matches, matchResults, players, tracks } = useContext(AppContext);
 
     useEffect(() => {
         const currentMatch = matches.filter(p => p.id === Number(matchId))[0];
@@ -55,14 +56,25 @@ const MatchGraph: React.FC<Props> = ({ matchId }) => {
     }, [cups, matchId, matches, matchResults, players, setPlayerList, setResults, tracks]);
 
     return (
-        <LineChart width={730} height={250} data={results}>
-            <CartesianGrid />
-            <XAxis dataKey='track' />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            {playerList.map(p => <Line dataKey={p} key={p} />)}
-        </LineChart>
+        <ResponsiveContainer width='100%' height={250} className='mt-4'>
+            <LineChart data={results}>
+                <CartesianGrid style={{ stroke: '#666' }} />
+                <XAxis dataKey='track' style={{ fill: 'white' }} />
+                <YAxis style={{ fill: 'white' }} />
+                <Tooltip
+                    contentStyle={{ backgroundColor: '#111927', borderRadius: '0.5rem' }}
+                    itemStyle={{ padding: 0 }}
+                />
+                <Legend />
+                {playerList.map((p, i) => <Line
+                    dataKey={p}
+                    stroke={GRAPH_LINE_PROPERTIES[i].color}
+                    strokeWidth={2}
+                    dot={false}
+                    key={p}
+                />)}
+            </LineChart>
+        </ResponsiveContainer>
     );
 }
 
