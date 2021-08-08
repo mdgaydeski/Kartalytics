@@ -1,17 +1,20 @@
 ﻿import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { PLAYER, TOURNAMENT, TRACK } from '../../constants/routes';
+import { MATCH, PLAYER, TOURNAMENT, TRACK } from '../../constants/routes';
 
 type Props = {
     type: string;
     id: number;
     children: any;
-    className?: string | undefined;
+    className?: string;
 }
 
 const AssetLink: React.FC<Props> = ({ type, id, children, className }) => {
     let route = '';
     switch (type) {
+        case 'match':
+            route = MATCH;
+            break;
         case 'player':
             route = PLAYER;
             break;

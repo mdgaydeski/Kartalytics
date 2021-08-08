@@ -2,6 +2,7 @@
 import MatchRow from './MatchRow';
 import MatchTableHeader from './MatchTableHeader';
 import HighlightPlace from '../Filters/HighlightPlace';
+import AssetLink from '../Layout/AssetLink';
 import TableBorder from '../Layout/TableBorder';
 import TableOptions from '../Layout/TableOptions';
 import VideoList from '../Match/VideoList';
@@ -12,10 +13,10 @@ const { useState, useContext } = React;
 type Props = {
     matchId: number;
     playerId?: number;
-    hideMatchName?: boolean;
+    fromDetailsPage?: boolean;
 }
 
-const MatchTable: React.FC<Props> = ({ matchId, playerId, hideMatchName }) => {
+const MatchTable: React.FC<Props> = ({ matchId, playerId, fromDetailsPage }) => {
     const [highlightedPlace, setHighlightedPlace] = useState<number>(0);
     const { matches, matchResults } = useContext(AppContext);
     const match = matches.filter(m => m.id === matchId)[0];
@@ -27,8 +28,11 @@ const MatchTable: React.FC<Props> = ({ matchId, playerId, hideMatchName }) => {
 
     return (
         <>
-            {!hideMatchName && <h4>{match.name}</h4>}
-            {match.videos.length > 0 && <VideoList videoList={match.videos} />}
+            {!fromDetailsPage && <h4>{match.name}</h4>}
+            <div className='flex px-1'>
+                {!fromDetailsPage && <AssetLink type='match' id={matchId}>View Detailed Breakdown</AssetLink>}
+                {match.videos.length > 0 && <VideoList videoList={match.videos} />}
+            </div>
             <TableBorder>
                 <TableOptions>
                     <HighlightPlace

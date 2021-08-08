@@ -21,7 +21,7 @@ const Match = () => {
     return (
         match && <>
             <h1>{match.name}</h1>
-            <MatchTable matchId={match.id} hideMatchName />
+            <MatchTable matchId={match.id} fromDetailsPage />
             <MatchGraph matchId={match.id} />
         </>
     );
