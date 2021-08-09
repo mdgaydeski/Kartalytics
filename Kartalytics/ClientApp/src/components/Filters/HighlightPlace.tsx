@@ -5,10 +5,10 @@ type Props = {
     highlightedPlace: number;
     matchId: number;
     places: number;
-    setHighlightedPlace: React.Dispatch<React.SetStateAction<number>>;
+    handleChange: (value: number) => void;
 }
 
-const HighlightPlace: React.FC<Props> = ({ highlightedPlace, matchId, places, setHighlightedPlace }) => {
+const HighlightPlace: React.FC<Props> = ({ highlightedPlace, matchId, places, handleChange }) => {
     const elementIds = [];
     for (let i = 0; i <= places; i++) {
         elementIds.push(`highlight-${i === 0 ? 'none' : i}`);
@@ -25,7 +25,7 @@ const HighlightPlace: React.FC<Props> = ({ highlightedPlace, matchId, places, se
                         name={`highlight-${matchId}`}
                         value={i}
                         checked={highlightedPlace === i}
-                        onChange={() => setHighlightedPlace(i)}
+                        onChange={() => handleChange(i)}
                     />
                     <label htmlFor={`${e}-${matchId}`}>{i === 0 ? 'None' : i}</label>
                 </div>

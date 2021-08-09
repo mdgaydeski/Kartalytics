@@ -6,8 +6,8 @@ import AppContext from '../../context/AppContext';
 const { useContext } = React;
 
 type Props = {
-    cupOrder?: number[] | undefined;
-    trackOrder?: number[] | undefined;
+    cupOrder?: number[];
+    trackOrder?: number[];
 }
 
 const MatchTableHeader: React.FC<Props> = ({ cupOrder, trackOrder }) => {

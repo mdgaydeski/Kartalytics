@@ -39,7 +39,7 @@ const MatchTable: React.FC<Props> = ({ matchId, playerId, fromDetailsPage }) => 
                         highlightedPlace={highlightedPlace}
                         matchId={matchId}
                         places={results.length}
-                        setHighlightedPlace={setHighlightedPlace}
+                        handleChange={setHighlightedPlace}
                     />
                 </TableOptions>
                 <table className='my-1 table-fixed text-center w-full'>
