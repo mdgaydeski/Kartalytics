@@ -10,6 +10,11 @@ export type MatchVideo = {
     url: string;
 }
 
+export type PlayerCompare = {
+    id: number;
+    name: string;
+}
+
 export type PlayerResult = {
     tournamentId: number;
     year: number;

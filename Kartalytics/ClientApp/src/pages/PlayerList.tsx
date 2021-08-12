@@ -1,11 +1,18 @@
 import * as React from 'react';
 import AssetLink from '../components/Layout/AssetLink';
+import { Player } from '../constants/types';
 import AppContext from '../context/AppContext';
+import { comparePlayersByName } from '../utils';
 
-const { useContext } = React;
+const { useState, useEffect, useContext } = React;
 
 const PlayerList = () => {
+    const [playerList, setPlayerList] = useState<Player[]>([]);
     const { players } = useContext(AppContext);
+    
+    useEffect(() => {
+        setPlayerList(players.sort(comparePlayersByName));
+    }, [players, setPlayerList]);
 
     return (
         <>
@@ -18,7 +25,7 @@ const PlayerList = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {players.map(p => (
+                    {playerList.map(p => (
                         <tr key={p.id}>
                             <td>
                                 <AssetLink type='player' id={p.id}>

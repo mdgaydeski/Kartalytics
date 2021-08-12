@@ -1,5 +1,5 @@
 ﻿import { format } from 'date-fns';
-import { MatchRaceResult, TrackStatsRowType } from './constants/types';
+import { MatchRaceResult, PlayerCompare, TrackStatsRowType } from './constants/types';
 
 export const compare = (a: TrackStatsRowType, b: TrackStatsRowType, sortAscending: boolean, property: string, index?: number) => {
     if (property === 'assetName') {
@@ -14,11 +14,17 @@ export const compare = (a: TrackStatsRowType, b: TrackStatsRowType, sortAscendin
     return sortAscending ? objA - objB : objB - objA;
 }
 
+export const comparePlayersByName = (a: PlayerCompare, b: PlayerCompare) => {
+    const nameA = a.name.toLowerCase();
+    const nameB = b.name.toLowerCase();
+    return nameA === nameB ? a.id - b.id : nameA > nameB ? 1 : -1;
+}
+
 export const compareTrackRowsByHeader = (a: TrackStatsRowType, b: TrackStatsRowType) => {
     if (a.assetType === 'player' && b.assetType === 'player') {
-        const nameA = a.assetName.toLowerCase();
-        const nameB = b.assetName.toLowerCase();
-        return nameA === nameB ? a.assetId - b.assetId : nameA > nameB ? 1 : -1;
+        const playerA = { id: a.assetId, name: a.assetName };
+        const playerB = { id: b.assetId, name: b.assetName };
+        return comparePlayersByName(playerA, playerB);
     }
     return a.assetId - b.assetId;
 }
