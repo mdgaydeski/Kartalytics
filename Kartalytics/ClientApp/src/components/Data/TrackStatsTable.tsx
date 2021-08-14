@@ -39,12 +39,14 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
         });
         columnList.push({
             label: 'Total',
+            labelAbbr: 'T',
             className: 'w-1/12',
             property: 'totalRaces'
         });
         PLACE_LABELS.forEach((p, i) => {
             columnList.push({
                 label: p,
+                labelAbbr: i + 1,
                 className: 'w-1/12',
                 property: 'placeTotals',
                 index: i
@@ -52,6 +54,7 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
         });
         columnList.push({
             label: `Avg. ${showAverageFinish ? 'Finish' : 'Points'}`,
+            labelAbbr: 'Avg.',
             className: 'w-3/12',
             invertSort: !showAverageFinish,
             property: 'averageFinish'

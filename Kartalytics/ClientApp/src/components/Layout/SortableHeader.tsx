@@ -1,5 +1,5 @@
 ﻿import * as React from 'react';
-import { ChevronUpIcon, ChevronDownIcon, SelectorIcon } from '@heroicons/react/solid';
+import { ChevronUpIcon, ChevronDownIcon } from '@heroicons/react/solid';
 import { TrackStatsColumnType } from '../../constants/types';
 import { xor } from '../../utils';
 
@@ -12,7 +12,7 @@ type Props = {
 }
 
 const SortableHeader: React.FC<Props> = ({ column, colNumber, handleClick, sortAscending, isSorted }) => {
-    const { className, invertSort, label } = column;
+    const { className, invertSort, label, labelAbbr } = column;
 
     return (
         <th
@@ -20,13 +20,13 @@ const SortableHeader: React.FC<Props> = ({ column, colNumber, handleClick, sortA
             className={`cursor-pointer ${className}`}
             onClick={() => handleClick(colNumber)}
         >
-            {label}
-            {isSorted
-                ? xor(sortAscending, !!invertSort)
+            <span className='lg:hidden'>{labelAbbr ? labelAbbr : label}</span>
+            <span className='hidden lg:inline'>{label}</span>
+            {isSorted && (
+                xor(sortAscending, !!invertSort)
                     ? <ChevronUpIcon className='h-5 w-5 inline align-top' />
                     : <ChevronDownIcon className='h-5 w-5 inline align-bottom' />
-                : <SelectorIcon className='h-5 w-5 inline align-text-bottom' />
-            }
+            )}
         </th>
     );
 }

@@ -124,6 +124,7 @@ export type SearchItem = {
 
 export type TrackStatsColumnType = {
     label: string;
+    labelAbbr?: string;
     className: string;
     invertSort?: boolean;
     property: string;
