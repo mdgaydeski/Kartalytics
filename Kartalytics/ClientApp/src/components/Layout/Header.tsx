@@ -1,19 +1,23 @@
 ﻿import * as React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { MenuIcon } from '@heroicons/react/outline';
 import * as ROUTES from '../../constants/routes';
 import SearchBar from './SearchBar';
 
-const { useState } = React;
+const { useState, useEffect } = React;
 
 const Header = () => {
     const linkClasses = 'block text-center py-3 w-full md:inline md:py-0 md:w-1/5';
-
+    const location = useLocation();
     const [navCollapsed, setNavCollapsed] = useState<boolean>(true);
+
+    useEffect(() => {
+        setNavCollapsed(true);
+    }, [location, setNavCollapsed]);
 
     return (
         <header>
-            <nav className={`bg-black bg-opacity-90 border-b border-gray-600 ${navCollapsed ? 'h-auto' : 'absolute h-screen'} inset-0 items-center w-full z-10 md:flex md:h-auto md:static`}>
+            <nav className={`bg-black bg-opacity-95 border-b border-gray-600 ${navCollapsed ? 'h-auto' : 'fixed h-screen'} inset-0 items-center w-full z-10 md:flex md:h-auto md:static`}>
                 <div className='flex md:w-1/4'>
                     <NavLink to={ROUTES.HOME} className='font-display ml-3 my-2 text-2xl tracking-wider'>Kartalytics</NavLink>
                     <MenuIcon
@@ -22,7 +26,7 @@ const Header = () => {
                     />
                 </div>
 
-                <div className={`absolute bg-black bg-opacity-90 ${navCollapsed ? 'invisible opacity-0' : 'visible opacity-100'} items-center mt-9 top-0 transition-all duration-300 w-full z-10 md:flex md:mt-0 md:opacity-100 md:py-1 md:static md:visible md:w-3/4`}>
+                <div className={`fixed ${navCollapsed ? 'invisible opacity-0' : 'visible opacity-100'} items-center mt-12 top-0 transition-all duration-300 w-full z-10 md:flex md:mt-0 md:opacity-100 md:py-1 md:static md:visible md:w-3/4`}>
                     <NavLink to={ROUTES.PLAYER_LIST} className={linkClasses}>Players</NavLink>
                     <NavLink to={ROUTES.TOURNAMENT_LIST} className={linkClasses}>Tournaments</NavLink>
                     <NavLink to={ROUTES.TRACK_LIST} className={linkClasses}>Tracks</NavLink>
