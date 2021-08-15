@@ -13,7 +13,7 @@ const TrackList = () => {
             {cups.map(c => (
                 <section key={c.name}>
                     <h2>{c.name}</h2>
-                    <div className='grid grid-cols-4'>
+                    <div className='grid grid-cols-2 md:grid-cols-4'>
                         {c.tracks.map(trackId => (
                             <TrackImageLink trackId={trackId} key={trackId} />
                         ))}
