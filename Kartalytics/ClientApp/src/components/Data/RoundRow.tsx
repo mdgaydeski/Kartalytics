@@ -9,7 +9,7 @@ const { useContext } = React;
 type Props = {
     playerId: number;
     points: number[];
-    advance: boolean;
+    advance: boolean | null;
 }
 
 const RoundRow: React.FC<Props> = ({ playerId, points, advance }) => {
@@ -17,7 +17,7 @@ const RoundRow: React.FC<Props> = ({ playerId, points, advance }) => {
     const player = useContext(AppContext).players.filter(p => p.id === playerId)[0];
 
     return (
-        <tr key={player.id}>
+        <tr className='hover:bg-indigo-900' key={player.id}>
             <td className=''>
                 <AssetLink type='player' id={player.id}>
                     {player.name}
@@ -31,9 +31,11 @@ const RoundRow: React.FC<Props> = ({ playerId, points, advance }) => {
                         &nbsp;({points.map((p, i) => i === 0 ? p : `, ${p}`)})
                     </>
                 }
-                {advance
-                    ? <CheckIcon className={`${baseClasses} text-green-500`} />
-                    : <XIcon className={`${baseClasses} text-red-500`} />
+                {advance !== null ?
+                    advance
+                        ? <CheckIcon className={`${baseClasses} text-green-500`} />
+                        : <XIcon className={`${baseClasses} text-red-500`} />
+                    : undefined
                 }
             </td>
         </tr>

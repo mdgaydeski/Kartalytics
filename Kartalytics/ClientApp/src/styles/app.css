@@ -570,7 +570,7 @@ body {
 
 a {
   --tw-text-opacity: 1;
-  color: rgba(254, 243, 199, var(--tw-text-opacity));
+  color: rgba(251, 191, 36, var(--tw-text-opacity));
   transition-property: background-color, border-color, color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
@@ -579,17 +579,17 @@ a {
 
 a:hover, a:focus, a:active {
   --tw-text-opacity: 1;
-  color: rgba(167, 243, 208, var(--tw-text-opacity));
+  color: rgba(96, 165, 250, var(--tw-text-opacity));
 }
 
 h1, h2, h3, h4, h5, h6 {
-  --tw-text-opacity: 1;
-  color: rgba(253, 230, 138, var(--tw-text-opacity));
-  font-family: SnyderSpeedbrush, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   margin-top: 1rem;
   margin-bottom: 0.5rem;
   text-align: center;
+  font-family: SnyderSpeedbrush, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   letter-spacing: 0.05em;
+  --tw-text-opacity: 1;
+  color: rgba(252, 211, 77, var(--tw-text-opacity));
 }
 
 h1 {
@@ -605,6 +605,11 @@ h2 {
 h3 {
   font-size: 1.5rem;
   line-height: 2rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
 
 .container {
@@ -6689,12 +6694,12 @@ h3 {
   height: 100vh;
 }
 
-.h-9\.1vw {
-  height: 9.1vw;
+.h-12\.6vw {
+  height: 12.6vw;
 }
 
-.h-18\.2vw {
-  height: 18.2vw;
+.h-25\.2vw {
+  height: 25.2vw;
 }
 
 .max-h-0 {
@@ -27598,27 +27603,27 @@ h3 {
 }
 
 .shadow-rainbow {
-  --tw-shadow: -50px -50px 15px -45px rgba(255, 0, 0, 0.3), -50px 50px 15px -45px rgba(255, 255, 0, 0.3), 50px 50px 15px -45px rgba(0, 255, 255, 0.3), 50px -50px 15px -45px rgba(0, 0, 255, 0.3);
+  --tw-shadow: -30px -30px 10px -25px rgba(255, 0, 0, 0.3), -30px 30px 10px -25px rgba(255, 255, 0, 0.3), 30px 30px 10px -25px rgba(0, 255, 255, 0.3), 30px -30px 10px -25px rgba(0, 0, 255, 0.3);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .group:hover .group-hover\:shadow-rainbow {
-  --tw-shadow: -50px -50px 15px -45px rgba(255, 0, 0, 0.3), -50px 50px 15px -45px rgba(255, 255, 0, 0.3), 50px 50px 15px -45px rgba(0, 255, 255, 0.3), 50px -50px 15px -45px rgba(0, 0, 255, 0.3);
+  --tw-shadow: -30px -30px 10px -25px rgba(255, 0, 0, 0.3), -30px 30px 10px -25px rgba(255, 255, 0, 0.3), 30px 30px 10px -25px rgba(0, 255, 255, 0.3), 30px -30px 10px -25px rgba(0, 0, 255, 0.3);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .focus-within\:shadow-rainbow:focus-within {
-  --tw-shadow: -50px -50px 15px -45px rgba(255, 0, 0, 0.3), -50px 50px 15px -45px rgba(255, 255, 0, 0.3), 50px 50px 15px -45px rgba(0, 255, 255, 0.3), 50px -50px 15px -45px rgba(0, 0, 255, 0.3);
+  --tw-shadow: -30px -30px 10px -25px rgba(255, 0, 0, 0.3), -30px 30px 10px -25px rgba(255, 255, 0, 0.3), 30px 30px 10px -25px rgba(0, 255, 255, 0.3), 30px -30px 10px -25px rgba(0, 0, 255, 0.3);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .hover\:shadow-rainbow:hover {
-  --tw-shadow: -50px -50px 15px -45px rgba(255, 0, 0, 0.3), -50px 50px 15px -45px rgba(255, 255, 0, 0.3), 50px 50px 15px -45px rgba(0, 255, 255, 0.3), 50px -50px 15px -45px rgba(0, 0, 255, 0.3);
+  --tw-shadow: -30px -30px 10px -25px rgba(255, 0, 0, 0.3), -30px 30px 10px -25px rgba(255, 255, 0, 0.3), 30px 30px 10px -25px rgba(0, 255, 255, 0.3), 30px -30px 10px -25px rgba(0, 0, 255, 0.3);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .focus\:shadow-rainbow:focus {
-  --tw-shadow: -50px -50px 15px -45px rgba(255, 0, 0, 0.3), -50px 50px 15px -45px rgba(255, 255, 0, 0.3), 50px 50px 15px -45px rgba(0, 255, 255, 0.3), 50px -50px 15px -45px rgba(0, 0, 255, 0.3);
+  --tw-shadow: -30px -30px 10px -25px rgba(255, 0, 0, 0.3), -30px 30px 10px -25px rgba(255, 255, 0, 0.3), 30px 30px 10px -25px rgba(0, 255, 255, 0.3), 30px -30px 10px -25px rgba(0, 0, 255, 0.3);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
@@ -37019,12 +37024,12 @@ h3 {
     height: 100vh;
   }
 
-  .sm\:h-9\.1vw {
-    height: 9.1vw;
+  .sm\:h-12\.6vw {
+    height: 12.6vw;
   }
 
-  .sm\:h-18\.2vw {
-    height: 18.2vw;
+  .sm\:h-25\.2vw {
+    height: 25.2vw;
   }
 
   .sm\:max-h-0 {
@@ -57893,27 +57898,27 @@ h3 {
   }
 
   .sm\:shadow-rainbow {
-    --tw-shadow: -50px -50px 15px -45px rgba(255, 0, 0, 0.3), -50px 50px 15px -45px rgba(255, 255, 0, 0.3), 50px 50px 15px -45px rgba(0, 255, 255, 0.3), 50px -50px 15px -45px rgba(0, 0, 255, 0.3);
+    --tw-shadow: -30px -30px 10px -25px rgba(255, 0, 0, 0.3), -30px 30px 10px -25px rgba(255, 255, 0, 0.3), 30px 30px 10px -25px rgba(0, 255, 255, 0.3), 30px -30px 10px -25px rgba(0, 0, 255, 0.3);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
   .group:hover .sm\:group-hover\:shadow-rainbow {
-    --tw-shadow: -50px -50px 15px -45px rgba(255, 0, 0, 0.3), -50px 50px 15px -45px rgba(255, 255, 0, 0.3), 50px 50px 15px -45px rgba(0, 255, 255, 0.3), 50px -50px 15px -45px rgba(0, 0, 255, 0.3);
+    --tw-shadow: -30px -30px 10px -25px rgba(255, 0, 0, 0.3), -30px 30px 10px -25px rgba(255, 255, 0, 0.3), 30px 30px 10px -25px rgba(0, 255, 255, 0.3), 30px -30px 10px -25px rgba(0, 0, 255, 0.3);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
   .sm\:focus-within\:shadow-rainbow:focus-within {
-    --tw-shadow: -50px -50px 15px -45px rgba(255, 0, 0, 0.3), -50px 50px 15px -45px rgba(255, 255, 0, 0.3), 50px 50px 15px -45px rgba(0, 255, 255, 0.3), 50px -50px 15px -45px rgba(0, 0, 255, 0.3);
+    --tw-shadow: -30px -30px 10px -25px rgba(255, 0, 0, 0.3), -30px 30px 10px -25px rgba(255, 255, 0, 0.3), 30px 30px 10px -25px rgba(0, 255, 255, 0.3), 30px -30px 10px -25px rgba(0, 0, 255, 0.3);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
   .sm\:hover\:shadow-rainbow:hover {
-    --tw-shadow: -50px -50px 15px -45px rgba(255, 0, 0, 0.3), -50px 50px 15px -45px rgba(255, 255, 0, 0.3), 50px 50px 15px -45px rgba(0, 255, 255, 0.3), 50px -50px 15px -45px rgba(0, 0, 255, 0.3);
+    --tw-shadow: -30px -30px 10px -25px rgba(255, 0, 0, 0.3), -30px 30px 10px -25px rgba(255, 255, 0, 0.3), 30px 30px 10px -25px rgba(0, 255, 255, 0.3), 30px -30px 10px -25px rgba(0, 0, 255, 0.3);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
   .sm\:focus\:shadow-rainbow:focus {
-    --tw-shadow: -50px -50px 15px -45px rgba(255, 0, 0, 0.3), -50px 50px 15px -45px rgba(255, 255, 0, 0.3), 50px 50px 15px -45px rgba(0, 255, 255, 0.3), 50px -50px 15px -45px rgba(0, 0, 255, 0.3);
+    --tw-shadow: -30px -30px 10px -25px rgba(255, 0, 0, 0.3), -30px 30px 10px -25px rgba(255, 255, 0, 0.3), 30px 30px 10px -25px rgba(0, 255, 255, 0.3), 30px -30px 10px -25px rgba(0, 0, 255, 0.3);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
@@ -67246,12 +67251,12 @@ h3 {
     height: 100vh;
   }
 
-  .md\:h-9\.1vw {
-    height: 9.1vw;
+  .md\:h-12\.6vw {
+    height: 12.6vw;
   }
 
-  .md\:h-18\.2vw {
-    height: 18.2vw;
+  .md\:h-25\.2vw {
+    height: 25.2vw;
   }
 
   .md\:max-h-0 {
@@ -88120,27 +88125,27 @@ h3 {
   }
 
   .md\:shadow-rainbow {
-    --tw-shadow: -50px -50px 15px -45px rgba(255, 0, 0, 0.3), -50px 50px 15px -45px rgba(255, 255, 0, 0.3), 50px 50px 15px -45px rgba(0, 255, 255, 0.3), 50px -50px 15px -45px rgba(0, 0, 255, 0.3);
+    --tw-shadow: -30px -30px 10px -25px rgba(255, 0, 0, 0.3), -30px 30px 10px -25px rgba(255, 255, 0, 0.3), 30px 30px 10px -25px rgba(0, 255, 255, 0.3), 30px -30px 10px -25px rgba(0, 0, 255, 0.3);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
   .group:hover .md\:group-hover\:shadow-rainbow {
-    --tw-shadow: -50px -50px 15px -45px rgba(255, 0, 0, 0.3), -50px 50px 15px -45px rgba(255, 255, 0, 0.3), 50px 50px 15px -45px rgba(0, 255, 255, 0.3), 50px -50px 15px -45px rgba(0, 0, 255, 0.3);
+    --tw-shadow: -30px -30px 10px -25px rgba(255, 0, 0, 0.3), -30px 30px 10px -25px rgba(255, 255, 0, 0.3), 30px 30px 10px -25px rgba(0, 255, 255, 0.3), 30px -30px 10px -25px rgba(0, 0, 255, 0.3);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
   .md\:focus-within\:shadow-rainbow:focus-within {
-    --tw-shadow: -50px -50px 15px -45px rgba(255, 0, 0, 0.3), -50px 50px 15px -45px rgba(255, 255, 0, 0.3), 50px 50px 15px -45px rgba(0, 255, 255, 0.3), 50px -50px 15px -45px rgba(0, 0, 255, 0.3);
+    --tw-shadow: -30px -30px 10px -25px rgba(255, 0, 0, 0.3), -30px 30px 10px -25px rgba(255, 255, 0, 0.3), 30px 30px 10px -25px rgba(0, 255, 255, 0.3), 30px -30px 10px -25px rgba(0, 0, 255, 0.3);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
   .md\:hover\:shadow-rainbow:hover {
-    --tw-shadow: -50px -50px 15px -45px rgba(255, 0, 0, 0.3), -50px 50px 15px -45px rgba(255, 255, 0, 0.3), 50px 50px 15px -45px rgba(0, 255, 255, 0.3), 50px -50px 15px -45px rgba(0, 0, 255, 0.3);
+    --tw-shadow: -30px -30px 10px -25px rgba(255, 0, 0, 0.3), -30px 30px 10px -25px rgba(255, 255, 0, 0.3), 30px 30px 10px -25px rgba(0, 255, 255, 0.3), 30px -30px 10px -25px rgba(0, 0, 255, 0.3);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
   .md\:focus\:shadow-rainbow:focus {
-    --tw-shadow: -50px -50px 15px -45px rgba(255, 0, 0, 0.3), -50px 50px 15px -45px rgba(255, 255, 0, 0.3), 50px 50px 15px -45px rgba(0, 255, 255, 0.3), 50px -50px 15px -45px rgba(0, 0, 255, 0.3);
+    --tw-shadow: -30px -30px 10px -25px rgba(255, 0, 0, 0.3), -30px 30px 10px -25px rgba(255, 255, 0, 0.3), 30px 30px 10px -25px rgba(0, 255, 255, 0.3), 30px -30px 10px -25px rgba(0, 0, 255, 0.3);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
@@ -97473,12 +97478,12 @@ h3 {
     height: 100vh;
   }
 
-  .lg\:h-9\.1vw {
-    height: 9.1vw;
+  .lg\:h-12\.6vw {
+    height: 12.6vw;
   }
 
-  .lg\:h-18\.2vw {
-    height: 18.2vw;
+  .lg\:h-25\.2vw {
+    height: 25.2vw;
   }
 
   .lg\:max-h-0 {
@@ -118347,27 +118352,27 @@ h3 {
   }
 
   .lg\:shadow-rainbow {
-    --tw-shadow: -50px -50px 15px -45px rgba(255, 0, 0, 0.3), -50px 50px 15px -45px rgba(255, 255, 0, 0.3), 50px 50px 15px -45px rgba(0, 255, 255, 0.3), 50px -50px 15px -45px rgba(0, 0, 255, 0.3);
+    --tw-shadow: -30px -30px 10px -25px rgba(255, 0, 0, 0.3), -30px 30px 10px -25px rgba(255, 255, 0, 0.3), 30px 30px 10px -25px rgba(0, 255, 255, 0.3), 30px -30px 10px -25px rgba(0, 0, 255, 0.3);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
   .group:hover .lg\:group-hover\:shadow-rainbow {
-    --tw-shadow: -50px -50px 15px -45px rgba(255, 0, 0, 0.3), -50px 50px 15px -45px rgba(255, 255, 0, 0.3), 50px 50px 15px -45px rgba(0, 255, 255, 0.3), 50px -50px 15px -45px rgba(0, 0, 255, 0.3);
+    --tw-shadow: -30px -30px 10px -25px rgba(255, 0, 0, 0.3), -30px 30px 10px -25px rgba(255, 255, 0, 0.3), 30px 30px 10px -25px rgba(0, 255, 255, 0.3), 30px -30px 10px -25px rgba(0, 0, 255, 0.3);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
   .lg\:focus-within\:shadow-rainbow:focus-within {
-    --tw-shadow: -50px -50px 15px -45px rgba(255, 0, 0, 0.3), -50px 50px 15px -45px rgba(255, 255, 0, 0.3), 50px 50px 15px -45px rgba(0, 255, 255, 0.3), 50px -50px 15px -45px rgba(0, 0, 255, 0.3);
+    --tw-shadow: -30px -30px 10px -25px rgba(255, 0, 0, 0.3), -30px 30px 10px -25px rgba(255, 255, 0, 0.3), 30px 30px 10px -25px rgba(0, 255, 255, 0.3), 30px -30px 10px -25px rgba(0, 0, 255, 0.3);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
   .lg\:hover\:shadow-rainbow:hover {
-    --tw-shadow: -50px -50px 15px -45px rgba(255, 0, 0, 0.3), -50px 50px 15px -45px rgba(255, 255, 0, 0.3), 50px 50px 15px -45px rgba(0, 255, 255, 0.3), 50px -50px 15px -45px rgba(0, 0, 255, 0.3);
+    --tw-shadow: -30px -30px 10px -25px rgba(255, 0, 0, 0.3), -30px 30px 10px -25px rgba(255, 255, 0, 0.3), 30px 30px 10px -25px rgba(0, 255, 255, 0.3), 30px -30px 10px -25px rgba(0, 0, 255, 0.3);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
   .lg\:focus\:shadow-rainbow:focus {
-    --tw-shadow: -50px -50px 15px -45px rgba(255, 0, 0, 0.3), -50px 50px 15px -45px rgba(255, 255, 0, 0.3), 50px 50px 15px -45px rgba(0, 255, 255, 0.3), 50px -50px 15px -45px rgba(0, 0, 255, 0.3);
+    --tw-shadow: -30px -30px 10px -25px rgba(255, 0, 0, 0.3), -30px 30px 10px -25px rgba(255, 255, 0, 0.3), 30px 30px 10px -25px rgba(0, 255, 255, 0.3), 30px -30px 10px -25px rgba(0, 0, 255, 0.3);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
@@ -127700,12 +127705,12 @@ h3 {
     height: 100vh;
   }
 
-  .xl\:h-9\.1vw {
-    height: 9.1vw;
+  .xl\:h-12\.6vw {
+    height: 12.6vw;
   }
 
-  .xl\:h-18\.2vw {
-    height: 18.2vw;
+  .xl\:h-25\.2vw {
+    height: 25.2vw;
   }
 
   .xl\:max-h-0 {
@@ -148574,27 +148579,27 @@ h3 {
   }
 
   .xl\:shadow-rainbow {
-    --tw-shadow: -50px -50px 15px -45px rgba(255, 0, 0, 0.3), -50px 50px 15px -45px rgba(255, 255, 0, 0.3), 50px 50px 15px -45px rgba(0, 255, 255, 0.3), 50px -50px 15px -45px rgba(0, 0, 255, 0.3);
+    --tw-shadow: -30px -30px 10px -25px rgba(255, 0, 0, 0.3), -30px 30px 10px -25px rgba(255, 255, 0, 0.3), 30px 30px 10px -25px rgba(0, 255, 255, 0.3), 30px -30px 10px -25px rgba(0, 0, 255, 0.3);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
   .group:hover .xl\:group-hover\:shadow-rainbow {
-    --tw-shadow: -50px -50px 15px -45px rgba(255, 0, 0, 0.3), -50px 50px 15px -45px rgba(255, 255, 0, 0.3), 50px 50px 15px -45px rgba(0, 255, 255, 0.3), 50px -50px 15px -45px rgba(0, 0, 255, 0.3);
+    --tw-shadow: -30px -30px 10px -25px rgba(255, 0, 0, 0.3), -30px 30px 10px -25px rgba(255, 255, 0, 0.3), 30px 30px 10px -25px rgba(0, 255, 255, 0.3), 30px -30px 10px -25px rgba(0, 0, 255, 0.3);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
   .xl\:focus-within\:shadow-rainbow:focus-within {
-    --tw-shadow: -50px -50px 15px -45px rgba(255, 0, 0, 0.3), -50px 50px 15px -45px rgba(255, 255, 0, 0.3), 50px 50px 15px -45px rgba(0, 255, 255, 0.3), 50px -50px 15px -45px rgba(0, 0, 255, 0.3);
+    --tw-shadow: -30px -30px 10px -25px rgba(255, 0, 0, 0.3), -30px 30px 10px -25px rgba(255, 255, 0, 0.3), 30px 30px 10px -25px rgba(0, 255, 255, 0.3), 30px -30px 10px -25px rgba(0, 0, 255, 0.3);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
   .xl\:hover\:shadow-rainbow:hover {
-    --tw-shadow: -50px -50px 15px -45px rgba(255, 0, 0, 0.3), -50px 50px 15px -45px rgba(255, 255, 0, 0.3), 50px 50px 15px -45px rgba(0, 255, 255, 0.3), 50px -50px 15px -45px rgba(0, 0, 255, 0.3);
+    --tw-shadow: -30px -30px 10px -25px rgba(255, 0, 0, 0.3), -30px 30px 10px -25px rgba(255, 255, 0, 0.3), 30px 30px 10px -25px rgba(0, 255, 255, 0.3), 30px -30px 10px -25px rgba(0, 0, 255, 0.3);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
   .xl\:focus\:shadow-rainbow:focus {
-    --tw-shadow: -50px -50px 15px -45px rgba(255, 0, 0, 0.3), -50px 50px 15px -45px rgba(255, 255, 0, 0.3), 50px 50px 15px -45px rgba(0, 255, 255, 0.3), 50px -50px 15px -45px rgba(0, 0, 255, 0.3);
+    --tw-shadow: -30px -30px 10px -25px rgba(255, 0, 0, 0.3), -30px 30px 10px -25px rgba(255, 255, 0, 0.3), 30px 30px 10px -25px rgba(0, 255, 255, 0.3), 30px -30px 10px -25px rgba(0, 0, 255, 0.3);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
@@ -157927,12 +157932,12 @@ h3 {
     height: 100vh;
   }
 
-  .\32xl\:h-9\.1vw {
-    height: 9.1vw;
+  .\32xl\:h-12\.6vw {
+    height: 12.6vw;
   }
 
-  .\32xl\:h-18\.2vw {
-    height: 18.2vw;
+  .\32xl\:h-25\.2vw {
+    height: 25.2vw;
   }
 
   .\32xl\:max-h-0 {
@@ -178801,27 +178806,27 @@ h3 {
   }
 
   .\32xl\:shadow-rainbow {
-    --tw-shadow: -50px -50px 15px -45px rgba(255, 0, 0, 0.3), -50px 50px 15px -45px rgba(255, 255, 0, 0.3), 50px 50px 15px -45px rgba(0, 255, 255, 0.3), 50px -50px 15px -45px rgba(0, 0, 255, 0.3);
+    --tw-shadow: -30px -30px 10px -25px rgba(255, 0, 0, 0.3), -30px 30px 10px -25px rgba(255, 255, 0, 0.3), 30px 30px 10px -25px rgba(0, 255, 255, 0.3), 30px -30px 10px -25px rgba(0, 0, 255, 0.3);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
   .group:hover .\32xl\:group-hover\:shadow-rainbow {
-    --tw-shadow: -50px -50px 15px -45px rgba(255, 0, 0, 0.3), -50px 50px 15px -45px rgba(255, 255, 0, 0.3), 50px 50px 15px -45px rgba(0, 255, 255, 0.3), 50px -50px 15px -45px rgba(0, 0, 255, 0.3);
+    --tw-shadow: -30px -30px 10px -25px rgba(255, 0, 0, 0.3), -30px 30px 10px -25px rgba(255, 255, 0, 0.3), 30px 30px 10px -25px rgba(0, 255, 255, 0.3), 30px -30px 10px -25px rgba(0, 0, 255, 0.3);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
   .\32xl\:focus-within\:shadow-rainbow:focus-within {
-    --tw-shadow: -50px -50px 15px -45px rgba(255, 0, 0, 0.3), -50px 50px 15px -45px rgba(255, 255, 0, 0.3), 50px 50px 15px -45px rgba(0, 255, 255, 0.3), 50px -50px 15px -45px rgba(0, 0, 255, 0.3);
+    --tw-shadow: -30px -30px 10px -25px rgba(255, 0, 0, 0.3), -30px 30px 10px -25px rgba(255, 255, 0, 0.3), 30px 30px 10px -25px rgba(0, 255, 255, 0.3), 30px -30px 10px -25px rgba(0, 0, 255, 0.3);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
   .\32xl\:hover\:shadow-rainbow:hover {
-    --tw-shadow: -50px -50px 15px -45px rgba(255, 0, 0, 0.3), -50px 50px 15px -45px rgba(255, 255, 0, 0.3), 50px 50px 15px -45px rgba(0, 255, 255, 0.3), 50px -50px 15px -45px rgba(0, 0, 255, 0.3);
+    --tw-shadow: -30px -30px 10px -25px rgba(255, 0, 0, 0.3), -30px 30px 10px -25px rgba(255, 255, 0, 0.3), 30px 30px 10px -25px rgba(0, 255, 255, 0.3), 30px -30px 10px -25px rgba(0, 0, 255, 0.3);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
   .\32xl\:focus\:shadow-rainbow:focus {
-    --tw-shadow: -50px -50px 15px -45px rgba(255, 0, 0, 0.3), -50px 50px 15px -45px rgba(255, 255, 0, 0.3), 50px 50px 15px -45px rgba(0, 255, 255, 0.3), 50px -50px 15px -45px rgba(0, 0, 255, 0.3);
+    --tw-shadow: -30px -30px 10px -25px rgba(255, 0, 0, 0.3), -30px 30px 10px -25px rgba(255, 255, 0, 0.3), 30px 30px 10px -25px rgba(0, 255, 255, 0.3), 30px -30px 10px -25px rgba(0, 0, 255, 0.3);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 

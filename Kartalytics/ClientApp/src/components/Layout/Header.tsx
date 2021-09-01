@@ -17,7 +17,7 @@ const Header = () => {
 
     return (
         <header>
-            <nav className={`bg-black bg-opacity-95 border-b border-gray-600 ${navCollapsed ? 'h-auto' : 'fixed h-screen'} inset-0 items-center w-full z-10 md:flex md:h-auto md:static`}>
+            <nav className={`bg-black border-b border-gray-600 fixed h-12 ${navCollapsed ? '' : 'h-screen'} inset-0 items-center w-full z-10 md:flex md:h-12`}>
                 <div className='flex md:w-1/4'>
                     <NavLink to={ROUTES.HOME} className='font-display ml-3 my-2 text-2xl tracking-wider'>Kartalytics</NavLink>
                     <MenuIcon

@@ -12,9 +12,11 @@ const Overview: React.FC<Props> = ({ player }) => {
     return (
         <>
             <h2>Overview</h2>
-            <TournamentOverview results={player.tournamentResults} />
-            <MatchOverview playerId={player.id} />
-            <RaceOverview playerId={player.id} />
+            <div className='flex flex-wrap justify-around'>
+                <TournamentOverview results={player.tournamentResults} />
+                <MatchOverview playerId={player.id} />
+                <RaceOverview playerId={player.id} />
+            </div>
         </>
     );
 };

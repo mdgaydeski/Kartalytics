@@ -3,7 +3,7 @@ import { HashLink } from 'react-router-hash-link';
 
 const BackToTopLink = () => {
     return (
-        <div className='p-2 text-right w-full'>
+        <div className='mx-auto p-2 text-right'>
             <HashLink to='#'>Back to top</HashLink>
         </div>
     );

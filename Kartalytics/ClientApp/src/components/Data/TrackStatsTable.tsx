@@ -3,8 +3,8 @@ import TrackStatsSegment from './TrackStatsSegment';
 import AverageDisplay from '../Filters/AverageDisplay';
 import MinimumResults from '../Filters/MinimumResults';
 import YearRange from '../Filters/YearRange';
+import Container from '../Layout/Container';
 import SortableHeader from '../Layout/SortableHeader';
-import TableBorder from '../Layout/TableBorder';
 import TableOptions from '../Layout/TableOptions';
 import { FilterSet, TrackStatsColumnType } from '../../constants/types';
 import AppContext from '../../context/AppContext';
@@ -82,7 +82,7 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
         .filter(r => r.year >= startYear && r.year <= endYear);
 
     return (
-        <TableBorder>
+        <Container>
             <TableOptions>
                 <YearRange
                     startYear={startYear}
@@ -134,7 +134,7 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
                     />
                 </>}
             </table>
-        </TableBorder>
+        </Container>
     );
 }
 

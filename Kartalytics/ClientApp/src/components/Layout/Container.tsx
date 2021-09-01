@@ -1,15 +1,16 @@
-import * as React from 'react';
+﻿import * as React from 'react';
 
 type Props = {
     children: any;
+    className?: string;
 }
 
-const Container: React.FC<Props> = ({ children }) => {
+const Container: React.FC<Props> = ({ children, className }) => {
     return (
-        <div className='bg-black bg-opacity-90 border border-gray-600 my-8 mx-auto px-4 pb-4 rounded-xl shadow-rainbow w-11/12 md:w-3/4'>
+        <div className={`bg-black border border-indigo-900 mx-auto mt-2 mb-12 rounded-lg shadow-rainbow${className ? ` ${className}` : ''}`}>
             {children}
         </div>
-    ); 
+    );
 }
 
 export default Container;

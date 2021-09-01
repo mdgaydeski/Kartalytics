@@ -1,4 +1,5 @@
 ﻿import * as React from 'react';
+import Container from '../Layout/Container';
 import { PLACE_LABELS } from '../../constants/constants';
 import AppContext from '../../context/AppContext';
 
@@ -18,7 +19,7 @@ const RaceOverview: React.FC<Props> = ({ playerId }) => {
     }, [0, 0, 0, 0, 0]);
 
     return (
-        <>
+        <section className='px-4 w-80'>
             <h3>Race Stats</h3>
             <ul className='list-none pl-10'>
                 <li>Total races: {results.length}</li>
@@ -34,7 +35,7 @@ const RaceOverview: React.FC<Props> = ({ playerId }) => {
                     </ul>
                 </li>
             </ul>
-        </>
+        </section>
     );
 }
 

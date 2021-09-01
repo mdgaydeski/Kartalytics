@@ -1,6 +1,5 @@
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Container from './components/Layout/Container';
 import Header from './components/Layout/Header';
 import LoadingPlaceHolder from './components/Layout/LoadingPlaceholder';
 import * as ROUTES from './constants/routes';
@@ -38,9 +37,9 @@ const App = () => {
         <Router>
             <AppContext.Provider value={data}>
                 <Header />
-                <main>
-                    <Suspense fallback={<LoadingPlaceHolder />}>
-                        <Container>
+                <main className='bg-black bg-opacity-90 p-4 pt-12 w-full min-h-screen md:px-8'>
+                    <div className='max-w-5xl mx-auto'>
+                        <Suspense fallback={<LoadingPlaceHolder />}>
                             <Switch>
                                 <Route path={ROUTES.HOME} exact component={Home} />
                                 <Route path={ROUTES.MATCH_ID} component={Match} />
@@ -51,8 +50,8 @@ const App = () => {
                                 <Route path={ROUTES.TRACK_ID} component={Track} />
                                 <Route path={ROUTES.TRACK_LIST} component={TrackList} />
                             </Switch>
-                        </Container>
-                    </Suspense>
+                        </Suspense>
+                    </div>
                 </main>
             </AppContext.Provider>
         </Router>

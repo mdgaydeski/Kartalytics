@@ -16,7 +16,7 @@ const TrackImageLink: React.FC<Props> = ({ trackId }) => {
 
     return (
         <AssetLink type='track' id={trackId}>
-            <div className='h-18.2vw md:h-9.1vw transform transition-transform duration-300 hover:scale-105'
+            <div className='h-25.2vw md:h-12.6vw md:max-h-36 transform transition-transform duration-300 hover:scale-105'
                 style={{
                     backgroundImage: `url(${trackSelectImage})`,
                     backgroundPosition: `${col * 33.3}% ${row * 23.17}%`,

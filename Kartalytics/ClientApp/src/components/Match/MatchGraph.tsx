@@ -56,7 +56,7 @@ const MatchGraph: React.FC<Props> = ({ matchId }) => {
     }, [cups, matchId, matches, matchResults, players, setPlayerList, setResults, tracks]);
 
     return (
-        <ResponsiveContainer width='100%' height={250} className='mt-4'>
+        <ResponsiveContainer width='95%' height={250} className='mt-4 mx-auto'>
             <LineChart data={results}>
                 <CartesianGrid style={{ stroke: '#666' }} />
                 <XAxis dataKey='track' style={{ fill: 'white' }} />

@@ -7,7 +7,7 @@ module.exports = {
     ],
     theme: {
         boxShadow: {
-            rainbow: '-50px -50px 15px -45px rgba(255, 0, 0, 0.3), -50px 50px 15px -45px rgba(255, 255, 0, 0.3), 50px 50px 15px -45px rgba(0, 255, 255, 0.3), 50px -50px 15px -45px rgba(0, 0, 255, 0.3)'
+            rainbow: '-30px -30px 10px -25px rgba(255, 0, 0, 0.3), -30px 30px 10px -25px rgba(255, 255, 0, 0.3), 30px 30px 10px -25px rgba(0, 255, 255, 0.3), 30px -30px 10px -25px rgba(0, 0, 255, 0.3)'
         },
         fontFamily: {
             display: ['SnyderSpeedbrush', ...defaultTheme.fontFamily.sans],
@@ -19,8 +19,8 @@ module.exports = {
                 '1.25pct': '1.25%'
             },
             height: {
-                '9.1vw': '9.1vw',
-                '18.2vw': '18.2vw'
+                '12.6vw': '12.6vw',
+                '25.2vw': '25.2vw'
             },
             width: {
                 '27.5pct': '27.5%'

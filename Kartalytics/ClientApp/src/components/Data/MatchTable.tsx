@@ -3,8 +3,9 @@ import MatchRow from './MatchRow';
 import MatchTableHeader from './MatchTableHeader';
 import HighlightPlace from '../Filters/HighlightPlace';
 import AssetLink from '../Layout/AssetLink';
-import TableBorder from '../Layout/TableBorder';
+import Container from '../Layout/Container';
 import TableOptions from '../Layout/TableOptions';
+import MatchGraph from '../Match/MatchGraph';
 import VideoList from '../Match/VideoList';
 import AppContext from '../../context/AppContext';
 
@@ -29,11 +30,11 @@ const MatchTable: React.FC<Props> = ({ matchId, playerId, fromDetailsPage }) => 
     return (
         <>
             {!fromDetailsPage && <h4>{match.name}</h4>}
-            <div className='flex px-1'>
+            <div className='flex mx-auto px-1'>
                 {!fromDetailsPage && <AssetLink type='match' id={matchId}>View Detailed Breakdown</AssetLink>}
                 {match.videos.length > 0 && <VideoList videoList={match.videos} />}
             </div>
-            <TableBorder>
+            <Container>
                 <TableOptions>
                     <HighlightPlace
                         highlightedPlace={highlightedPlace}
@@ -42,7 +43,7 @@ const MatchTable: React.FC<Props> = ({ matchId, playerId, fromDetailsPage }) => 
                         handleChange={setHighlightedPlace}
                     />
                 </TableOptions>
-                <table className='my-1 table-fixed text-center w-full'>
+                <table className='my-2 rounded-b-lg table-fixed text-center w-full'>
                     <colgroup>
                         <col className='w-4/5' />
                         <col span={numberOfTracks + match.results.length + 1} className='w-1/5' />
@@ -59,7 +60,8 @@ const MatchTable: React.FC<Props> = ({ matchId, playerId, fromDetailsPage }) => 
                         ))}
                     </tbody>
                 </table>
-            </TableBorder>
+                {fromDetailsPage && <MatchGraph matchId={match.id} />}
+            </Container>
         </>
     );
 }

@@ -11,25 +11,19 @@
 @layer base {
     body {
         background: black url('../assets/background.png') no-repeat fixed;
-        @apply bg-cover;
-        @apply text-gray-50;
+        @apply bg-cover text-gray-50;
     }
 
     a {
-        @apply text-yellow-100;
-        @apply transition-colors duration-300;
+        @apply text-yellow-400 transition-colors duration-300;
     }
 
     a:hover, a:focus, a:active {
-        @apply text-green-200;
+        @apply text-blue-400;
     }
 
     h1, h2, h3, h4, h5, h6 {
-        @apply text-yellow-200;
-        @apply font-display;
-        @apply mt-4 mb-2;
-        @apply text-center;
-        @apply tracking-wider;
+        @apply font-display mt-4 mb-2 text-yellow-300 text-center tracking-wider;
     }
 
     h1 {
@@ -42,5 +36,9 @@
 
     h3 {
         @apply text-2xl;
+    }
+
+    h4 {
+        @apply text-xl;
     }
 }
