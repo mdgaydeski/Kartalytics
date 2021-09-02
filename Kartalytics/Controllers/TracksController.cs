@@ -6,9 +6,9 @@ namespace Kartalytics.Controllers {
     [Route("api/[controller]")]
     [ApiController]
     public class TracksController : ControllerBase {
-        private readonly IRepository<Track> _repository;
+        private readonly IContextRepository<Track, Track, Track> _repository;
 
-        public TracksController(IRepository<Track> repository) {
+        public TracksController(IContextRepository<Track, Track, Track> repository) {
             _repository = repository;
         }
 
@@ -24,6 +24,13 @@ namespace Kartalytics.Controllers {
         [ResponseCache(Duration = 86400)]
         public IActionResult Get(int id) {
             return new ObjectResult(_repository.Find(id));
+        }
+
+        // GET /api/tracks/context
+        [HttpGet("context")]
+        [ResponseCache(Duration = 86400)]
+        public IActionResult GetContext() {
+            return new ObjectResult(_repository.ContextCollection());
         }
     }
 }

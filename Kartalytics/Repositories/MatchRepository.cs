@@ -17,9 +17,5 @@ namespace Kartalytics.Repositories {
         public Match Find(int id) {
             return _matches.Find(m => m.Id == id).FirstOrDefault();
         }
-
-        public IEnumerable<Match> Collection() {
-            return _matches.Find(_ => true).ToList();
-        }
     }
 }

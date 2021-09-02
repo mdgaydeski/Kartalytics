@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace Kartalytics.Repositories {
-    public class TournamentRepository : IRepository<Tournament> {
+    public class TournamentRepository : IContextRepository<Tournament, TournamentCollectionModel, TournamentContextModel> {
         private readonly IMongoCollection<Tournament> _tournaments;
 
         public TournamentRepository(IDatabaseSettings settings) {
@@ -18,8 +18,28 @@ namespace Kartalytics.Repositories {
             return _tournaments.Find(t => t.Id == id).FirstOrDefault();
         }
 
-        public IEnumerable<Tournament> Collection() {
-            return _tournaments.Find(_ => true).ToList();
+        public IEnumerable<TournamentCollectionModel> Collection() {
+            return _tournaments.Find(_ => true)
+                .ToList()
+                .Select(t => new TournamentCollectionModel { 
+                Id = t.Id,
+                Name = t.Name,
+                Group = t.Group,
+                Location = t.Location,
+                StartDate = t.StartDate,
+                EndDate = t.EndDate,
+                Results = t.Results.Where(r => r.Place <= 4)
+            });
+        }
+
+        public IEnumerable<TournamentContextModel> ContextCollection() {
+            return _tournaments.Find(_ => true)
+                .ToList()
+                .Select(t => new TournamentContextModel {
+                    Id = t.Id,
+                    Name = t.Name,
+                    AltNames = t.AltNames
+                });
         }
     }
 }

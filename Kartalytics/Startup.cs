@@ -31,11 +31,11 @@ namespace Kartalytics {
             // MongoDB services
             services.Configure<DatabaseSettings>(Configuration.GetSection(nameof(DatabaseSettings)));
             services.AddSingleton<IDatabaseSettings>(x => x.GetRequiredService<IOptions<DatabaseSettings>>().Value);
-            services.AddSingleton<IRepository<Cup>, CupRepository>();
+            services.AddSingleton<IContextRepository<Cup, Cup, Cup>, CupRepository>();
             services.AddSingleton<IRepository<Match>, MatchRepository>();
-            services.AddSingleton<IRepository<Player>, PlayerRepository>();
-            services.AddSingleton<IRepository<Tournament>, TournamentRepository>();
-            services.AddSingleton<IRepository<Track>, TrackRepository>();
+            services.AddSingleton<IContextRepository<Player, PlayerCollectionModel, PlayerContextModel>, PlayerRepository>();
+            services.AddSingleton<IContextRepository<Tournament, TournamentCollectionModel, TournamentContextModel>, TournamentRepository>();
+            services.AddSingleton<IContextRepository<Track, Track, Track>, TrackRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

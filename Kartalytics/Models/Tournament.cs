@@ -3,16 +3,21 @@ using MongoDB.Bson.Serialization.Attributes;
 using System.Collections.Generic;
 
 namespace Kartalytics.Models {
-    public class Tournament {
+    public class TournamentContextModel {
         [BsonId]
         public int Id { get; set; }
 
         [BsonElement("name")]
         public string Name { get; set; }
 
+#nullable enable
         [BsonElement("altNames")]
-        public IEnumerable<string> AltNames { get; set; }
+        [BsonIgnoreIfNull]
+        public IEnumerable<string>? AltNames { get; set; }
+#nullable disable
+    }
 
+    public class TournamentCollectionModel : TournamentContextModel {
         [BsonElement("group")]
         public string Group { get; set; }
 
@@ -27,7 +32,9 @@ namespace Kartalytics.Models {
 
         [BsonElement("results")]
         public IEnumerable<TournamentResult> Results { get; set; }
+    }
 
+    public class Tournament : TournamentCollectionModel {
         [BsonElement("rounds")]
         public IEnumerable<TournamentRound> Rounds { get; set; }
     }

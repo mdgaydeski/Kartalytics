@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace Kartalytics.Repositories {
-    public class TrackRepository : IRepository<Track> {
+    public class TrackRepository : IContextRepository<Track, Track, Track> {
         private readonly IMongoCollection<Track> _tracks;
 
         public TrackRepository(IDatabaseSettings settings) {
@@ -19,6 +19,10 @@ namespace Kartalytics.Repositories {
         }
 
         public IEnumerable<Track> Collection() {
+            return _tracks.Find(_ => true).ToList().OrderBy(t => t.Id);
+        }
+
+        public IEnumerable<Track> ContextCollection() {
             return _tracks.Find(_ => true).ToList().OrderBy(t => t.Id);
         }
     }

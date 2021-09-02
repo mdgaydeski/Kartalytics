@@ -12,13 +12,6 @@ namespace Kartalytics.Controllers {
             _repository = repository;
         }
 
-        // GET /api/matches
-        [HttpGet]
-        [ResponseCache(Duration = 86400)]
-        public IActionResult Get() {
-            return new ObjectResult(_repository.Collection());
-        }
-
         // GET /api/matches/5
         [HttpGet("{id}")]
         [ResponseCache(Duration = 86400)]

@@ -6,9 +6,9 @@ namespace Kartalytics.Controllers {
     [Route("api/[controller]")]
     [ApiController]
     public class CupsController : ControllerBase {
-        private readonly IRepository<Cup> _repository;
+        private readonly IContextRepository<Cup, Cup, Cup> _repository;
 
-        public CupsController(IRepository<Cup> repository) {
+        public CupsController(IContextRepository<Cup, Cup, Cup> repository) {
             _repository = repository;
         }
 
@@ -24,6 +24,13 @@ namespace Kartalytics.Controllers {
         [ResponseCache(Duration = 86400)]
         public IActionResult Get(int id) {
             return new ObjectResult(_repository.Find(id));
+        }
+
+        // GET /api/cups/context
+        [HttpGet("context")]
+        [ResponseCache(Duration = 86400)]
+        public IActionResult GetContext() {
+            return new ObjectResult(_repository.ContextCollection());
         }
     }
 }

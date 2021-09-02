@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace Kartalytics.Repositories {
-    public class CupRepository : IRepository<Cup> {
+    public class CupRepository : IContextRepository<Cup, Cup, Cup> {
         private readonly IMongoCollection<Cup> _cups;
 
         public CupRepository(IDatabaseSettings settings) {
@@ -19,6 +19,10 @@ namespace Kartalytics.Repositories {
         }
 
         public IEnumerable<Cup> Collection() {
+            return _cups.Find(_ => true).ToList();
+        }
+
+        public IEnumerable<Cup> ContextCollection() {
             return _cups.Find(_ => true).ToList();
         }
     }

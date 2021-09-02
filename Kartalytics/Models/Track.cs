@@ -10,7 +10,10 @@ namespace Kartalytics.Models {
         [BsonElement("name")]
         public string Name { get; set; }
 
+#nullable enable
         [BsonElement("altNames")]
-        public IEnumerable<string> AltNames { get; set; }
+        [BsonIgnoreIfNull]
+        public IEnumerable<string>? AltNames { get; set; }
+#nullable disable
     }
 }

@@ -5,13 +5,13 @@ import LoadingPlaceHolder from './components/Layout/LoadingPlaceholder';
 import * as ROUTES from './constants/routes';
 import AppContext from './context/AppContext';
 
-import { cups } from './tempdata/cups';
-import { matches } from './tempdata/matches';
-import { matchResults } from './tempdata/matchresults';
-import { players } from './tempdata/players';
-import { raceResults } from './tempdata/raceresults';
-import { tournaments } from './tempdata/tournaments';
-import { tracks } from './tempdata/tracks';
+//import { cups } from './tempdata/cups';
+//import { matches } from './tempdata/matches';
+//import { matchResults } from './tempdata/matchresults';
+//import { players } from './tempdata/players';
+//import { raceResults } from './tempdata/raceresults';
+//import { tournaments } from './tempdata/tournaments';
+//import { tracks } from './tempdata/tracks';
 
 const Home = lazy(() => import('./pages/Home'));
 const Match = lazy(() => import('./pages/Match'));
@@ -23,13 +23,13 @@ const TrackList = lazy(() => import('./pages/TrackList'));
 const Track = lazy(() => import('./pages/Track'));
 
 const data = {
-    cups,
-    matches,
-    matchResults,
-    players,
-    raceResults,
-    tournaments,
-    tracks
+    cups: [],
+    matches: [],
+    matchResults: [],
+    players: [],
+    raceResults: [],
+    tournaments: [],
+    tracks: []
 };
 
 const App = () => {

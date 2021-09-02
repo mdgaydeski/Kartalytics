@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace Kartalytics.Repositories {
-    public class PlayerRepository : IRepository<Player> {
+    public class PlayerRepository : IContextRepository<Player, PlayerCollectionModel, PlayerContextModel> {
         private readonly IMongoCollection<Player> _players;
 
         public PlayerRepository(IDatabaseSettings settings) {
@@ -18,8 +18,19 @@ namespace Kartalytics.Repositories {
             return _players.Find(p => p.Id == id).FirstOrDefault();
         }
 
-        public IEnumerable<Player> Collection() {
-            return _players.Find(_ => true).ToList();
+        public IEnumerable<PlayerCollectionModel> Collection() {
+            return _players.Find(_ => true).ToList().Select(p => new PlayerCollectionModel {
+                Id = p.Id,
+                Name = p.Name,
+                Country = p.Country
+            });
+        }
+
+        public IEnumerable<PlayerContextModel> ContextCollection() {
+            return _players.Find(_ => true).ToList().Select(p => new PlayerContextModel {
+                Id = p.Id,
+                Name = p.Name
+            });
         }
     }
 }
