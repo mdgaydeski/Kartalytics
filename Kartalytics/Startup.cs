@@ -1,3 +1,6 @@
+using Kartalytics.Data;
+using Kartalytics.Models;
+using Kartalytics.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -5,6 +8,7 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 
 namespace Kartalytics {
     public class Startup {
@@ -23,6 +27,15 @@ namespace Kartalytics {
             services.AddSpaStaticFiles(configuration => {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            // MongoDB services
+            services.Configure<DatabaseSettings>(Configuration.GetSection(nameof(DatabaseSettings)));
+            services.AddSingleton<IDatabaseSettings>(x => x.GetRequiredService<IOptions<DatabaseSettings>>().Value);
+            services.AddSingleton<IRepository<Cup>, CupRepository>();
+            services.AddSingleton<IRepository<Match>, MatchRepository>();
+            services.AddSingleton<IRepository<Player>, PlayerRepository>();
+            services.AddSingleton<IRepository<Tournament>, TournamentRepository>();
+            services.AddSingleton<IRepository<Track>, TrackRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
