@@ -23,7 +23,7 @@ namespace Kartalytics.Repositories {
         }
 
         public IEnumerable<Cup> ContextCollection() {
-            return _cups.Find(_ => true).ToList();
+            return _cups.Find(_ => true).ToList().OrderBy(c => c.Id);
         }
     }
 }

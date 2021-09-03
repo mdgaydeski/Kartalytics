@@ -1,10 +1,10 @@
 ﻿import * as React from 'react';
 import AssetLink from '../Layout/AssetLink';
-import { Player, RoundResult, TournamentResult } from '../../constants/types';
+import { ContextObject, RoundResult, TournamentResult } from '../../constants/types';
 import { sum } from '../../utils';
 
 type Props = {
-    player: Player;
+    player: ContextObject;
     result: TournamentResult;
     roundResults: RoundResult[];
 }

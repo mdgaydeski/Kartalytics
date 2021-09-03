@@ -8,21 +8,21 @@ import Bracket from '../components/Tournament/Bracket';
 import Details from '../components/Tournament/Details';
 import { TOURNAMENT_RESULTS, TOURNAMENT_BRACKET, TOURNAMENT_DETAILS } from '../constants/routes';
 import { Tournament } from '../constants/types';
-import AppContext from '../context/AppContext';
 
-const { Suspense, useState, useEffect, useContext } = React;
+const { Suspense, useState, useEffect } = React;
 
 const Tournament = () => {
     const { path, url } = useRouteMatch();
     const { id } = useParams<{ id: string }>();
 
     const [tournament, setTournament] = useState<Tournament | null>(null);
-    const { tournaments } = useContext(AppContext);
 
     useEffect(() => {
-        const currentTournament = tournaments.filter(t => t.id === Number(id))[0];
-        setTournament(currentTournament);
-    }, [id, setTournament, tournaments]);
+        fetch(`/api/tournaments/${id}`)
+            .then(response => response.json())
+            .then(data => setTournament(data))
+            //.catch(error => handleError(error));
+    }, [id, setTournament]);
 
     return (
         tournament && <>

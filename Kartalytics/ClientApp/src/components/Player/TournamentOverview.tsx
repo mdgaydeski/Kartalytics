@@ -1,6 +1,5 @@
 ﻿import * as React from 'react';
 import AssetLink from '../Layout/AssetLink';
-import Container from '../Layout/Container';
 import { PlayerResult } from '../../constants/types';
 import AppContext from '../../context/AppContext';
 
@@ -29,7 +28,7 @@ const TournamentOverview: React.FC<Props> = ({ results }) => {
                                     <AssetLink type='tournament' id={r.tournamentId}>
                                         {tournament.name}
                                     </AssetLink>
-                                    : {r.place}/{tournament.results.length}
+                                    : {r.place}/{tournament.totalPlayers}
                                 </li>
                             );
                         })}

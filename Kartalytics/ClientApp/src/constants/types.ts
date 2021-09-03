@@ -1,40 +1,40 @@
 ﻿// database subdocument types
 
-export type MatchRaceResult = {
+export interface MatchRaceResult {
     trackId: number,
     place: number
 }
 
-export type MatchVideo = {
+export interface MatchVideo {
     host: string;
     url: string;
 }
 
-export type PlayerCompare = {
+export interface PlayerCompare {
     id: number;
     name: string;
 }
 
-export type PlayerResult = {
+export interface PlayerResult {
     tournamentId: number;
     year: number;
     place: number;
     matches: number[];
 }
 
-export type RoundResult = {
+export interface RoundResult {
     playerId: number;
     seed?: number;
     points: number[];
     place: number;
 }
 
-export type TournamentResult = {
+export interface TournamentResult {
     playerId: number;
     place: number;
 }
 
-export type TournamentRound = {
+export interface TournamentRound {
     roundNumber: number;
     roundLevel: string;
     name: string;
@@ -46,13 +46,13 @@ export type TournamentRound = {
 
 // database document types
 
-export type Cup = {
+export interface Cup {
     id: number;
     name: string;
     tracks: number[];
 }
 
-export type Match = {
+export interface Match {
     id: number;
     name: string;
     cupOrder?: number[];
@@ -61,7 +61,7 @@ export type Match = {
     videos: MatchVideo[];
 }
 
-export type MatchResult = {
+export interface MatchResult {
     id: number;
     playerId: number;
     tournamentId: number;
@@ -71,41 +71,51 @@ export type MatchResult = {
     raceResults: MatchRaceResult[];
 }
 
-export type Player = {
-    id: number;
-    name: string;
-    country: string;
+export interface Player extends PlayerCollectionType {
     tournamentResults: PlayerResult[];
 }
 
-export type RaceResult = {
+export interface RaceResult {
     playerId: number;
     trackId: number;
     year: number;
     place: number;
 }
 
-export type Tournament = {
+export interface Tournament extends TournamentCollectionType {
+    rounds: TournamentRound[];
+}
+
+export interface Track {
     id: number;
     name: string;
     altNames: string[];
+}
+
+// collection types
+
+export interface PlayerCollectionType extends ContextObject {
+    country: string;
+}
+
+export interface TournamentCollectionType extends ContextObject {
     group: string;
     location: string;
     startDate: string;
     endDate: string;
     results: TournamentResult[];
-    rounds: TournamentRound[];
-}
-
-export type Track = {
-    id: number;
-    name: string;
-    altNames: string[];
 }
 
 // helper types
 
-export type FilterSet = {
+export interface ContextObject {
+    id: number;
+    name: string;
+    altNames?: string[];
+    trackList?: number[];
+}
+
+export interface FilterSet {
     readonly [key: string]: any;
     startYear: number;
     endYear: number;
@@ -115,14 +125,15 @@ export type FilterSet = {
     sortAscending: boolean;
 }
 
-export type SearchItem = {
+export interface SearchItem extends ContextObject {
     type: string;
-    id: number;
-    name: string;
-    altNames: string[];
 }
 
-export type TrackStatsColumnType = {
+export interface TournamentContextObject extends ContextObject {
+    totalPlayers: number;
+}
+
+export interface TrackStatsColumnType {
     label: string;
     labelAbbr?: string;
     className: string;

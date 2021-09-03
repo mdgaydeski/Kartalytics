@@ -6,11 +6,10 @@ import YearRange from '../Filters/YearRange';
 import Container from '../Layout/Container';
 import SortableHeader from '../Layout/SortableHeader';
 import TableOptions from '../Layout/TableOptions';
-import { FilterSet, TrackStatsColumnType } from '../../constants/types';
-import AppContext from '../../context/AppContext';
+import { FilterSet, RaceResult, TrackStatsColumnType } from '../../constants/types';
 import { PLACE_LABELS } from '../../constants/constants';
 
-const { useState, useEffect, useContext } = React;
+const { useState, useEffect } = React;
 
 type Props = {
     playerId?: number;
@@ -27,6 +26,7 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
         sortAscending: true
     });
     const [columns, setColumns] = useState<TrackStatsColumnType[]>([]);
+    const [results, setResults] = useState<RaceResult[]>([]);
 
     const { startYear, endYear, minimumResults, showAverageFinish } = filters;
 
@@ -77,8 +77,14 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
         setFilters(newFilters);
     }
 
-    const { raceResults } = useContext(AppContext);
-    const results = raceResults.filter(r => playerId ? r.playerId === playerId : r.trackId === trackId)
+    useEffect(() => {
+        fetch(`/api/raceresults/${playerId ? `player/${playerId}` : `track/${trackId}`}`)
+            .then(response => response.json())
+            .then(data => setResults(data))
+        //.catch(error => handleError(error));
+    }, [playerId, trackId, setResults]);
+
+    const filteredResults = results.filter(r => playerId ? r.playerId === playerId : r.trackId === trackId)
         .filter(r => r.year >= startYear && r.year <= endYear);
 
     return (
@@ -117,20 +123,20 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
                     assetType={playerId ? 'track' : 'player'}
                     columns={columns}
                     filters={filters}
-                    results={results}
+                    results={filteredResults}
                 />
                 {playerId && <>
                     <TrackStatsSegment
                         assetType='cup'
                         columns={columns}
                         filters={filters}
-                        results={results}
+                        results={filteredResults}
                     />
                     <TrackStatsSegment
                         assetType='total'
                         columns={columns}
                         filters={filters}
-                        results={results}
+                        results={filteredResults}
                     />
                 </>}
             </table>

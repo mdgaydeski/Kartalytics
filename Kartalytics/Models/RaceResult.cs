@@ -7,15 +7,15 @@ namespace Kartalytics.Models {
         public int Id { get; set; }
 
         [BsonElement("playerId")]
-        public string PlayerId { get; set; }
+        public int PlayerId { get; set; }
 
         [BsonElement("trackId")]
-        public string TrackId { get; set; }
+        public int TrackId { get; set; }
 
         [BsonElement("year")]
-        public string Year { get; set; }
+        public int Year { get; set; }
 
         [BsonElement("place")]
-        public string Place { get; set; }
+        public int Place { get; set; }
     }
 }

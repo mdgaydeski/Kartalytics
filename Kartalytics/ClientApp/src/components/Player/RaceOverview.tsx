@@ -1,17 +1,23 @@
 ﻿import * as React from 'react';
-import Container from '../Layout/Container';
 import { PLACE_LABELS } from '../../constants/constants';
-import AppContext from '../../context/AppContext';
+import { RaceResult } from '../../constants/types';
 
-const { useContext } = React;
+const { useState, useEffect } = React;
 
 type Props = {
     playerId: number
 }
 
 const RaceOverview: React.FC<Props> = ({ playerId }) => {
-    const { raceResults } = useContext(AppContext);
-    const results = raceResults.filter(r => r.playerId === playerId);
+    const [results, setResults] = useState<RaceResult[]>([]);
+
+    useEffect(() => {
+        fetch(`/api/raceresults/player/${playerId}`)
+            .then(response => response.json())
+            .then(data => setResults(data))
+            //.catch(error => handleError(error));
+    }, [playerId, setResults]);
+
     const resultsByPlace = results.reduce((acc, r) => {
         acc[0] += r.place;
         acc[r.place]++;

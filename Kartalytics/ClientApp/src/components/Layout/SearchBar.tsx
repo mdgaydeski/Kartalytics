@@ -22,8 +22,7 @@ const SearchBar: React.FC<Props> = ({ className }) => {
         const items = players.map(p => ({
             type: 'Player',
             id: p.id,
-            name: p.name,
-            altNames: [] as string[]
+            name: p.name
         })).concat(tournaments.map(t => ({
             type: 'Tournament',
             id: t.id,
@@ -56,7 +55,7 @@ const SearchBar: React.FC<Props> = ({ className }) => {
         const text = e.target.value.toLowerCase().trim();
         const results = text.length >= 2
             ? searchItems.filter(item => item.name.toLowerCase().indexOf(text) > -1
-                || item.altNames.some(alt => alt.toLowerCase().indexOf(text) > -1))
+                || (item.altNames && item.altNames.some(alt => alt.toLowerCase().indexOf(text) > -1)))
                 .sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)
             : []
 

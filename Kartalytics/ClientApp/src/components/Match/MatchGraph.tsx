@@ -1,47 +1,43 @@
 ﻿import * as React from 'react';
 import { LineChart, CartesianGrid, Legend, Line, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { GRAPH_LINE_PROPERTIES } from '../../constants/constants';
+import { Match, MatchResult } from '../../constants/types';
 import AppContext from '../../context/AppContext';
 import { getProgressivePointTotals } from '../../utils';
 
 const { useState, useEffect, useContext } = React;
 
 type Props = {
-    matchId: number;
+    match: Match;
+    matchResults: MatchResult[];
 }
 
 type ResultSet = {
     [key: string]: any;
 }
 
-const MatchGraph: React.FC<Props> = ({ matchId }) => {
-    const [results, setResults] = useState<ResultSet[]>([]);
+const MatchGraph: React.FC<Props> = ({ match, matchResults }) => {
+    const [graphResults, setGraphResults] = useState<ResultSet[]>([]);
     const [playerList, setPlayerList] = useState<string[]>([]);
-    const { cups, matches, matchResults, players, tracks } = useContext(AppContext);
+    const { cups, players, tracks } = useContext(AppContext);
 
     useEffect(() => {
-        const currentMatch = matches.filter(p => p.id === Number(matchId))[0];
-        const currentMatchResults = currentMatch.results.map(m => matchResults.filter(r => r.id === m)[0]);
-        const playerNames = [] as string[];
-
-        const playerData = currentMatchResults.map(r => {
-            const player = players.filter(p => r.playerId === p.id)[0];
-            playerNames.push(player.name);
+        const playerData = matchResults.map(r => {
             return {
-                name: player.name,
+                name: players.filter(p => r.playerId === p.id)[0].name,
                 pointTotals: getProgressivePointTotals(r.raceResults)
             }
         });
 
-        const trackOrder = currentMatch.trackOrder ||
-            (currentMatch.cupOrder && currentMatch.cupOrder.reduce((acc, id) => (
+        const trackOrder = match.trackOrder ||
+            (match.cupOrder && match.cupOrder.reduce((acc, id) => (
                 acc.concat(cups.filter(c => c.id === id)[0].tracks)
             ), [0])) || [];
         const trackNames = trackOrder.map(o => {
             const track = tracks.filter(t => t.id === o)[0];
-            return track ? track.altNames[0] : 'ST';
+            return track && track.altNames && track.altNames.length > 0 ? track.altNames[0] : 'ST';
         });
-        const results = trackNames.map((t, i) => {
+        const graphResults = trackNames.map((t, i) => {
             const resultSet = {
                 track: t
             } as ResultSet;
@@ -51,13 +47,13 @@ const MatchGraph: React.FC<Props> = ({ matchId }) => {
             return resultSet;
         });
 
-        setPlayerList(playerNames);
-        setResults(results);
-    }, [cups, matchId, matches, matchResults, players, setPlayerList, setResults, tracks]);
+        setPlayerList(playerData.map(p => p.name));
+        setGraphResults(graphResults);
+    }, [cups, match, matchResults, players, setPlayerList, setGraphResults, tracks]);
 
     return (
         <ResponsiveContainer width='95%' height={250} className='mt-4 mx-auto'>
-            <LineChart data={results}>
+            <LineChart data={graphResults}>
                 <CartesianGrid style={{ stroke: '#666' }} />
                 <XAxis dataKey='track' style={{ fill: 'white' }} />
                 <YAxis style={{ fill: 'white' }} />

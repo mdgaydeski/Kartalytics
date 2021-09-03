@@ -60,6 +60,7 @@
     <None Remove="ClientApp\src\components\Player\RaceOverview.tsx" />
     <None Remove="ClientApp\src\components\Player\Results.tsx" />
     <None Remove="ClientApp\src\components\Player\TournamentOverview.tsx" />
+    <None Remove="ClientApp\src\components\Player\TournamentResultListing.tsx" />
     <None Remove="ClientApp\src\components\Player\TrackStats.tsx" />
     <None Remove="ClientApp\src\components\SearchBar.tsx" />
     <None Remove="ClientApp\src\components\Tournament\Bracket.tsx" />
@@ -118,6 +119,7 @@
     <TypeScriptCompile Include="ClientApp\src\components\Player\RaceOverview.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Player\Results.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Player\TournamentOverview.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\Player\TournamentResultListing.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Player\TrackStats.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Layout\SearchBar.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Tournament\Bracket.tsx" />
@@ -165,5 +167,21 @@
       </ResolvedFileToPublish>
     </ItemGroup>
   </Target>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptJSXEmit>React</TypeScriptJSXEmit>
+    <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
+  </PropertyGroup>
 
 </Project>

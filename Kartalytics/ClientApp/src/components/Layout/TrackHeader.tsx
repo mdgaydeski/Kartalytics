@@ -16,7 +16,7 @@ const TrackHeader: React.FC<Props> = ({ trackId }) => {
         <th scope='col'>
             <Tooltip text={track.name}>
                 <AssetLink type='track' id={track.id}>
-                    {track.altNames[0]}
+                    {track.altNames && track.altNames[0]}
                 </AssetLink>
             </Tooltip>
         </th>

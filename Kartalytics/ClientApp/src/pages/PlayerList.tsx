@@ -1,19 +1,20 @@
 import * as React from 'react';
 import AssetLink from '../components/Layout/AssetLink';
 import Container from '../components/Layout/Container';
-import { Player } from '../constants/types';
-import AppContext from '../context/AppContext';
+import { PlayerCollectionType } from '../constants/types';
 import { comparePlayersByName } from '../utils';
 
-const { useState, useEffect, useContext } = React;
+const { useState, useEffect } = React;
 
 const PlayerList = () => {
-    const [playerList, setPlayerList] = useState<Player[]>([]);
-    const { players } = useContext(AppContext);
+    const [playerList, setPlayerList] = useState<PlayerCollectionType[]>([]);
     
     useEffect(() => {
-        setPlayerList(players.sort(comparePlayersByName));
-    }, [players, setPlayerList]);
+        fetch('/api/players')
+            .then(response => response.json())
+            .then(data => setPlayerList(data.sort(comparePlayersByName)))
+            //.catch(error => handleError(error));
+    }, [setPlayerList]);
 
     return (
         <>

@@ -38,7 +38,8 @@ namespace Kartalytics.Repositories {
                 .Select(t => new TournamentContextModel {
                     Id = t.Id,
                     Name = t.Name,
-                    AltNames = t.AltNames
+                    AltNames = t.AltNames,
+                    TotalPlayers = t.Results.Count()
                 });
         }
     }

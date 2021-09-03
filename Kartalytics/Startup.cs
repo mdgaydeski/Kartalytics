@@ -32,8 +32,9 @@ namespace Kartalytics {
             services.Configure<DatabaseSettings>(Configuration.GetSection(nameof(DatabaseSettings)));
             services.AddSingleton<IDatabaseSettings>(x => x.GetRequiredService<IOptions<DatabaseSettings>>().Value);
             services.AddSingleton<IContextRepository<Cup, Cup, Cup>, CupRepository>();
-            services.AddSingleton<IRepository<Match>, MatchRepository>();
+            services.AddSingleton<IMatchRepository, MatchRepository>();
             services.AddSingleton<IContextRepository<Player, PlayerCollectionModel, PlayerContextModel>, PlayerRepository>();
+            services.AddSingleton<IRaceResultsRepository, RaceResultsRepository>();
             services.AddSingleton<IContextRepository<Tournament, TournamentCollectionModel, TournamentContextModel>, TournamentRepository>();
             services.AddSingleton<IContextRepository<Track, Track, Track>, TrackRepository>();
         }

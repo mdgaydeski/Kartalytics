@@ -8,21 +8,21 @@ import Results from '../components/Player/Results';
 import TrackStats from '../components/Player/TrackStats';
 import { PLAYER_OVERVIEW, PLAYER_RESULTS, PLAYER_TRACK_STATS } from '../constants/routes';
 import { Player } from '../constants/types';
-import AppContext from '../context/AppContext';
 
-const { Suspense, useState, useEffect, useContext } = React;
+const { Suspense, useState, useEffect } = React;
 
 const Player = () => {
     const { path, url } = useRouteMatch();
     const { id } = useParams<{ id: string }>();
 
     const [player, setPlayer] = useState<Player | null>(null);
-    const { players } = useContext(AppContext);
 
     useEffect(() => {
-        const currentPlayer= players.filter(p => p.id === Number(id))[0];
-        setPlayer(currentPlayer);
-    }, [id, setPlayer, players]);
+        fetch(`/api/players/${id}`)
+            .then(response => response.json())
+            .then(data => setPlayer(data))
+            //.catch(error => handleError(error));
+    }, [id, setPlayer]);
 
     return (
         player && <>

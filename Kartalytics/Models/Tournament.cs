@@ -14,6 +14,9 @@ namespace Kartalytics.Models {
         [BsonElement("altNames")]
         [BsonIgnoreIfNull]
         public IEnumerable<string>? AltNames { get; set; }
+
+        [BsonIgnoreIfNull]
+        public int? TotalPlayers { get; set; }
 #nullable disable
     }
 

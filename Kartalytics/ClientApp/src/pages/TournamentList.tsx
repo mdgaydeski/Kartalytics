@@ -1,20 +1,28 @@
 import * as React from 'react';
 import AssetLink from '../components/Layout/AssetLink';
-import { Tournament } from '../constants/types';
+import { TournamentCollectionType } from '../constants/types';
 import AppContext from '../context/AppContext';
 import { formatDate } from '../utils';
 
 const { useState, useEffect, useContext } = React;
 
 const TournamentList = () => {
-    const { players, tournaments } = useContext(AppContext);
+    const { players } = useContext(AppContext);
     const [selectedValue, setSelectedValue] = useState<number>(1);
-    const [selectedTournament, setSelectedTournament] = useState<Tournament | null>(null);
+    const [selectedTournament, setSelectedTournament] = useState<TournamentCollectionType | false>(false);
+    const [tournamentList, setTournamentList] = useState<TournamentCollectionType[]>([]);
 
     useEffect(() => {
-        const tournament = tournaments && tournaments.filter(t => t.id === selectedValue)[0];
+        fetch('/api/tournaments')
+            .then(response => response.json())
+            .then(data => setTournamentList(data))
+            //.catch(error => handleError(error));
+    }, [setTournamentList])
+
+    useEffect(() => {
+        const tournament = tournamentList.length > 0 && tournamentList.filter(t => t.id === selectedValue)[0];
         setSelectedTournament(tournament);
-    }, [selectedValue, setSelectedTournament, tournaments]);
+    }, [selectedValue, setSelectedTournament, tournamentList]);
 
     return (
         <>
@@ -27,7 +35,7 @@ const TournamentList = () => {
                     id='tournament'
                     onChange={e => setSelectedValue(Number(e.target.value))}
                 >
-                    {tournaments.map(t => (
+                    {tournamentList.map(t => (
                         <option value={t.id} key={t.id}>
                             {t.name}
                         </option>
