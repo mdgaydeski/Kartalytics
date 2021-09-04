@@ -18,7 +18,11 @@ const RoundResults: React.FC<Props> = ({ round }) => {
                     {round.matches.map(matchId => {
                         return (
                             <div key={matchId}>
-                                <RoundTable advance={advance / round.matches.length} matchId={matchId} />
+                                <RoundTable
+                                    advance={advance / round.matches.length}
+                                    matchId={matchId}
+                                    isFinals={round.roundLevel === 'Finals'}
+                                />
                             </div>
                         );
                     })}

@@ -9,9 +9,10 @@ type Props = {
     advance: number;
     roundResults?: RoundResult[];
     matchId?: number;
+    isFinals?: boolean;
 }
 
-const RoundTable: React.FC<Props> = ({ advance, roundResults, matchId }) => {
+const RoundTable: React.FC<Props> = ({ advance, roundResults, matchId, isFinals }) => {
     const [match, setMatch] = useState<Match | null>(null);
     const [matchResults, setMatchResults] = useState<MatchResult[]>([]);
 
@@ -44,7 +45,8 @@ const RoundTable: React.FC<Props> = ({ advance, roundResults, matchId }) => {
                                 <RoundRow
                                     playerId={r.playerId}
                                     points={r.points}
-                                    advance={advance > 0 ? i < advance : null}
+                                    advance={advance > 0 ? i < advance : undefined}
+                                    finalPlace={isFinals ? r.place : undefined}
                                     key={i}
                                 />
                             ))
@@ -52,7 +54,8 @@ const RoundTable: React.FC<Props> = ({ advance, roundResults, matchId }) => {
                                 <RoundRow
                                     playerId={m.playerId}
                                     points={[m.points]}
-                                    advance={advance > 0 ? i < advance : null}
+                                    advance={advance > 0 ? i < advance : undefined}
+                                    finalPlace={isFinals ? m.place : undefined}
                                     key={i}
                                 />
                             ))

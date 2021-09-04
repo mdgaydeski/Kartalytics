@@ -1,4 +1,6 @@
-﻿export const GRAPH_LINE_PROPERTIES = [
+﻿export const FINALIST_MEDAL_COLORS = ['#ffd700', '#c0c0c0', '#cd7f32'];
+
+export const GRAPH_LINE_PROPERTIES = [
     { color: '#ef4444'},
     { color: '#f59f0b'},
     { color: '#10b981'},
