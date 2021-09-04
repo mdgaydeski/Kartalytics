@@ -6,7 +6,7 @@ type Props = {
 
 const TableFilter: React.FC<Props> = ({ children }) => {
     return (
-        <div className='flex ml-auto my-1 space-x-2'>
+        <div className='flex flex-col ml-auto mx-4 my-1 md:flex-row'>
             {children}
         </div>
     );

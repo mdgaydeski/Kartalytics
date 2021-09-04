@@ -17,19 +17,21 @@ const HighlightPlace: React.FC<Props> = ({ highlightedPlace, matchId, places, ha
     return (
         <TableFilter>
             <p>Highlight position:</p>
-            {elementIds.map((e, i) => (
-                <div className='space-x-1' key={i}>
-                    <input
-                        type='radio'
-                        id={`${e}-${matchId}`}
-                        name={`highlight-${matchId}`}
-                        value={i}
-                        checked={highlightedPlace === i}
-                        onChange={() => handleChange(i)}
-                    />
-                    <label htmlFor={`${e}-${matchId}`}>{i === 0 ? 'None' : i}</label>
-                </div>
-            ))}
+                <div className='flex ml-auto space-x-2 md:ml-2'>
+                {elementIds.map((e, i) => (
+                    <div className='space-x-1' key={i}>
+                        <input
+                            type='radio'
+                            id={`${e}-${matchId}`}
+                            name={`highlight-${matchId}`}
+                            value={i}
+                            checked={highlightedPlace === i}
+                            onChange={() => handleChange(i)}
+                        />
+                        <label htmlFor={`${e}-${matchId}`}>{i === 0 ? 'None' : i}</label>
+                    </div>
+                ))}
+            </div>
         </TableFilter>
     );
 }

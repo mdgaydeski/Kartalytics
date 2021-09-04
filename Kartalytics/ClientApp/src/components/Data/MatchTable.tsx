@@ -41,7 +41,7 @@ const MatchTable: React.FC<Props> = ({ matchId, playerId, fromDetailsPage }) => 
     return (
         match && <>
             {fromDetailsPage ? <h1>{match.name}</h1> : <h4>{match.name}</h4>}
-            <div className='flex mx-auto px-1'>
+            <div className='flex flex-col mx-auto px-1 md:flex-row'>
                 {!fromDetailsPage && <AssetLink type='match' id={matchId}>View Detailed Breakdown</AssetLink>}
                 {match.videos.length > 0 && <VideoList videoList={match.videos} />}
             </div>

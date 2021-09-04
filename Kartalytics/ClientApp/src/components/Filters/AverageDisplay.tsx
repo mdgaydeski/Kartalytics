@@ -15,19 +15,21 @@ const AverageDisplay: React.FC<Props> = ({ showAverageFinish, setProperty }) => 
     return (
         <TableFilter>
             <p>Show average as:</p>
-            {options.map((o, i) => (
-                <div className='space-x-1' key={i}>
-                    <input
-                        type='radio'
-                        id={o.label.toLowerCase()}
-                        name='average'
-                        value={o.option.toString()}
-                        checked={showAverageFinish === o.option}
-                        onChange={() => setProperty('showAverageFinish', o.option)}
-                    />
-                    <label htmlFor={o.label.toLowerCase()}>{o.label}</label>
-                </div>
-            ))}
+            <div className='flex ml-auto space-x-2 md:ml-2 '>
+                {options.map((o, i) => (
+                    <div className='space-x-1' key={i}>
+                        <input
+                            type='radio'
+                            id={o.label.toLowerCase()}
+                            name='average'
+                            value={o.option.toString()}
+                            checked={showAverageFinish === o.option}
+                            onChange={() => setProperty('showAverageFinish', o.option)}
+                        />
+                        <label htmlFor={o.label.toLowerCase()}>{o.label}</label>
+                    </div>
+                ))}
+            </div>
         </TableFilter>
     );
 }

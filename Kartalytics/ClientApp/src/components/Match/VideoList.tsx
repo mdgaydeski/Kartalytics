@@ -8,7 +8,7 @@ type Props = {
 
 const VideoList: React.FC<Props> = ({ videoList }) => {
     return (
-        <div className='flex-grow text-right'>
+        <div className='flex-grow md:text-right'>
             Watch on:&nbsp;
             {videoList.map((v, i) => (
                 <div className='inline' key={i}>
