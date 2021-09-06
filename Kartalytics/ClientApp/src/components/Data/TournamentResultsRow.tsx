@@ -7,9 +7,10 @@ type Props = {
     player: ContextObject;
     result: TournamentResult;
     roundResults: RoundResult[];
+    selectedRound: number;
 }
 
-const TournamentResultsRow: React.FC<Props> = ({ player, result, roundResults }) => {
+const TournamentResultsRow: React.FC<Props> = ({ player, result, roundResults, selectedRound }) => {
     return (
         <tr className='hover:bg-indigo-900' key={result.playerId}>
             <td>{result.place}</td>
@@ -20,7 +21,7 @@ const TournamentResultsRow: React.FC<Props> = ({ player, result, roundResults })
             </td>
             {roundResults.map((r, i) => {
                 return (
-                    <td key={i}>
+                    <td className={`${selectedRound === i ? 'table-cell' : 'hidden'} md:table-cell`} key={i}>
                         {r && sum(r.points)}
                     </td>
                 );
