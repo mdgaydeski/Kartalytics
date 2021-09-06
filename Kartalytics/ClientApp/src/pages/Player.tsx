@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Switch, Route, Redirect, useRouteMatch, useParams } from 'react-router-dom';
+import { useErrorHandler } from 'react-error-boundary';
 import LoadingPlaceholder from '../components/Layout/LoadingPlaceholder';
 import SubNavButton from '../components/Layout/SubNavButton';
 import SubNavGroup from '../components/Layout/SubNavGroup';
@@ -12,6 +13,7 @@ import { Player } from '../constants/types';
 const { Suspense, useState, useEffect } = React;
 
 const Player = () => {
+    const handleError = useErrorHandler();
     const { path, url } = useRouteMatch();
     const { id } = useParams<{ id: string }>();
 
@@ -21,8 +23,8 @@ const Player = () => {
         fetch(`/api/players/${id}`)
             .then(response => response.json())
             .then(data => setPlayer(data))
-            //.catch(error => handleError(error));
-    }, [id, setPlayer]);
+            .catch(error => handleError(error));
+    }, [id, setPlayer, handleError]);
 
     return (
         player && <>

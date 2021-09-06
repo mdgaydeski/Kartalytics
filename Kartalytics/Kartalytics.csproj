@@ -76,8 +76,11 @@
     <None Remove="ClientApp\src\custom.d.ts" />
     <None Remove="ClientApp\src\pages\Home.tsx" />
     <None Remove="ClientApp\src\pages\Match.tsx" />
+    <None Remove="ClientApp\src\pages\NotFound.tsx" />
+    <None Remove="ClientApp\src\pages\PageError.tsx" />
     <None Remove="ClientApp\src\pages\Player.tsx" />
     <None Remove="ClientApp\src\pages\PlayerList.tsx" />
+    <None Remove="ClientApp\src\pages\SiteError.tsx" />
     <None Remove="ClientApp\src\pages\Tournament.tsx" />
     <None Remove="ClientApp\src\pages\TournamentList.tsx" />
     <None Remove="ClientApp\src\pages\Track.tsx" />
@@ -137,8 +140,11 @@
     <TypeScriptCompile Include="ClientApp\src\custom.d.ts" />
     <TypeScriptCompile Include="ClientApp\src\pages\Home.tsx" />
     <TypeScriptCompile Include="ClientApp\src\pages\Match.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\pages\NotFound.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\pages\PageError.tsx" />
     <TypeScriptCompile Include="ClientApp\src\pages\Player.tsx" />
     <TypeScriptCompile Include="ClientApp\src\pages\PlayerList.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\pages\SiteError.tsx" />
     <TypeScriptCompile Include="ClientApp\src\pages\Tournament.tsx" />
     <TypeScriptCompile Include="ClientApp\src\pages\TournamentList.tsx" />
     <TypeScriptCompile Include="ClientApp\src\pages\Track.tsx" />

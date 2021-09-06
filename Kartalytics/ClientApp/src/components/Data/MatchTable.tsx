@@ -1,4 +1,5 @@
 ﻿import * as React from 'react';
+import { useErrorHandler } from 'react-error-boundary';
 import MatchRow from './MatchRow';
 import MatchTableHeader from './MatchTableHeader';
 import HighlightPlace from '../Filters/HighlightPlace';
@@ -20,6 +21,7 @@ type Props = {
 }
 
 const MatchTable: React.FC<Props> = ({ matchId, playerId, fromDetailsPage }) => {
+    const handleError = useErrorHandler();
     const [highlightedPlace, setHighlightedPlace] = useState<number>(0);
     const [match, setMatch] = useState<Match | null>(null);
     const [results, setResults] = useState<MatchResult[]>([]);
@@ -36,13 +38,13 @@ const MatchTable: React.FC<Props> = ({ matchId, playerId, fromDetailsPage }) => 
         fetch(`/api/matches/${matchId}`)
             .then(response => response.json())
             .then(data => setMatch(data))
-            //.catch(error => handleError(error));
+            .catch(error => handleError(error));
 
         fetch(`/api/matches/${matchId}/results`)
             .then(response => response.json())
             .then(data => setResults(data))
-            //.catch(error => handleError(error));
-    }, [matchId, setMatch, setResults]);
+            .catch(error => handleError(error));
+    }, [matchId, setMatch, setResults, handleError]);
 
     return (
         match && <>

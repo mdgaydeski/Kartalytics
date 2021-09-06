@@ -1,4 +1,5 @@
 ﻿import * as React from 'react';
+import { useErrorHandler } from 'react-error-boundary';
 import TrackStatsSegment from './TrackStatsSegment';
 import AverageDisplay from '../Filters/AverageDisplay';
 import MinimumResults from '../Filters/MinimumResults';
@@ -18,6 +19,7 @@ type Props = {
 }
 
 const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
+    const handleError = useErrorHandler();
     const [filters, setFilters] = useState<FilterSet>({
         startYear: 2018,
         endYear: 2020,
@@ -80,8 +82,8 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
         fetch(`/api/raceresults/${playerId ? `player/${playerId}` : `track/${trackId}`}`)
             .then(response => response.json())
             .then(data => setResults(data))
-        //.catch(error => handleError(error));
-    }, [playerId, trackId, setResults]);
+        .catch(error => handleError(error));
+    }, [playerId, trackId, setResults, handleError]);
 
     const filteredResults = results.filter(r => playerId ? r.playerId === playerId : r.trackId === trackId)
         .filter(r => r.year >= startYear && r.year <= endYear);

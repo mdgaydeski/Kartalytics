@@ -1,15 +1,18 @@
 import React, { lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Switch, Route, useLocation } from 'react-router-dom';
+import { ErrorBoundary, useErrorHandler } from 'react-error-boundary';
 import Header from './components/Layout/Header';
 import LoadingPlaceHolder from './components/Layout/LoadingPlaceholder';
 import * as ROUTES from './constants/routes';
 import { ContextObject, Cup, TournamentContextObject } from './constants/types';
 import AppContext from './context/AppContext';
+import PageError from './pages/PageError'; // cannot be lazy loaded or ErrorBoundary doesn't work
 
 const { useState, useEffect } = React;
 
 const Home = lazy(() => import('./pages/Home'));
 const Match = lazy(() => import('./pages/Match'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 const PlayerList = lazy(() => import('./pages/PlayerList'));
 const Player = lazy(() => import('./pages/Player'));
 const TournamentList = lazy(() => import('./pages/TournamentList'));
@@ -18,6 +21,16 @@ const TrackList = lazy(() => import('./pages/TrackList'));
 const Track = lazy(() => import('./pages/Track'));
 
 const App = () => {
+    // error handling
+    const handleError = useErrorHandler();
+    const location = useLocation();
+    const [errorBoundaryKey, setErrorBoundaryKey] = useState<number>(1);
+
+    useEffect(() => {
+        setErrorBoundaryKey(key => key + 1)
+    }, [location, setErrorBoundaryKey]);
+
+    // set context
     const [cupContextList, setCupContextList] = useState<Cup[]>([]);
     const [playerContextList, setPlayerContextList] = useState<ContextObject[]>([]);
     const [tournamentContextList, setTournamentContextList] = useState<TournamentContextObject[]>([]);
@@ -27,23 +40,23 @@ const App = () => {
         fetch('/api/cups/context')
             .then(response => response.json())
             .then(data => setCupContextList(data))
-            //.catch(error => handleError(error));
+            .catch(error => handleError(error));
 
         fetch('/api/players/context')
             .then(response => response.json())
             .then(data => setPlayerContextList(data))
-            //.catch(error => handleError(error));
+            .catch(error => handleError(error));
 
         fetch('/api/tournaments/context')
             .then(response => response.json())
             .then(data => setTournamentContextList(data))
-            //.catch(error => handleError(error));
+            .catch(error => handleError(error));
 
         fetch('/api/tracks/context')
             .then(response => response.json())
             .then(data => setTrackContextList(data))
-            //.catch(error => handleError(error));
-    }, [setCupContextList, setPlayerContextList, setTournamentContextList, setTrackContextList]);
+            .catch(error => handleError(error));
+    }, [setCupContextList, setPlayerContextList, setTournamentContextList, setTrackContextList, handleError]);
 
     const contextData = {
         cups: cupContextList,
@@ -53,11 +66,11 @@ const App = () => {
     };
 
     return (
-        <Router>
-            <AppContext.Provider value={contextData}>
-                <Header />
-                <main className='bg-black bg-opacity-90 p-4 pt-12 w-full min-h-screen md:px-8'>
-                    <div className='max-w-5xl mx-auto'>
+        <AppContext.Provider value={contextData}>
+            <Header />
+            <main className='bg-black bg-opacity-90 p-4 pt-12 w-full min-h-screen md:px-8'>
+                <div className='max-w-5xl mx-auto'>
+                    <ErrorBoundary FallbackComponent={PageError} key={errorBoundaryKey}>
                         <Suspense fallback={<LoadingPlaceHolder />}>
                             <Switch>
                                 <Route path={ROUTES.HOME} exact component={Home} />
@@ -68,12 +81,13 @@ const App = () => {
                                 <Route path={ROUTES.TOURNAMENT_LIST} component={TournamentList} />
                                 <Route path={ROUTES.TRACK_ID} component={Track} />
                                 <Route path={ROUTES.TRACK_LIST} component={TrackList} />
+                                <Route component={NotFound} />
                             </Switch>
                         </Suspense>
-                    </div>
-                </main>
-            </AppContext.Provider>
-        </Router>
+                    </ErrorBoundary>
+                </div>
+            </main>
+        </AppContext.Provider>
     );
 }
 

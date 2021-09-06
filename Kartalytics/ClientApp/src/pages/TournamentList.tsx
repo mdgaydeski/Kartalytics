@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useErrorHandler } from 'react-error-boundary';
 import AssetLink from '../components/Layout/AssetLink';
 import { TournamentCollectionType } from '../constants/types';
 import AppContext from '../context/AppContext';
@@ -7,6 +8,7 @@ import { formatDate } from '../utils';
 const { useState, useEffect, useContext } = React;
 
 const TournamentList = () => {
+    const handleError = useErrorHandler();
     const { players } = useContext(AppContext);
     const [selectedValue, setSelectedValue] = useState<number>(1);
     const [selectedTournament, setSelectedTournament] = useState<TournamentCollectionType | false>(false);
@@ -16,8 +18,8 @@ const TournamentList = () => {
         fetch('/api/tournaments')
             .then(response => response.json())
             .then(data => setTournamentList(data))
-            //.catch(error => handleError(error));
-    }, [setTournamentList])
+            .catch(error => handleError(error));
+    }, [setTournamentList, handleError]);
 
     useEffect(() => {
         const tournament = tournamentList.length > 0 && tournamentList.filter(t => t.id === selectedValue)[0];

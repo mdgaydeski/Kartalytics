@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useErrorHandler } from 'react-error-boundary';
 import AssetLink from '../components/Layout/AssetLink';
 import Container from '../components/Layout/Container';
 import { PlayerCollectionType } from '../constants/types';
@@ -7,14 +8,15 @@ import { comparePlayersByName } from '../utils';
 const { useState, useEffect } = React;
 
 const PlayerList = () => {
+    const handleError = useErrorHandler();
     const [playerList, setPlayerList] = useState<PlayerCollectionType[]>([]);
     
     useEffect(() => {
         fetch('/api/players')
             .then(response => response.json())
             .then(data => setPlayerList(data.sort(comparePlayersByName)))
-            //.catch(error => handleError(error));
-    }, [setPlayerList]);
+            .catch(error => handleError(error));
+    }, [setPlayerList, handleError]);
 
     return (
         <>

@@ -1,4 +1,5 @@
 ﻿import * as React from 'react';
+import { useErrorHandler } from 'react-error-boundary';
 import { PLACE_LABELS } from '../../constants/constants';
 import { RaceResult } from '../../constants/types';
 
@@ -9,14 +10,15 @@ type Props = {
 }
 
 const RaceOverview: React.FC<Props> = ({ playerId }) => {
+    const handleError = useErrorHandler();
     const [results, setResults] = useState<RaceResult[]>([]);
 
     useEffect(() => {
         fetch(`/api/raceresults/player/${playerId}`)
             .then(response => response.json())
             .then(data => setResults(data))
-            //.catch(error => handleError(error));
-    }, [playerId, setResults]);
+            .catch(error => handleError(error));
+    }, [playerId, setResults, handleError]);
 
     const resultsByPlace = results.reduce((acc, r) => {
         acc[0] += r.place;

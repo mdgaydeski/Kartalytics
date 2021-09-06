@@ -1,4 +1,5 @@
 ﻿import * as React from 'react';
+import { useErrorHandler } from 'react-error-boundary';
 import MatchTable from '../Data/MatchTable';
 import AssetLink from '../Layout/AssetLink';
 import BackToTopLink from '../Layout/BackToTopLink';
@@ -13,13 +14,14 @@ type Props = {
 }
 
 const TournamentResultListing: React.FC<Props> = ({ playerId, tournamentId, matches }) => {
+    const handleError = useErrorHandler();
     const [tournament, setTournament] = useState<Tournament | null>(null);
     useEffect(() => {
         fetch(`/api/tournaments/${tournamentId}`)
             .then(response => response.json())
             .then(data => setTournament(data))
-            //.catch(error => handleError(error));
-    }, [tournamentId, setTournament]);
+            .catch(error => handleError(error));
+    }, [tournamentId, setTournament, handleError]);
 
     return ( tournament &&
         <section>
