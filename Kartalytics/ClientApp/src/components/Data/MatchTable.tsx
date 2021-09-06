@@ -3,13 +3,15 @@ import MatchRow from './MatchRow';
 import MatchTableHeader from './MatchTableHeader';
 import HighlightPlace from '../Filters/HighlightPlace';
 import AssetLink from '../Layout/AssetLink';
+import ColumnSelector from '../Layout/ColumnSelector';
 import Container from '../Layout/Container';
 import TableOptions from '../Layout/TableOptions';
 import MatchGraph from '../Match/MatchGraph';
 import VideoList from '../Match/VideoList';
 import { Match, MatchResult } from '../../constants/types';
+import AppContext from '../../context/AppContext';
 
-const { useState, useEffect } = React;
+const { useState, useEffect, useContext } = React;
 
 type Props = {
     matchId: number;
@@ -21,7 +23,14 @@ const MatchTable: React.FC<Props> = ({ matchId, playerId, fromDetailsPage }) => 
     const [highlightedPlace, setHighlightedPlace] = useState<number>(0);
     const [match, setMatch] = useState<Match | null>(null);
     const [results, setResults] = useState<MatchResult[]>([]);
+    const [selectedCup, setSelectedCup] = useState<number>(0);
     results.sort((a, b) => a.place - b.place);
+
+    const { cups } = useContext(AppContext);
+    const cupLabels = ['Totals']
+    match && match.cupOrder && match.cupOrder.forEach(cupId => {
+        cupLabels.push(cups.filter(c => c.id === cupId)[0].name);
+    });
 
     useEffect(() => {
         fetch(`/api/matches/${matchId}`)
@@ -35,12 +44,14 @@ const MatchTable: React.FC<Props> = ({ matchId, playerId, fromDetailsPage }) => 
             //.catch(error => handleError(error));
     }, [matchId, setMatch, setResults]);
 
-    const numberOfTracks = match && match.cupOrder ? match.cupOrder.length * 4
-        : match && match.trackOrder ? match.trackOrder.length : 0;
-
     return (
         match && <>
             {fromDetailsPage ? <h1>{match.name}</h1> : <h4>{match.name}</h4>}
+            <ColumnSelector
+                columnLabels={match.cupOrder ? cupLabels : []}
+                selectedColumn={selectedCup}
+                callback={setSelectedCup}
+            />
             <div className='flex flex-col mx-auto px-1 md:flex-row'>
                 {!fromDetailsPage && <AssetLink type='match' id={matchId}>View Detailed Breakdown</AssetLink>}
                 {match.videos.length > 0 && <VideoList videoList={match.videos} />}
@@ -54,18 +65,16 @@ const MatchTable: React.FC<Props> = ({ matchId, playerId, fromDetailsPage }) => 
                         handleChange={setHighlightedPlace}
                     />
                 </TableOptions>
-                <table className='my-2 rounded-b-lg table-fixed text-center w-full'>
-                    <colgroup>
-                        <col className='w-4/5' />
-                        <col span={numberOfTracks + match.results.length + 1} className='w-1/5' />
-                    </colgroup>
-                    <MatchTableHeader cupOrder={match.cupOrder} trackOrder={match.trackOrder} />
+                <table className='rounded-b-lg table-fixed text-center w-full'>
+                    <MatchTableHeader cupOrder={match.cupOrder} trackOrder={match.trackOrder} selectedCup={selectedCup} />
                     <tbody>
-                        {results.map(result => (
+                        {results.map((result, i) => (
                             <MatchRow
                                 result={result}
                                 highlightedPlace={highlightedPlace}
                                 highlightedPlayer={result.playerId === playerId}
+                                selectedCup={selectedCup}
+                                isLastRow={i === results.length - 1}
                                 key={result.playerId}
                             />
                         ))}
