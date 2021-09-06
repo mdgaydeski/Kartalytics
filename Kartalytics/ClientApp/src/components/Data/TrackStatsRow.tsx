@@ -5,9 +5,10 @@ import { TrackStatsRowType } from '../../constants/types';
 type Props = {
     rowData: TrackStatsRowType;
     showAverageFinish: boolean;
+    selectedColumn: number;
 }
 
-const TrackStatsRow: React.FC<Props> = ({ rowData, showAverageFinish }) => {
+const TrackStatsRow: React.FC<Props> = ({ rowData, showAverageFinish, selectedColumn }) => {
     const { assetId, assetName, assetType, totalRaces, placeTotals, averageFinish } = rowData;
     const averagePoints = 4 - averageFinish;
 
@@ -22,9 +23,17 @@ const TrackStatsRow: React.FC<Props> = ({ rowData, showAverageFinish }) => {
                     : assetName
                 }
             </th>
-            <td>{totalRaces}</td>
-            {placeTotals.map((p, i) => <td key={i}>{p}</td>)}
-            <td>{(showAverageFinish ? averageFinish : averagePoints).toFixed(3)}</td>
+            <td className={`${selectedColumn === 0 ? 'table-cell' : 'hidden'} md:table-cell`}>
+                {totalRaces}
+            </td>
+            {placeTotals.map((p, i) => (
+                <td className={`${selectedColumn === i + 1 ? 'table-cell' : 'hidden'} md:table-cell`} key={i}>
+                    {p}
+                </td>
+            ))}
+            <td className={`${selectedColumn === 5 ? 'table-cell' : 'hidden'} md:table-cell`}>
+                {(showAverageFinish ? averageFinish : averagePoints).toFixed(3)}
+            </td>
         </tr>
     );
 }

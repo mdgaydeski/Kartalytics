@@ -3,6 +3,7 @@ import TrackStatsSegment from './TrackStatsSegment';
 import AverageDisplay from '../Filters/AverageDisplay';
 import MinimumResults from '../Filters/MinimumResults';
 import YearRange from '../Filters/YearRange';
+import ColumnSelector from '../Layout/ColumnSelector';
 import Container from '../Layout/Container';
 import SortableHeader from '../Layout/SortableHeader';
 import TableOptions from '../Layout/TableOptions';
@@ -27,6 +28,7 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
     });
     const [columns, setColumns] = useState<TrackStatsColumnType[]>([]);
     const [results, setResults] = useState<RaceResult[]>([]);
+    const [selectedColumn, setSelectedColumn] = useState<number>(0);
 
     const { startYear, endYear, minimumResults, showAverageFinish } = filters;
 
@@ -34,28 +36,25 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
         const columnList = [];
         columnList.push({
             label: playerId ? 'Track' : 'Player',
-            className: 'w-4/12',
+            className: 'md:w-3/12',
             property: playerId ? 'assetId' : 'assetName'
         });
         columnList.push({
             label: 'Total',
-            labelAbbr: 'T',
-            className: 'w-1/12',
+            className: 'md:w-2/12',
             property: 'totalRaces'
         });
         PLACE_LABELS.forEach((p, i) => {
             columnList.push({
                 label: p,
-                labelAbbr: i + 1,
-                className: 'w-1/12',
+                className: 'md:w-1/12',
                 property: 'placeTotals',
                 index: i
             });
         });
         columnList.push({
             label: `Avg. ${showAverageFinish ? 'Finish' : 'Points'}`,
-            labelAbbr: 'Avg.',
-            className: 'w-3/12',
+            className: 'md:w-3/12',
             invertSort: !showAverageFinish,
             property: 'averageFinish'
         });
@@ -88,59 +87,70 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
         .filter(r => r.year >= startYear && r.year <= endYear);
 
     return (
-        <Container>
-            <TableOptions>
-                <YearRange
-                    startYear={startYear}
-                    endYear={endYear}
-                    setProperty={setProperty}
-                />
-                {trackId && <MinimumResults
-                    minimumResults={minimumResults}
-                    setProperty={setProperty}
-                />}
-                <AverageDisplay
-                    showAverageFinish={showAverageFinish}
-                    setProperty={setProperty}
-                />
-            </TableOptions>
-            <table className='divide-y-4 divide-transparent my-1 table-fixed text-center w-full'>
-                <thead>
-                    <tr>
-                        {columns.map((column, i) => (
-                            <SortableHeader
-                                column={column}
-                                colNumber={i}
-                                handleClick={handleHeaderClick}
-                                sortAscending={filters.sortAscending}
-                                isSorted={i === filters.sortedColumn}
-                                key={i}
-                            />
-                        ))}
-                    </tr>
-                </thead>
-                <TrackStatsSegment
-                    assetType={playerId ? 'track' : 'player'}
-                    columns={columns}
-                    filters={filters}
-                    results={filteredResults}
-                />
-                {playerId && <>
+        <>
+            <ColumnSelector
+                columnLabels={columns.slice(1).map(col => col.label)}
+                selectedColumn={selectedColumn}
+                callback={setSelectedColumn}
+            />
+            <Container>
+                <TableOptions>
+                    <YearRange
+                        startYear={startYear}
+                        endYear={endYear}
+                        setProperty={setProperty}
+                    />
+                    {trackId && <MinimumResults
+                        minimumResults={minimumResults}
+                        setProperty={setProperty}
+                    />}
+                    <AverageDisplay
+                        showAverageFinish={showAverageFinish}
+                        setProperty={setProperty}
+                    />
+                </TableOptions>
+                <table className='divide-y-4 divide-transparent my-1 table-fixed text-center w-full'>
+                    <thead>
+                        <tr>
+                            {columns.map((column, i) => (
+                                <SortableHeader
+                                    column={column}
+                                    colNumber={i}
+                                    handleClick={handleHeaderClick}
+                                    sortAscending={filters.sortAscending}
+                                    isSorted={i === filters.sortedColumn}
+                                    isSelected={i === selectedColumn + 1}
+                                    key={i}
+                                />
+                            ))}
+                        </tr>
+                    </thead>
                     <TrackStatsSegment
-                        assetType='cup'
+                        assetType={playerId ? 'track' : 'player'}
                         columns={columns}
                         filters={filters}
                         results={filteredResults}
+                        selectedColumn={selectedColumn}
                     />
-                    <TrackStatsSegment
-                        assetType='total'
-                        columns={columns}
-                        filters={filters}
-                        results={filteredResults}
-                    />
-                </>}
-            </table>
-        </Container>
+                    {playerId && <>
+                        <TrackStatsSegment
+                            assetType='cup'
+                            columns={columns}
+                            filters={filters}
+                            results={filteredResults}
+                            selectedColumn={selectedColumn}
+                        />
+                        <TrackStatsSegment
+                            assetType='total'
+                            columns={columns}
+                            filters={filters}
+                            results={filteredResults}
+                            selectedColumn={selectedColumn}
+                        />
+                    </>}
+                </table>
+            </Container>
+        </>
     );
 }
 

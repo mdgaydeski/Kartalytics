@@ -11,9 +11,10 @@ type Props = {
     columns: TrackStatsColumnType[];
     filters: FilterSet;
     results: RaceResult[];
+    selectedColumn: number;
 }
 
-const TrackStatsSegment: React.FC<Props> = ({ assetType, columns, filters, results }) => {
+const TrackStatsSegment: React.FC<Props> = ({ assetType, columns, filters, results, selectedColumn }) => {
     const [resultsGroups, setResultsGroups] = useState<TrackStatsRowType[]>([]);
     const [filteredResults, setFilteredResults] = useState<TrackStatsRowType[]>([]);
     const [sortedResults, setSortedResults] = useState<TrackStatsRowType[]>([]);
@@ -76,6 +77,7 @@ const TrackStatsSegment: React.FC<Props> = ({ assetType, columns, filters, resul
                 <TrackStatsRow
                     rowData={r}
                     showAverageFinish={showAverageFinish}
+                    selectedColumn={selectedColumn}
                     key={r.assetId}
                 />
             ))}

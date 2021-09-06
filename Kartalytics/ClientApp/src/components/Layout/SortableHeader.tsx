@@ -9,19 +9,19 @@ type Props = {
     handleClick: (value: number) => void;
     sortAscending: boolean;
     isSorted?: boolean;
+    isSelected?: boolean;
 }
 
-const SortableHeader: React.FC<Props> = ({ column, colNumber, handleClick, sortAscending, isSorted }) => {
-    const { className, invertSort, label, labelAbbr } = column;
+const SortableHeader: React.FC<Props> = ({ column, colNumber, handleClick, sortAscending, isSorted, isSelected }) => {
+    const { className, invertSort, label } = column;
 
     return (
         <th
             scope='col'
-            className={`cursor-pointer ${className}`}
+            className={`cursor-pointer ${className} ${colNumber === 0 || isSelected ? 'table-cell' : 'hidden'} md:table-cell`}
             onClick={() => handleClick(colNumber)}
         >
-            <span className='lg:hidden'>{labelAbbr ? labelAbbr : label}</span>
-            <span className='hidden lg:inline'>{label}</span>
+            {label}
             {isSorted && (
                 xor(sortAscending, !!invertSort)
                     ? <ChevronUpIcon className='h-5 w-5 inline align-top' />
