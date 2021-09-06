@@ -5,14 +5,10 @@ import * as ROUTES from '../constants/routes';
 const Home = () => {
     return (
         <>
-            <h1>Home Page</h1>
-            <Link to={`${ROUTES.MATCH}/1`}>Match</Link><br />
-            <Link to={`${ROUTES.PLAYER}/1`}>Player</Link><br />
-            <Link to={ROUTES.PLAYER_LIST}>Player List</Link><br />
-            <Link to={`${ROUTES.TOURNAMENT}/1`}>Tournament</Link><br />
-            <Link to={ROUTES.TOURNAMENT_LIST}>Tournament List</Link><br />
-            <Link to={`${ROUTES.TRACK}/1`}>Track</Link><br />
-            <Link to={ROUTES.TRACK_LIST}>Track List</Link>
+            <h1>Kartalytics</h1>
+
+            <p>Welcome to <strong>Kartalytics</strong>, home of results and statistics for multiplayer tournaments featuring some of the best Mario Kart 64 players in the world, many of whom are top-ranked time trialers on the <a href='http://mariokart64.com'>Mario Kart 64 Players' Page</a>. Here you can find breakdowns of <Link to={ROUTES.TOURNAMENT_LIST}>annual tournaments</Link>, as well as analytics of the results grouped by <Link to={ROUTES.PLAYER_LIST}>player</Link> and <Link to={ROUTES.TRACK_LIST}>track</Link>.</p><br />
+            <p>Click the links or use the search bar in the menu above to explore!</p>
         </>
     );
 }
