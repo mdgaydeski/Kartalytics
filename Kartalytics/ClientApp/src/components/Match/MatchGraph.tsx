@@ -55,7 +55,7 @@ const MatchGraph: React.FC<Props> = ({ match, matchResults }) => {
         <ResponsiveContainer width='95%' height={250} className='mt-4 mx-auto'>
             <LineChart data={graphResults}>
                 <CartesianGrid style={{ stroke: '#666' }} />
-                <XAxis dataKey='track' style={{ fill: 'white' }} />
+                <XAxis dataKey='track' style={{ fill: 'white' }} interval={window.innerWidth <= 768 ? 3 : 0} dx={-8} dy={4} />
                 <YAxis style={{ fill: 'white' }} />
                 <Tooltip
                     contentStyle={{ backgroundColor: '#111927', borderRadius: '0.5rem' }}
