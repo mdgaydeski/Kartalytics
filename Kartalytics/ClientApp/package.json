@@ -48,7 +48,8 @@
     "test": "cross-env CI=true react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint": "eslint ./src/",
-    "tailwind-compile": "npx postcss src/styles/tailwind.css -o src/styles/app.css"
+    "tailwind-compile": "npx postcss src/styles/tailwind.css -o src/styles/app.css",
+    "tailwind-build": "npx tailwindcss build -o src/styles/app.css -c tailwind.config.js"
   },
   "browserslist": {
     "production": [

@@ -1,9 +1,14 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
+    future: {
+        removeDeprecatedGapUtilities: true
+    },
     purge: [
-        './src/**/*.html',
-        './src/**/*.tsx',
+        './public/**/*.html',
+        './src/**/*.js',
+        './src/**/*.jsx',
+        './src/**/*.tsx'
     ],
     theme: {
         boxShadow: {
