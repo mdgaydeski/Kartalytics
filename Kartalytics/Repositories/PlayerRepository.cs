@@ -19,18 +19,24 @@ namespace Kartalytics.Repositories {
         }
 
         public IEnumerable<PlayerCollectionModel> Collection() {
-            return _players.Find(_ => true).ToList().Select(p => new PlayerCollectionModel {
-                Id = p.Id,
-                Name = p.Name,
-                Country = p.Country
-            });
+            return _players.Find(p => p.TournamentResults.Count() > 0)
+                .ToList()
+                .Select(p => new PlayerCollectionModel {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Country = p.Country
+                }
+            );
         }
 
         public IEnumerable<PlayerContextModel> ContextCollection() {
-            return _players.Find(_ => true).ToList().Select(p => new PlayerContextModel {
-                Id = p.Id,
-                Name = p.Name
-            });
+            return _players.Find(p => p.TournamentResults.Count() > 0)
+                .ToList()
+                .Select(p => new PlayerContextModel {
+                    Id = p.Id,
+                    Name = p.Name
+                }
+            );
         }
     }
 }
