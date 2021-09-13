@@ -11,7 +11,7 @@ type Props = {
 
 const TournamentOverview: React.FC<Props> = ({ results }) => {
     const { tournaments } = useContext(AppContext);
-    const averageFinish = results.reduce((acc, r) => acc += r.place, 0) / results.length;
+    const averageFinish = results.length > 0 ? results.reduce((acc, r) => acc += r.place, 0) / results.length : 0;
 
     return (
         <section className='px-4 w-80'>
@@ -19,21 +19,23 @@ const TournamentOverview: React.FC<Props> = ({ results }) => {
             <ul className='list-none pl-10'>
                 <li>Tournaments played: {results.length}</li>
                 <li>Average finish: {averageFinish.toFixed(2)}</li>
-                <li>Results:
-                    <ul className='list-disc pl-10'>
-                        {results.map(r => {
-                            const tournament = tournaments.filter(t => t.id === r.tournamentId)[0];
-                            return (
-                                <li key={r.tournamentId}>
-                                    <AssetLink type='tournament' id={r.tournamentId}>
-                                        {tournament.name}
-                                    </AssetLink>
-                                    : {r.place}/{tournament.totalPlayers}
-                                </li>
-                            );
-                        })}
-                    </ul>
-                </li>
+                {results.length > 0 &&
+                    <li>Results:
+                        <ul className='list-disc pl-10'>
+                            {results.map(r => {
+                                const tournament = tournaments.filter(t => t.id === r.tournamentId)[0];
+                                return (
+                                    <li key={r.tournamentId}>
+                                        <AssetLink type='tournament' id={r.tournamentId}>
+                                            {tournament.name}
+                                        </AssetLink>
+                                        : {r.place}/{tournament.totalPlayers}
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </li>
+                }
             </ul>
         </section>
     );

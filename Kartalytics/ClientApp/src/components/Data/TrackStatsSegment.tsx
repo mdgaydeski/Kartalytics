@@ -1,6 +1,6 @@
 ﻿import * as React from 'react';
 import TrackStatsRow from './TrackStatsRow';
-import { FilterSet, RaceResult, TrackStatsColumnType, TrackStatsRowType } from '../../constants/types';
+import { RaceResult, TrackStatsColumnType, TrackStatsFilterSet, TrackStatsRowType } from '../../constants/types';
 import AppContext from '../../context/AppContext';
 import { compare, sum, sumOfResults } from '../../utils';
 
@@ -9,7 +9,7 @@ const { useContext, useEffect, useState } = React;
 type Props = {
     assetType: string;
     columns: TrackStatsColumnType[];
-    filters: FilterSet;
+    filters: TrackStatsFilterSet;
     results: RaceResult[];
     selectedColumn: number;
 }
@@ -19,7 +19,7 @@ const TrackStatsSegment: React.FC<Props> = ({ assetType, columns, filters, resul
     const [filteredResults, setFilteredResults] = useState<TrackStatsRowType[]>([]);
     const [sortedResults, setSortedResults] = useState<TrackStatsRowType[]>([]);
     const { cups, players, tracks } = useContext(AppContext);
-    const { showAverageFinish, sortedColumn } = filters;
+    const { minimumResults, showAverageFinish, sortedColumn } = filters;
 
     useEffect(() => {     
         const groups = results.reduce((acc, r) => {
@@ -57,10 +57,9 @@ const TrackStatsSegment: React.FC<Props> = ({ assetType, columns, filters, resul
     }, [assetType, cups, players, results, setResultsGroups, tracks]);
 
     useEffect(() => {
-        const { minimumResults } = filters;
         const results = resultsGroups.filter(row => minimumResults > 1 ? sum(row.placeTotals) >= minimumResults : true);
         setFilteredResults(results);
-    }, [filters, resultsGroups, setFilteredResults])
+    }, [minimumResults, resultsGroups, setFilteredResults])
 
     useEffect(() => {
         if (columns.length > 0) {

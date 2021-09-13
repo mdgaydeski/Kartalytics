@@ -1,8 +1,8 @@
 ﻿// database subdocument types
 
 export interface MatchRaceResult {
-    trackId: number,
-    place: number
+    trackId: number;
+    place: number;
 }
 
 export interface MatchVideo {
@@ -115,14 +115,10 @@ export interface ContextObject {
     trackList?: number[];
 }
 
-export interface FilterSet {
+export interface PlayerOverviewFilterSet {
     readonly [key: string]: any;
     startYear: number;
     endYear: number;
-    minimumResults: number;
-    showAverageFinish: boolean;
-    sortedColumn: number;
-    sortAscending: boolean;
 }
 
 export interface SearchItem extends ContextObject {
@@ -140,6 +136,16 @@ export interface TrackStatsColumnType {
     invertSort?: boolean;
     property: string;
     index?: number;
+}
+
+export interface TrackStatsFilterSet {
+    readonly [key: string]: any;
+    startYear: number;
+    endYear: number;
+    minimumResults: number;
+    showAverageFinish: boolean;
+    sortedColumn: number;
+    sortAscending: boolean;
 }
 
 export type TrackStatsRowType = {

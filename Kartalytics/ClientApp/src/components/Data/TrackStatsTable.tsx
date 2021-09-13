@@ -8,7 +8,7 @@ import ColumnSelector from '../Layout/ColumnSelector';
 import Container from '../Layout/Container';
 import SortableHeader from '../Layout/SortableHeader';
 import TableOptions from '../Layout/TableOptions';
-import { FilterSet, RaceResult, TrackStatsColumnType } from '../../constants/types';
+import { RaceResult, TrackStatsColumnType, TrackStatsFilterSet } from '../../constants/types';
 import { PLACE_LABELS } from '../../constants/constants';
 
 const { useState, useEffect } = React;
@@ -20,7 +20,7 @@ type Props = {
 
 const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
     const handleError = useErrorHandler();
-    const [filters, setFilters] = useState<FilterSet>({
+    const [filters, setFilters] = useState<TrackStatsFilterSet>({
         startYear: 2018,
         endYear: 2020,
         minimumResults: 1,
@@ -32,7 +32,7 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
     const [results, setResults] = useState<RaceResult[]>([]);
     const [selectedColumn, setSelectedColumn] = useState<number>(0);
 
-    const { startYear, endYear, minimumResults, showAverageFinish } = filters;
+    const { startYear, endYear, minimumResults, showAverageFinish, sortedColumn, sortAscending } = filters;
 
     useEffect(() => {
         const columnList = [];
@@ -119,8 +119,8 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
                                     column={column}
                                     colNumber={i}
                                     handleClick={handleHeaderClick}
-                                    sortAscending={filters.sortAscending}
-                                    isSorted={i === filters.sortedColumn}
+                                    sortAscending={sortAscending}
+                                    isSorted={i === sortedColumn}
                                     isSelected={i === selectedColumn + 1}
                                     key={i}
                                 />

@@ -5,10 +5,11 @@ import { XIcon } from '@heroicons/react/outline';
 const { useState, useEffect } = React;
 
 type Props = {
-    children: any
+    children: any;
+    standalone?: boolean;
 }
 
-const TableOptions: React.FC<Props> = ({ children }) => {
+const TableOptions: React.FC<Props> = ({ children, standalone }) => {
     const location = useLocation();
     const [filtersCollapsed, setFiltersCollapsed] = useState<boolean>(true);
 
@@ -17,7 +18,7 @@ const TableOptions: React.FC<Props> = ({ children }) => {
     }, [location, setFiltersCollapsed]);
 
     return (
-        <div className='bg-indigo-900 flex flex-wrap items-center justify-between px-6 py-1 rounded-t'>
+        <div className={`bg-indigo-900 flex flex-wrap items-center justify-between px-6 py-1 ${standalone ? 'rounded' : 'rounded-t'}`}>
             <button
                 className='bg-blue-900 border border-blue-400 ml-auto py-1 px-6 rounded text-yellow-200 transition-colors duration-300 hover:bg-blue-700 md:hidden'
                 onClick={() => setFiltersCollapsed(false)}

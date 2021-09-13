@@ -1,25 +1,12 @@
 ﻿import * as React from 'react';
-import { useErrorHandler } from 'react-error-boundary';
 import { PLACE_LABELS } from '../../constants/constants';
 import { MatchResult } from '../../constants/types';
 
-const { useState, useEffect } = React;
-
 type Props = {
-    playerId: number;
+    results: MatchResult[];
 }
 
-const MatchOverview: React.FC<Props> = ({ playerId }) => {
-    const handleError = useErrorHandler();
-    const [results, setResults] = useState<MatchResult[]>([]);
-
-    useEffect(() => {
-        fetch(`/api/matches/player/${playerId}`)
-            .then(response => response.json())
-            .then(data => setResults(data))
-            .catch(error => handleError(error));
-    }, [playerId, setResults, handleError])
-
+const MatchOverview: React.FC<Props> = ({ results }) => {
     const resultsByPlace = results.reduce((acc, r) => {
         acc[0] += r.points;
         acc[r.place]++;
@@ -31,7 +18,7 @@ const MatchOverview: React.FC<Props> = ({ playerId }) => {
             <h3>Match Stats</h3>
             <ul className='list-none pl-10'>
                 <li>Total matches: {results.length}</li>
-                <li>Average points: {(resultsByPlace[0] / results.length).toFixed(2)}</li>
+                <li>Average points: {(results.length > 0 ? resultsByPlace[0] / results.length : 0).toFixed(2)}</li>
                 {/*<li>Max points: 99 (Virginia 2018, Play-in A)</li>*/}
                 {/*<li>Min points: 9 (Virginia 2019, Round 1 - Match D)</li>*/}
                 <li>Overall place totals:
@@ -39,7 +26,7 @@ const MatchOverview: React.FC<Props> = ({ playerId }) => {
                         {resultsByPlace.slice(1).map((r, i) => (
                             <li key={i}>
                                 {PLACE_LABELS[i]}:&nbsp;
-                                {r} ({(r / results.length * 100).toFixed(2)}%)
+                                {r} ({(results.length > 0 ? r / results.length * 100 : 0).toFixed(2)}%)
                             </li>
                         ))}
                     </ul>

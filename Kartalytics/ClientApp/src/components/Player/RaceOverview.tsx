@@ -1,25 +1,12 @@
 ﻿import * as React from 'react';
-import { useErrorHandler } from 'react-error-boundary';
 import { PLACE_LABELS } from '../../constants/constants';
 import { RaceResult } from '../../constants/types';
 
-const { useState, useEffect } = React;
-
 type Props = {
-    playerId: number
+    results: RaceResult[];
 }
 
-const RaceOverview: React.FC<Props> = ({ playerId }) => {
-    const handleError = useErrorHandler();
-    const [results, setResults] = useState<RaceResult[]>([]);
-
-    useEffect(() => {
-        fetch(`/api/raceresults/player/${playerId}`)
-            .then(response => response.json())
-            .then(data => setResults(data))
-            .catch(error => handleError(error));
-    }, [playerId, setResults, handleError]);
-
+const RaceOverview: React.FC<Props> = ({ results }) => {
     const resultsByPlace = results.reduce((acc, r) => {
         acc[0] += r.place;
         acc[r.place]++;
@@ -31,13 +18,13 @@ const RaceOverview: React.FC<Props> = ({ playerId }) => {
             <h3>Race Stats</h3>
             <ul className='list-none pl-10'>
                 <li>Total races: {results.length}</li>
-                <li>Average finish: {(resultsByPlace[0] / results.length).toFixed(3)}</li>
+                <li>Average finish: {(results.length > 0 ? resultsByPlace[0] / results.length : 0).toFixed(3)}</li>
                 <li>Place totals:
                     <ul className='list-disc pl-10'>
                         {resultsByPlace.slice(1).map((r, i) => (
                             <li key={i}>
                                 {PLACE_LABELS[i]}:&nbsp;
-                                {r} ({(r / results.length * 100).toFixed(2)}%)
+                                {r} ({(results.length > 0 ? r / results.length * 100 : 0).toFixed(2)}%)
                             </li>
                         ))}
                     </ul>
