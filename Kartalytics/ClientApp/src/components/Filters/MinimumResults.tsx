@@ -4,15 +4,15 @@ import TableFilter from '../Layout/TableFilter';
 
 type Props = {
     minimumResults: number;
-    setProperty: (key: string, value: number) => void;
+    applyFilters: (obj: any) => void;
 }
 
 const MIN_RESULTS = 1;
 const MAX_RESULTS = 99;
 
-const MinimumResults: React.FC<Props> = ({ minimumResults, setProperty }) => {
+const MinimumResults: React.FC<Props> = ({ minimumResults, applyFilters }) => {
     const handleChange = (value: number) => {
-        value >= MIN_RESULTS && value <= MAX_RESULTS && setProperty('minimumResults', value);
+        value >= MIN_RESULTS && value <= MAX_RESULTS && applyFilters({ minimumResults: value });
     }
 
     return (

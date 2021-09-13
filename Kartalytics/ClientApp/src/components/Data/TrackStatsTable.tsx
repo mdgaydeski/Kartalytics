@@ -63,10 +63,10 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
         setColumns(columnList);
     }, [setColumns, playerId, showAverageFinish]);
 
-    const setProperty = (key: string, value: any) => {
+    const applyFilters = (obj: any) => {
         const newFilters = { ...filters }
-        if (newFilters.hasOwnProperty(key)) {
-            newFilters[key] = value
+        for (const [key, value] of Object.entries(obj)) {
+            newFilters[key] = value;
         }
         setFilters(newFilters);
     }
@@ -100,15 +100,15 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
                     <YearRange
                         startYear={startYear}
                         endYear={endYear}
-                        setProperty={setProperty}
+                        applyFilters={applyFilters}
                     />
                     {trackId && <MinimumResults
                         minimumResults={minimumResults}
-                        setProperty={setProperty}
+                        applyFilters={applyFilters}
                     />}
                     <AverageDisplay
                         showAverageFinish={showAverageFinish}
-                        setProperty={setProperty}
+                        applyFilters={applyFilters}
                     />
                 </TableOptions>
                 <table className='divide-y-4 divide-transparent my-1 table-fixed text-center w-full'>

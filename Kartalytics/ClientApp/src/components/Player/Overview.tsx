@@ -54,10 +54,10 @@ const Overview: React.FC<Props> = ({ player }) => {
         setFilteredRaceResults(raceResults.filter(r => r.year >= startYear && r.year <= endYear));
     }, [player, matchResults, raceResults, startYear, endYear, setFilteredTournamentResults,setFilteredMatchResults, setFilteredRaceResults])
 
-    const setProperty = (key: string, value: any) => {
+    const applyFilters = (obj: any) => {
         const newFilters = { ...filters }
-        if (newFilters.hasOwnProperty(key)) {
-            newFilters[key] = value
+        for (const [key, value] of Object.entries(obj)) {
+            newFilters[key] = value;
         }
         setFilters(newFilters);
     }
@@ -69,7 +69,7 @@ const Overview: React.FC<Props> = ({ player }) => {
                 <YearRange
                     startYear={startYear}
                     endYear={endYear}
-                    setProperty={setProperty}
+                    applyFilters={applyFilters}
                 />
             </TableOptions>
             <div className='flex flex-wrap justify-around'>

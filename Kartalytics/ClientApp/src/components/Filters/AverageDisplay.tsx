@@ -3,10 +3,10 @@ import TableFilter from '../Layout/TableFilter';
 
 type Props = {
     showAverageFinish: boolean;
-    setProperty: (key: string, value: boolean) => void;
+    applyFilters: (obj: any) => void;
 }
 
-const AverageDisplay: React.FC<Props> = ({ showAverageFinish, setProperty }) => {
+const AverageDisplay: React.FC<Props> = ({ showAverageFinish, applyFilters }) => {
     const options = [
         { label: 'Finish', option: true },
         { label: 'Points', option: false }
@@ -24,7 +24,7 @@ const AverageDisplay: React.FC<Props> = ({ showAverageFinish, setProperty }) => 
                             name='average'
                             value={o.option.toString()}
                             checked={showAverageFinish === o.option}
-                            onChange={() => setProperty('showAverageFinish', o.option)}
+                            onChange={() => applyFilters({ showAverageFinish: o.option })}
                         />
                         <label htmlFor={o.label.toLowerCase()}>{o.label}</label>
                     </div>
