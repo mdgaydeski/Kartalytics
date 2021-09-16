@@ -20,10 +20,13 @@ const Tournament = () => {
     const [tournament, setTournament] = useState<Tournament | null>(null);
 
     useEffect(() => {
+        let mounted = true;
         fetch(`/api/tournaments/${id}`)
             .then(response => response.json())
-            .then(data => setTournament(data))
+            .then(data => mounted && setTournament(data))
             .catch(error => handleError(error));
+
+        return () => { mounted = false }
     }, [id, setTournament, handleError]);
 
     return (

@@ -17,10 +17,13 @@ const TournamentResultListing: React.FC<Props> = ({ playerId, tournamentId, matc
     const handleError = useErrorHandler();
     const [tournament, setTournament] = useState<Tournament | null>(null);
     useEffect(() => {
+        let mounted = true;
         fetch(`/api/tournaments/${tournamentId}`)
             .then(response => response.json())
-            .then(data => setTournament(data))
+            .then(data => mounted && setTournament(data))
             .catch(error => handleError(error));
+
+        return () => { mounted = false }
     }, [tournamentId, setTournament, handleError]);
 
     return ( tournament &&

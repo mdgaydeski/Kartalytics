@@ -19,15 +19,18 @@ const RoundTable: React.FC<Props> = ({ advance, roundResults, matchId, isFinals 
     const [matchResults, setMatchResults] = useState<MatchResult[]>([]);
 
     useEffect(() => {
+        let mounted = true;
         matchId && fetch(`/api/matches/${matchId}`)
             .then(response => response.json())
-            .then(data => setMatch(data))
+            .then(data => mounted && setMatch(data))
             .catch(error => handleError(error));
 
         matchId && fetch(`/api/matches/${matchId}/results`)
             .then(response => response.json())
-            .then(data => setMatchResults(data))
+            .then(data => mounted && setMatchResults(data))
             .catch(error => handleError(error));
+
+        return () => { mounted = false }
     }, [matchId, setMatch, setMatchResults, handleError]);
 
     return (

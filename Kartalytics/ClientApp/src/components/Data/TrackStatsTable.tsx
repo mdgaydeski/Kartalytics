@@ -79,10 +79,13 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
     }
 
     useEffect(() => {
+        let mounted = true;
         fetch(`/api/raceresults/${playerId ? `player/${playerId}` : `track/${trackId}`}`)
             .then(response => response.json())
-            .then(data => setResults(data))
-        .catch(error => handleError(error));
+            .then(data => mounted && setResults(data))
+            .catch(error => handleError(error));
+
+        return () => { mounted = false }
     }, [playerId, trackId, setResults, handleError]);
 
     const filteredResults = results.filter(r => playerId ? r.playerId === playerId : r.trackId === trackId)

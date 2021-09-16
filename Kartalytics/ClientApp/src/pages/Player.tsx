@@ -20,10 +20,13 @@ const Player = () => {
     const [player, setPlayer] = useState<Player | null>(null);
 
     useEffect(() => {
+        let mounted = true;
         fetch(`/api/players/${id}`)
             .then(response => response.json())
-            .then(data => setPlayer(data))
+            .then(data => mounted && setPlayer(data))
             .catch(error => handleError(error));
+
+        return () => { mounted = false }
     }, [id, setPlayer, handleError]);
 
     return (

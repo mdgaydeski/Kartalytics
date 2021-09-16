@@ -36,15 +36,18 @@ const MatchTable: React.FC<Props> = ({ matchId, playerId, fromDetailsPage }) => 
     });
 
     useEffect(() => {
+        let mounted = true
         fetch(`/api/matches/${matchId}`)
             .then(response => response.json())
-            .then(data => setMatch(data))
+            .then(data => mounted && setMatch(data))
             .catch(error => handleError(error));
 
         fetch(`/api/matches/${matchId}/results`)
             .then(response => response.json())
-            .then(data => setResults(data))
+            .then(data => mounted && setResults(data))
             .catch(error => handleError(error));
+
+        return () => { mounted = false }
     }, [matchId, setMatch, setResults, handleError]);
 
     return (

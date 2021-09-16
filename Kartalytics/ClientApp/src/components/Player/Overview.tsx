@@ -27,17 +27,23 @@ const Overview: React.FC<Props> = ({ player }) => {
     const { startYear, endYear } = filters;
 
     useEffect(() => {
+        let mounted = true;
         player && fetch(`/api/matches/player/${player.id}`)
             .then(response => response.json())
-            .then(data => setMatchResults(data))
+            .then(data => mounted && setMatchResults(data))
             .catch(error => handleError(error));
+
+        return () => { mounted = false }
     }, [player, setMatchResults, handleError]);
 
     useEffect(() => {
+        let mounted = true;
         player && fetch(`/api/raceresults/player/${player.id}`)
             .then(response => response.json())
-            .then(data => setRaceResults(data))
+            .then(data => mounted && setRaceResults(data))
             .catch(error => handleError(error));
+
+        return () => { mounted = false }
     }, [player, setRaceResults, handleError]);
 
     useEffect(() => {
