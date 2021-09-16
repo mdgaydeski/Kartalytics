@@ -31,10 +31,9 @@ const MatchGraph: React.FC<Props> = ({ match, matchResults }) => {
         }, []);
 
         const trackOrder = match.trackOrder ||
-            (match.cupOrder && match.cupOrder.reduce((acc, id) => {
+            (match.cupOrder?.reduce((acc, id) => {
                 const cup = cups.find(c => c.id === id);
-                cup && acc.concat(cup.tracks);
-                return acc;
+                return cup ? acc.concat(cup.tracks) : acc;
             }, [0])) || [];
         const trackNames = trackOrder.map(o => {
             const track = tracks.find(t => t.id === o);
