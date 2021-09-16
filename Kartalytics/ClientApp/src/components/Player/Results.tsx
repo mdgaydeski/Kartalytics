@@ -17,8 +17,11 @@ const Results: React.FC<Props> = ({ player }) => {
         <>
             <h2>Results</h2>
             <TableOfContents sections={player.tournamentResults.map(result => {
-                const tournament = tournaments.filter(t => t.id === result.tournamentId)[0];
-                return { id: tournament.id, name: tournament.name }
+                const tournament = tournaments.find(t => t.id === result.tournamentId);
+                return {
+                    id: tournament ? tournament.id : 0,
+                    name: tournament ? tournament.name: ''
+                }
             })} />
             {player.tournamentResults.map(result => (
                 <TournamentResultListing

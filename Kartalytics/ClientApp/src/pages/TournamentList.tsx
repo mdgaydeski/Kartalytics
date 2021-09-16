@@ -11,7 +11,7 @@ const TournamentList = () => {
     const handleError = useErrorHandler();
     const { players } = useContext(AppContext);
     const [selectedValue, setSelectedValue] = useState<number>(1);
-    const [selectedTournament, setSelectedTournament] = useState<TournamentCollectionType | false>(false);
+    const [selectedTournament, setSelectedTournament] = useState<TournamentCollectionType | undefined>(undefined);
     const [tournamentList, setTournamentList] = useState<TournamentCollectionType[]>([]);
 
     useEffect(() => {
@@ -22,8 +22,8 @@ const TournamentList = () => {
     }, [setTournamentList, handleError]);
 
     useEffect(() => {
-        const tournament = tournamentList.length > 0 && tournamentList.filter(t => t.id === selectedValue)[0];
-        setSelectedTournament(tournament);
+        const tournament = tournamentList.length > 0 && tournamentList.find(t => t.id === selectedValue);
+        tournament && setSelectedTournament(tournament);
     }, [selectedValue, setSelectedTournament, tournamentList]);
 
     return (
@@ -61,7 +61,7 @@ const TournamentList = () => {
                                     <li className='ml-10' key={result.playerId}>
                                         {result.place}.&nbsp;
                                         <AssetLink type='player' id={result.playerId}>
-                                            {players.filter(p => p.id === result.playerId)[0].name}
+                                            {players.find(p => p.id === result.playerId)?.name}
                                         </AssetLink>
                                     </li>
                                 ))}

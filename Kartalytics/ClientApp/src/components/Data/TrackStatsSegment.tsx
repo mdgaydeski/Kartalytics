@@ -26,11 +26,11 @@ const TrackStatsSegment: React.FC<Props> = ({ assetType, columns, filters, resul
             let asset = undefined;
 
             if (assetType === 'cup') {
-                asset = cups.filter(c => c.tracks.some(t => t === r.trackId))[0];
+                asset = cups.find(c => c.tracks.some(t => t === r.trackId));
             } else if (assetType === 'player') {
-                asset = players.filter(p => p.id === r.playerId)[0];
+                asset = players.find(p => p.id === r.playerId);
             } else if (assetType === 'track') {
-                asset = tracks.filter(t => t.id === r.trackId)[0];
+                asset = tracks.find(t => t.id === r.trackId);
             }
 
             const assetId = asset ? asset.id : 0;

@@ -31,7 +31,8 @@ const MatchTable: React.FC<Props> = ({ matchId, playerId, fromDetailsPage }) => 
     const { cups } = useContext(AppContext);
     const cupLabels = ['Totals']
     match && match.cupOrder && match.cupOrder.forEach(cupId => {
-        cupLabels.push(cups.filter(c => c.id === cupId)[0].name);
+        const cup = cups.find(c => c.id === cupId);
+        cup && cupLabels.push(cup.name);
     });
 
     useEffect(() => {

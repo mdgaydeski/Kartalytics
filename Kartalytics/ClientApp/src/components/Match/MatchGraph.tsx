@@ -23,18 +23,21 @@ const MatchGraph: React.FC<Props> = ({ match, matchResults }) => {
 
     useEffect(() => {
         const playerData = matchResults.map(r => {
+            const player = players.find(p => r.playerId === p.id);
             return {
-                name: players.filter(p => r.playerId === p.id)[0].name,
+                name: player ? player.name : '',
                 pointTotals: getProgressivePointTotals(r.raceResults)
-            }
-        });
+            };
+        }, []);
 
         const trackOrder = match.trackOrder ||
-            (match.cupOrder && match.cupOrder.reduce((acc, id) => (
-                acc.concat(cups.filter(c => c.id === id)[0].tracks)
-            ), [0])) || [];
+            (match.cupOrder && match.cupOrder.reduce((acc, id) => {
+                const cup = cups.find(c => c.id === id);
+                cup && acc.concat(cup.tracks);
+                return acc;
+            }, [0])) || [];
         const trackNames = trackOrder.map(o => {
-            const track = tracks.filter(t => t.id === o)[0];
+            const track = tracks.find(t => t.id === o);
             return track && track.altNames && track.altNames.length > 0 ? track.altNames[0] : 'ST';
         });
         const graphResults = trackNames.map((t, i) => {

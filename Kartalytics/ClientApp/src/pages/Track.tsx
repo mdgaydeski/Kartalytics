@@ -7,14 +7,16 @@ const { useContext } = React;
 
 const Track = () => {
     const { id } = useParams<{ id: string }>();
-    const track = useContext(AppContext).tracks.filter(t => t.id === Number(id))[0]
+    const track = useContext(AppContext).tracks.find(t => t.id === Number(id));
 
-    return (
-        <>
-            <h1>{track.name}</h1>
-            <TrackStatsTable trackId={track.id} />
-        </>
-    );
+    return track
+        ? (
+            <>
+                <h1>{track.name}</h1>
+                <TrackStatsTable trackId={track.id} />
+            </>
+        )
+        : <></>
 }
 
 export default Track;

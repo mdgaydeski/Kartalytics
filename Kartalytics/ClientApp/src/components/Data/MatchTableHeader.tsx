@@ -19,9 +19,9 @@ const MatchTableHeader: React.FC<Props> = ({ cupOrder, trackOrder, selectedCup }
             { cupOrder && <tr className='hidden md:table-row'>
                 <td className='w-1/6' />
                 <td />
-                {cupOrder.map((cupId, i) => {
-                    const cup = cups.filter(c => c.id === cupId)[0];
-                    return (
+                {cupOrder.map(cupId => {
+                    const cup = cups.find(c => c.id === cupId);
+                    return cup && (
                         <td colSpan={4} className='border-l border-indigo-900 pt-2' key={cupId}>
                             {cup.name}
                         </td>
@@ -35,8 +35,8 @@ const MatchTableHeader: React.FC<Props> = ({ cupOrder, trackOrder, selectedCup }
                 {cupOrder
                     ? <>
                         {cupOrder.map((cupId, i) => {
-                            const cup = cups.filter(c => c.id === cupId)[0];
-                            return cup.tracks.map((trackId, j) => (
+                            const cup = cups.find(c => c.id === cupId);
+                            return cup && cup.tracks.map((trackId, j) => (
                                 <TrackHeader
                                     trackId={trackId}
                                     className={`${selectedCup === i + 1 ? 'table-cell' : 'hidden'} pt-2 md:pt-0 md:table-cell${j % 4 === 0 ? ' border-l border-indigo-900' : ''}`}
