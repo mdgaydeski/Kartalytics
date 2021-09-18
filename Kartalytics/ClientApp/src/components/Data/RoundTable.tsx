@@ -40,8 +40,8 @@ const RoundTable: React.FC<Props> = ({ advance, roundResults, matchId, isFinals 
                 <table className='table text-center w-full'>
                     <thead>
                         <tr>
-                            <th className='py-2 w-1/2'>Player</th>
-                            <th className='py-2 w-1/2'>Points</th>
+                            <th className='py-2 w-1/2' scope='col'>Player</th>
+                            <th className='py-2 w-1/2' scope='col'>Points</th>
                         </tr>
                     </thead>
                     <tbody>

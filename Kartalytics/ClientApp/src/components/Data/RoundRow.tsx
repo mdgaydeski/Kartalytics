@@ -21,11 +21,11 @@ const RoundRow: React.FC<Props> = ({ playerId, points, advance, finalPlace }) =>
     return player
         ? (
             <tr className='hover:bg-indigo-900' key={player.id}>
-                <td className=''>
+                <th scope='row'>
                     <AssetLink type='player' id={player.id}>
                         {player.name}
                     </AssetLink>
-                </td>
+                </th>
                 <td>
                     {points.length === 1
                         ? points[0]

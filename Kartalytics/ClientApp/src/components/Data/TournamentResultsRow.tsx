@@ -14,11 +14,11 @@ const TournamentResultsRow: React.FC<Props> = ({ player, result, roundResults, s
     return (
         <tr className='hover:bg-indigo-900' key={result.playerId}>
             <td>{result.place}</td>
-            <td>
+            <th scope='row'>
                 <AssetLink type='player' id={player.id}>
                     {player.name}
                 </AssetLink>
-            </td>
+            </th>
             {roundResults.map((r, i) => {
                 return (
                     <td className={`${selectedRound === i ? 'table-cell' : 'hidden'} md:table-cell`} key={i}>
