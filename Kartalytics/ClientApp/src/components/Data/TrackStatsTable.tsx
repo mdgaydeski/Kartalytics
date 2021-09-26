@@ -72,10 +72,11 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
     }
 
     const handleHeaderClick = (colNumber: number) => {
-        const newFilters = { ...filters }
-        newFilters.sortAscending = filters.sortedColumn === colNumber ? !filters.sortAscending : true;
-        newFilters.sortedColumn = colNumber;
-        setFilters(newFilters);
+        const newFilters = {
+            sortAscending: filters.sortedColumn === colNumber ? !filters.sortAscending : true,
+            sortedColumn: colNumber
+        }
+        applyFilters(newFilters);
     }
 
     useEffect(() => {
