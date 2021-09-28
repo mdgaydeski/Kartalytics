@@ -40,6 +40,7 @@
     <None Remove="ClientApp\src\components\Filters\HighlightPlace.tsx" />
     <None Remove="ClientApp\src\components\Filters\MinimumResults.tsx" />
     <None Remove="ClientApp\src\components\Filters\RangeButtons.tsx" />
+    <None Remove="ClientApp\src\components\Filters\SetFiltersButton.tsx" />
     <None Remove="ClientApp\src\components\Filters\YearRange.tsx" />
     <None Remove="ClientApp\src\components\Layout\AssetLink.tsx" />
     <None Remove="ClientApp\src\components\Layout\BackToTopLink.tsx" />
@@ -104,6 +105,7 @@
     <TypeScriptCompile Include="ClientApp\src\components\Filters\HighlightPlace.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Filters\MinimumResults.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Filters\RangeButtons.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\Layout\SetFiltersButton.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Filters\YearRange.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Layout\BackToTopLink.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Layout\ColumnSelector.tsx" />

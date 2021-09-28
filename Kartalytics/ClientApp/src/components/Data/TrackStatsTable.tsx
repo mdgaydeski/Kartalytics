@@ -13,6 +13,15 @@ import { PLACE_LABELS } from '../../constants/constants';
 
 const { useState, useEffect } = React;
 
+const initialFilters = {
+    startYear: 2019,
+    endYear: 2019,
+    minimumResults: 1,
+    showAverageFinish: true,
+    sortedColumn: 0,
+    sortAscending: true
+}
+
 type Props = {
     playerId?: number;
     trackId?: number;
@@ -20,14 +29,8 @@ type Props = {
 
 const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
     const handleError = useErrorHandler();
-    const [filters, setFilters] = useState<TrackStatsFilterSet>({
-        startYear: 2018,
-        endYear: 2020,
-        minimumResults: 1,
-        showAverageFinish: true,
-        sortedColumn: 0,
-        sortAscending: true
-    });
+    const [filters, setFilters] = useState<TrackStatsFilterSet>({ ...initialFilters });
+    const [tempFilters, setTempFilters] = useState<TrackStatsFilterSet>({ ...initialFilters });
     const [columns, setColumns] = useState<TrackStatsColumnType[]>([]);
     const [results, setResults] = useState<RaceResult[]>([]);
     const [selectedColumn, setSelectedColumn] = useState<number>(0);

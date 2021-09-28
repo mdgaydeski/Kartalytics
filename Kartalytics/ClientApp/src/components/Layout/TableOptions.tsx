@@ -1,6 +1,7 @@
 ﻿import * as React from 'react';
 import { useLocation } from 'react-router-dom';
 import { XIcon } from '@heroicons/react/outline';
+import SetFiltersButton from './SetFiltersButton';
 
 const { useState, useEffect } = React;
 
@@ -17,6 +18,11 @@ const TableOptions: React.FC<Props> = ({ children, standalone }) => {
         setFiltersCollapsed(true);
     }, [location, setFiltersCollapsed]);
 
+    const resetFilters = () => {
+        console.log('reset');
+        setFiltersCollapsed(true);
+    }
+
     return (
         <div className={`bg-indigo-900 flex flex-wrap items-center justify-between px-6 py-1 ${standalone ? 'rounded' : 'rounded-t'}`}>
             <button
@@ -24,11 +30,15 @@ const TableOptions: React.FC<Props> = ({ children, standalone }) => {
                 onClick={() => setFiltersCollapsed(false)}
             >
                 Filters
-                </button>
+            </button>
             <div className={`${filtersCollapsed ? 'hidden' : 'fixed'} bg-black h-screen left-0 top-0 p-2 w-full z-50 md:contents`}>
-                <XIcon className='h-8 w-8 ml-auto p-1 text-white md:hidden' onClick={() => setFiltersCollapsed(true)} />
+                <XIcon className='h-8 w-8 ml-auto p-1 text-white md:hidden' onClick={resetFilters} />
                 <h3 className='md:hidden'>Filters</h3>
                 {children}
+                <div className='flex'>
+                    <SetFiltersButton onClick={() => console.log('set')} />
+                    <SetFiltersButton onClick={resetFilters} cancel />
+                </div>
             </div>
         </div>
     );
