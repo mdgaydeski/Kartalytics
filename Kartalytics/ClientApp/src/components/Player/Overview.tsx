@@ -71,7 +71,7 @@ const Overview: React.FC<Props> = ({ player }) => {
     return (
         <>
             <h2>Overview</h2>
-            <TableOptions standalone>
+            <TableOptions standalone setFilters={() => console.log('set')} clearFilters={() => console.log('clear')}>
                 <YearRange
                     startYear={startYear}
                     endYear={endYear}

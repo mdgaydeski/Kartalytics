@@ -8,9 +8,11 @@ const { useState, useEffect } = React;
 type Props = {
     children: any;
     standalone?: boolean;
+    setFilters: () => void;
+    clearFilters: () => void;
 }
 
-const TableOptions: React.FC<Props> = ({ children, standalone }) => {
+const TableOptions: React.FC<Props> = ({ children, standalone, setFilters, clearFilters }) => {
     const location = useLocation();
     const [filtersCollapsed, setFiltersCollapsed] = useState<boolean>(true);
 
@@ -18,8 +20,13 @@ const TableOptions: React.FC<Props> = ({ children, standalone }) => {
         setFiltersCollapsed(true);
     }, [location, setFiltersCollapsed]);
 
-    const resetFilters = () => {
-        console.log('reset');
+    const setAndCollapseFilters = () => {
+        setFilters();
+        setFiltersCollapsed(true);
+    }
+
+    const clearAndCollapseFilters = () => {
+        clearFilters();
         setFiltersCollapsed(true);
     }
 
@@ -32,12 +39,12 @@ const TableOptions: React.FC<Props> = ({ children, standalone }) => {
                 Filters
             </button>
             <div className={`${filtersCollapsed ? 'hidden' : 'fixed'} bg-black h-screen left-0 top-0 p-2 w-full z-50 md:contents`}>
-                <XIcon className='h-8 w-8 ml-auto p-1 text-white md:hidden' onClick={resetFilters} />
+                <XIcon className='cursor-pointer h-8 w-8 ml-auto p-1 text-white md:hidden' onClick={clearAndCollapseFilters} />
                 <h3 className='md:hidden'>Filters</h3>
                 {children}
                 <div className='flex'>
-                    <SetFiltersButton onClick={() => console.log('set')} />
-                    <SetFiltersButton onClick={resetFilters} cancel />
+                    <SetFiltersButton onClick={setAndCollapseFilters} />
+                    <SetFiltersButton onClick={clearAndCollapseFilters} cancel />
                 </div>
             </div>
         </div>

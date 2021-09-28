@@ -35,7 +35,8 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
     const [results, setResults] = useState<RaceResult[]>([]);
     const [selectedColumn, setSelectedColumn] = useState<number>(0);
 
-    const { startYear, endYear, minimumResults, showAverageFinish, sortedColumn, sortAscending } = filters;
+    const { showAverageFinish, sortedColumn, sortAscending } = filters;
+    const { startYear, endYear, minimumResults } = tempFilters;
 
     useEffect(() => {
         const columnList = [];
@@ -66,7 +67,7 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
         setColumns(columnList);
     }, [setColumns, playerId, showAverageFinish]);
 
-    const applyFilters = (obj: any) => {
+    const setFiltersObject = (obj: any) => {
         const newFilters = { ...filters }
         for (const [key, value] of Object.entries(obj)) {
             newFilters[key] = value;
@@ -74,12 +75,20 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
         setFilters(newFilters);
     }
 
+    const setTempFiltersObject = (obj: any) => {
+        const newFilters = { ...tempFilters }
+        for (const [key, value] of Object.entries(obj)) {
+            newFilters[key] = value;
+        }
+        setTempFilters(newFilters);
+    }
+
     const handleHeaderClick = (colNumber: number) => {
         const newFilters = {
             sortAscending: filters.sortedColumn === colNumber ? !filters.sortAscending : true,
             sortedColumn: colNumber
         }
-        applyFilters(newFilters);
+        setFiltersObject(newFilters);
     }
 
     useEffect(() => {
@@ -93,7 +102,7 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
     }, [playerId, trackId, setResults, handleError]);
 
     const filteredResults = results.filter(r => playerId ? r.playerId === playerId : r.trackId === trackId)
-        .filter(r => r.year >= startYear && r.year <= endYear);
+        .filter(r => r.year >= filters.startYear && r.year <= filters.endYear);
 
     return (
         <>
@@ -103,19 +112,22 @@ const TrackStatsTable: React.FC<Props> = ({ playerId, trackId }) => {
                 callback={setSelectedColumn}
             />
             <Container>
-                <TableOptions>
+                <TableOptions
+                    setFilters={() => setFilters(tempFilters)}
+                    clearFilters={() => setTempFilters(filters)}
+                >
                     <YearRange
                         startYear={startYear}
                         endYear={endYear}
-                        applyFilters={applyFilters}
+                        applyFilters={setTempFiltersObject}
                     />
                     {trackId && <MinimumResults
                         minimumResults={minimumResults}
-                        applyFilters={applyFilters}
+                        applyFilters={setTempFiltersObject}
                     />}
                     <AverageDisplay
                         showAverageFinish={showAverageFinish}
-                        applyFilters={applyFilters}
+                        applyFilters={setFiltersObject}
                     />
                 </TableOptions>
                 <table className='divide-y-4 divide-transparent my-1 table-fixed text-center w-full'>

@@ -63,7 +63,7 @@ const MatchTable: React.FC<Props> = ({ matchId, playerId, fromDetailsPage }) => 
                 {match.videos.length > 0 && <VideoList videoList={match.videos} />}
             </div>
             <Container>
-                <TableOptions>
+                <TableOptions setFilters={() => console.log('set')} clearFilters={() => console.log('clear')}>
                     <HighlightPlace
                         highlightedPlace={highlightedPlace}
                         matchId={matchId}
