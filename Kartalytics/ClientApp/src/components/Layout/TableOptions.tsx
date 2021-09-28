@@ -38,7 +38,7 @@ const TableOptions: React.FC<Props> = ({ children, standalone, setFilters, clear
             >
                 Filters
             </button>
-            <div className={`${filtersCollapsed ? 'hidden' : 'fixed'} bg-black h-screen left-0 top-0 p-2 w-full z-50 md:contents`}>
+            <div className={`${filtersCollapsed ? 'invisible opacity-0' : 'visible opacity-100'} bg-black fixed h-screen left-0 top-0 p-2 transition-all duration-300 w-full z-50 md:contents md:visible`}>
                 <XIcon className='cursor-pointer h-8 w-8 ml-auto p-1 text-white md:hidden' onClick={clearAndCollapseFilters} />
                 <h3 className='md:hidden'>Filters</h3>
                 {children}
